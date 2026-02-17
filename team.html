@@ -254,14 +254,21 @@
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            /* This forces 3 columns that are exactly the same width */
+            grid-template-columns: repeat(3, 1fr); 
             gap: 40px;
+            /* This ensures the grid itself doesn't stretch infinitely */
+            max-width: 1200px; 
+            margin: 0 auto;
+            align-items: start; /* Prevents cards from stretching vertically */
         }
 
         .team-card {
             perspective: 1000px;
             height: 450px;
             cursor: pointer;
+            /* This ensures the card stays in its 1/3rd column */
+            width: 100%; 
         }
 
         .team-card-inner {
@@ -295,15 +302,14 @@
         .team-photo {
             width: 100%;
             height: 280px;
-            background: linear-gradient(135deg, var(--secondary-green) 0%, var(--primary-green) 100%);
             border-radius: 16px 16px 0 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+          
+        
             font-size: 14px;
             color: white;
             padding: 20px;
             position: relative;
+            overflow: hidden;
         }
 
         .team-photo::before {
@@ -311,6 +317,22 @@
             font-size: 80px;
             position: absolute;
             opacity: 0.3;
+        }
+
+        /* New styles for images */
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+         
+        }
+
+        /* Hide placeholder when image exists */
+        .team-photo:has(img)::before {
+            display: none;
         }
 
         .team-info {
@@ -714,8 +736,17 @@
             .container { padding: 60px 24px; }
             .nav-links { display: none; }
             .team-grid {
-                grid-template-columns: 1fr;
+                
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Better responsiveness */
+                gap: 40px;
+                justify-content: center; /* Centers cards if the row isn't full */
+                max-width: 1200px;
+                margin: 0 auto;
             }
+            .team-card:last-child:nth-child(3n+1) {
+                grid-column: 1; /* Moves the 10th card to the center column */
+    }
         }
 
         .newsletter-form {
@@ -786,165 +817,233 @@
     </section>
 
     <!-- Core Team Section -->
-    <section class="core-team">
-        <div class="container">
-            <h2>Core <span class="accent-text">Team</span></h2>
-            <div class="team-grid">
-                <div class="team-card" onclick="this.classList.toggle('flipped')">
-                    <div class="team-card-inner">
-                        <div class="team-card-front">
-                            <div class="team-photo">
-                               
-                            </div>
-                            <div class="team-info">
-                                <h3>Apollin Lu</h3>
-                                <p class="team-role">Founder and Executive Director</p>
-                                <p class="team-quote">"Every young person has the power to change their community."</p>
-                            </div>
+<section class="core-team">
+    <div class="container">
+        <h2>Core <span class="accent-text">Team</span></h2>
+        <div class="team-grid">
+            <div class="team-card" onclick="this.classList.toggle('flipped')">
+                <div class="team-card-inner">
+                    <div class="team-card-front">
+                        <div class="team-photo">
+                            <img src="headshots/apollin.JPG" alt="Apollin Lu"> 
                         </div>
-                        <div class="team-card-back">
-                            <p class="team-bio">Maya founded Youth Food Recovery in 2019 while in high school. Her passion for food justice and environmental sustainability drives the organization's mission. She has been recognized as a regional youth leader and speaks nationally on food systems change.</p>
-                            <div class="team-contact">
-                                <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
-                                <a href="#" class="contact-icon" aria-label="Email">✉</a>
-                            </div>
+                        <div class="team-info">
+                            <h3>Apollin Lu</h3>
+                            <p class="team-role">Founder and Executive Director</p>
+                            <p class="team-quote">"Every young person has the power to change their community."</p>
                         </div>
                     </div>
-                </div>
-
-                <div class="team-card" onclick="this.classList.toggle('flipped')">
-                    <div class="team-card-inner">
-                        <div class="team-card-front">
-                            <div class="team-photo">
-                                
-                            </div>
-                            <div class="team-info">
-                                <h3>Yashita Kaku</h3>
-                                <p class="team-role">Cofounder</p>
-                                <p class="team-quote">"Logistics is love in action."</p>
-                            </div>
-                        </div>
-                        <div class="team-card-back">
-                            <p class="team-bio">Jordan ensures our food recovery operations run smoothly and efficiently. With a background in supply chain management and a passion for reducing waste, Jordan coordinates our network of volunteers and partners to maximize our impact.</p>
-                            <div class="team-contact">
-                                <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
-                                <a href="#" class="contact-icon" aria-label="Email">✉</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card" onclick="this.classList.toggle('flipped')">
-                    <div class="team-card-inner">
-                        <div class="team-card-front">
-                            <div class="team-photo">
-                               
-                            </div>
-                            <div class="team-info">
-                                <h3>Sophie Buckley</h3>
-                                <p class="team-role">Communications Director</p>
-                                <p class="team-quote">"Community is our greatest resource."</p>
-                            </div>
-                        </div>
-                        <div class="team-card-back">
-                            <p class="team-bio">Priya builds and nurtures our volunteer community, creating meaningful opportunities for youth to engage with food justice. Her work ensures every volunteer feels valued, supported, and empowered to make a difference.</p>
-                            <div class="team-contact">
-                                <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
-                                <a href="#" class="contact-icon" aria-label="Email">✉</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card" onclick="this.classList.toggle('flipped')">
-                    <div class="team-card-inner">
-                        <div class="team-card-front">
-                            <div class="team-photo">
-                               
-                            </div>
-                            <div class="team-info">
-                                <h3>Brenton Hsu</h3>
-                                <p class="team-role">Outreach Director</p>
-                                <p class="team-quote">"Partnerships multiply our impact."</p>
-                            </div>
-                        </div>
-                        <div class="team-card-back">
-                            <p class="team-bio">Alex develops and maintains relationships with farms, food banks, and community organizations. Their strategic approach to partnership building has expanded our reach and deepened our community connections.</p>
-                            <div class="team-contact">
-                                <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
-                                <a href="#" class="contact-icon" aria-label="Email">✉</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card" onclick="this.classList.toggle('flipped')">
-                    <div class="team-card-inner">
-                        <div class="team-card-front">
-                            <div class="team-photo">
-                               
-                            </div>
-                            <div class="team-info">
-                                <h3>Angelina Guo</h3>
-                                <p class="team-role">Vancouver Chapter Head</p>
-                                <p class="team-quote">"Partnerships multiply our impact."</p>
-                            </div>
-                        </div>
-                        <div class="team-card-back">
-                            <p class="team-bio">Alex develops and maintains relationships with farms, food banks, and community organizations. Their strategic approach to partnership building has expanded our reach and deepened our community connections.</p>
-                            <div class="team-contact">
-                                <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
-                                <a href="#" class="contact-icon" aria-label="Email">✉</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-card" onclick="this.classList.toggle('flipped')">
-                    <div class="team-card-inner">
-                        <div class="team-card-front">
-                            <div class="team-photo">
-                              
-                            </div>
-                            <div class="team-info">
-                                <h3>Sarah Johnson</h3>
-                                <p class="team-role">Education Coordinator</p>
-                                <p class="team-quote">"Knowledge creates lasting change."</p>
-                            </div>
-                        </div>
-                        <div class="team-card-back">
-                            <p class="team-bio">Sarah develops educational programs that teach youth about food systems, sustainability, and social justice. Her workshops and curriculum have reached over 1,000 students across 15 schools.</p>
-                            <div class="team-contact">
-                                <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
-                                <a href="#" class="contact-icon" aria-label="Email">✉</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card" onclick="this.classList.toggle('flipped')">
-                    <div class="team-card-inner">
-                        <div class="team-card-front">
-                            <div class="team-photo">
-                               
-                            </div>
-                            <div class="team-info">
-                                <h3>Marcus Thompson</h3>
-                                <p class="team-role">Technology Lead</p>
-                                <p class="team-quote">"Innovation amplifies impact."</p>
-                            </div>
-                        </div>
-                        <div class="team-card-back">
-                            <p class="team-bio">Marcus manages our technology infrastructure and develops tools to streamline food recovery operations. His innovative solutions help us track impact and coordinate volunteers more effectively.</p>
-                            <div class="team-contact">
-                                <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
-                                <a href="#" class="contact-icon" aria-label="Email">✉</a>
-                            </div>
+                    <div class="team-card-back">
+                        <p class="team-bio">Maya founded Youth Food Recovery in 2019 while in high school. Her passion for food justice and environmental sustainability drives the organization's mission. She has been recognized as a regional youth leader and speaks nationally on food systems change.</p>
+                        <div class="team-contact">
+                            <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
+                            <a href="#" class="contact-icon" aria-label="Email">✉</a>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="team-card" onclick="this.classList.toggle('flipped')">
+                <div class="team-card-inner">
+                    <div class="team-card-front">
+                        <div class="team-photo">
+                            <img src="headshots/me.JPG" alt="Yashita Kaku"> 
+                        </div>
+                        <div class="team-info">
+                            <h3>Yashita Kaku</h3>
+                            <p class="team-role">Cofounder</p>
+                            <p class="team-quote">"Logistics is love in action."</p>
+                        </div>
+                    </div>
+                    <div class="team-card-back">
+                        <p class="team-bio">Jordan ensures our food recovery operations run smoothly and efficiently. With a background in supply chain management and a passion for reducing waste, Jordan coordinates our network of volunteers and partners to maximize our impact.</p>
+                        <div class="team-contact">
+                            <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
+                            <a href="#" class="contact-icon" aria-label="Email">✉</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card" onclick="this.classList.toggle('flipped')">
+                <div class="team-card-inner">
+                    <div class="team-card-front">
+                        <div class="team-photo">
+                            <img src="headshots/sophie.JPG" alt="Sophie Buckley">
+                        </div>
+                        <div class="team-info">
+                            <h3>Sophie Buckley</h3>
+                            <p class="team-role">Communications Director</p>
+                            <p class="team-quote">"Community is our greatest resource."</p>
+                        </div>
+                    </div>
+                    <div class="team-card-back">
+                        <p class="team-bio">Priya builds and nurtures our volunteer community, creating meaningful opportunities for youth to engage with food justice. Her work ensures every volunteer feels valued, supported, and empowered to make a difference.</p>
+                        <div class="team-contact">
+                            <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
+                            <a href="#" class="contact-icon" aria-label="Email">✉</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card" onclick="this.classList.toggle('flipped')">
+                <div class="team-card-inner">
+                    <div class="team-card-front">
+                        <div class="team-photo">
+                           <img src="headshots/brenton.JPG" alt="Brenton Hsu"> 
+                        </div>
+                        <div class="team-info">
+                            <h3>Brenton Hsu</h3>
+                            <p class="team-role">Outreach Director</p>
+                            <p class="team-quote">"Partnerships multiply our impact."</p>
+                        </div>
+                    </div>
+                    <div class="team-card-back">
+                        <p class="team-bio">Alex develops and maintains relationships with farms, food banks, and community organizations. Their strategic approach to partnership building has expanded our reach and deepened our community connections.</p>
+                        <div class="team-contact">
+                            <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
+                            <a href="#" class="contact-icon" aria-label="Email">✉</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card" onclick="this.classList.toggle('flipped')">
+                <div class="team-card-inner">
+                    <div class="team-card-front">
+                        <div class="team-photo">
+                           <img src="headshots/jehiel.png" alt="Jehiel McCoy">
+                        </div>
+                        <div class="team-info">
+                            <h3>Jehiel McCoy</h3>
+                            <p class="team-role">Volunteer Director</p>
+                            <p class="team-quote">"Partnerships multiply our impact."</p>
+                        </div>
+                    </div>
+                    <div class="team-card-back">
+                        <p class="team-bio">Alex develops and maintains relationships with farms, food banks, and community organizations. Their strategic approach to partnership building has expanded our reach and deepened our community connections.</p>
+                        <div class="team-contact">
+                            <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
+                            <a href="#" class="contact-icon" aria-label="Email">✉</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card" onclick="this.classList.toggle('flipped')">
+                <div class="team-card-inner">
+                    <div class="team-card-front">
+                        <div class="team-photo">
+                           <img src="headshots/angelina.jpeg" alt="Angelina Guo">
+                        </div>
+                        <div class="team-info">
+                            <h3>Angelina Guo</h3>
+                            <p class="team-role">Vancouver Chapter Head</p>
+                            <p class="team-quote">"Partnerships multiply our impact."</p>
+                        </div>
+                    </div>
+                    <div class="team-card-back">
+                        <p class="team-bio">Alex develops and maintains relationships with farms, food banks, and community organizations. Their strategic approach to partnership building has expanded our reach and deepened our community connections.</p>
+                        <div class="team-contact">
+                            <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
+                            <a href="#" class="contact-icon" aria-label="Email">✉</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card" onclick="this.classList.toggle('flipped')">
+                <div class="team-card-inner">
+                    <div class="team-card-front">
+                        <div class="team-photo">
+                           <img src="headshots/calvinli.JPG" alt="Calvin Li">
+                        </div>
+                        <div class="team-info">
+                            <h3>Calvin Li</h3>
+                            <p class="team-role">Position</p>
+                            <p class="team-quote">"Partnerships multiply our impact."</p>
+                        </div>
+                    </div>
+                    <div class="team-card-back">
+                        <p class="team-bio">Alex develops and maintains relationships with farms, food banks, and community organizations. Their strategic approach to partnership building has expanded our reach and deepened our community connections.</p>
+                        <div class="team-contact">
+                            <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
+                            <a href="#" class="contact-icon" aria-label="Email">✉</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card" onclick="this.classList.toggle('flipped')">
+                <div class="team-card-inner">
+                    <div class="team-card-front">
+                        <div class="team-photo">
+                           <img src="headshots/harrissyed.JPG" alt="Harris Syed">
+                        </div>
+                        <div class="team-info">
+                            <h3>Harris Syed</h3>
+                            <p class="team-role">Position</p>
+                            <p class="team-quote">"Partnerships multiply our impact."</p>
+                        </div>
+                    </div>
+                    <div class="team-card-back">
+                        <p class="team-bio">Alex develops and maintains relationships with farms, food banks, and community organizations. Their strategic approach to partnership building has expanded our reach and deepened our community connections.</p>
+                        <div class="team-contact">
+                            <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
+                            <a href="#" class="contact-icon" aria-label="Email">✉</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card" onclick="this.classList.toggle('flipped')">
+                <div class="team-card-inner">
+                    <div class="team-card-front">
+                        <div class="team-photo">
+                           <img src="headshots/ivanli.JPG" alt="Ivan Li">
+                        </div>
+                        <div class="team-info">
+                            <h3>Ivan Li</h3>
+                            <p class="team-role">Position</p>
+                            <p class="team-quote">"Partnerships multiply our impact."</p>
+                        </div>
+                    </div>
+                    <div class="team-card-back">
+                        <p class="team-bio">Alex develops and maintains relationships with farms, food banks, and community organizations. Their strategic approach to partnership building has expanded our reach and deepened our community connections.</p>
+                        <div class="team-contact">
+                            <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
+                            <a href="#" class="contact-icon" aria-label="Email">✉</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card" onclick="this.classList.toggle('flipped')">
+                <div class="team-card-inner">
+                    <div class="team-card-front">
+                        <div class="team-photo">
+                            <img src="headshots/semion.jpg" alt="Semion">
+                        </div>
+                        <div class="team-info">
+                            <h3>Semion</h3>
+                            <p class="team-role">Position</p>
+                            <p class="team-quote">"Partnerships multiply our impact."</p>
+                        </div>
+                    </div>
+                    <div class="team-card-back">
+                        <p class="team-bio">Bio text here...</p>
+                        <div class="team-contact">
+                            <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
+                            <a href="#" class="contact-icon" aria-label="Email">✉</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Advisory Board Section -->
     <section class="advisory-board">
@@ -1079,8 +1178,6 @@
         <p class="quote-banner-text">"This work is only possible because of collaboration across food systems."</p>
     </section>
 
-    <!-- ...existing code... -->
-    <!-- Replace the entire <footer>...</footer> block with the following: -->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -1109,8 +1206,8 @@
             <div class="footer-section">
                 <h3>Stay Connected</h3>
                 <p>Get updates on our impact, events, and opportunities to get involved.</p>
-                <form class="newsletter-form" onsubmit="return false;">
-                    <input type="email" placeholder="Your email address" aria-label="Email address" required>
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" name="Email" placeholder="Your email address" aria-label="Email address" required>
                     <button type="submit">Subscribe</button>
                 </form>
             </div>
@@ -1119,13 +1216,11 @@
             <p>&copy; 2024 Food Recovery Alliance. All rights reserved. </p>
         </div>
     </footer>
-<!-- ...existing code... -->
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
     // 1. Initialize map centered on Saanichton
-    // Zoom level 14 is great for seeing street names clearly
     var map = L.map('map').setView([48.5910, -123.4075], 14); 
 
     // 2. Load the map images
@@ -1134,36 +1229,39 @@
     }).addTo(map);
     
     var farmIcon = new L.Icon({
-    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
-});
-    // 3. Add your marker
-    var marker =L.marker([48.5910, -123.4075], {icon: farmIcon}).addTo(map)
-    .bindPopup("<b>Sunrise Orchards</b>");
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
     
-    var marker =L.marker([48.5915, -123.4075], {icon: farmIcon}).addTo(map)
-    .bindPopup("<b>Camas Orchards</b>");
+    // 3. Add your markers
+    var marker = L.marker([48.5910, -123.4075], {icon: farmIcon}).addTo(map)
+        .bindPopup("<b>Sunrise Orchards</b>");
+    
+    var marker = L.marker([48.5915, -123.4075], {icon: farmIcon}).addTo(map)
+        .bindPopup("<b>Camas Orchards</b>");
     
 </script>
+
 <script>
-        // Newsletter form
-        const newsletterForm = document.querySelector('.newsletter-form');
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const input = newsletterForm.querySelector('input');
-                if (input.value) {
-                    alert('Thank you for subscribing! We\'ll keep you updated on our impact.');
-                    input.value = '';
-                }
-            });
-        }
-        const form = document.getElementById('newsletter-form');
-  
+    // Newsletter form
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const input = newsletterForm.querySelector('input');
+            if (input.value) {
+                alert('Thank you for subscribing! We\'ll keep you updated on our impact.');
+                input.value = '';
+            }
+        });
+    }
+    
+    const form = document.getElementById('newsletter-form');
+    if (form) {
         form.addEventListener("submit", e => {
             e.preventDefault();
             
@@ -1175,7 +1273,6 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                // The key 'Email' must match Cell A1 in your sheet exactly
                 body: JSON.stringify({
                     data: [
                         { 'Email': emailValue }
@@ -1190,6 +1287,7 @@
             })
             .catch(err => console.error('Error:', err));
         });
-    </script>
+    }
+</script>
 </body>
 </html>
