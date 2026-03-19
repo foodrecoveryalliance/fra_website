@@ -8,17 +8,10 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Lora:wght@400;500&family=Pacifico&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        #map { 
-        height: 450px; 
-        width: 100%; 
-        z-index: 1; /* Ensures it stays behind navigation menus */
-        }
+        #map { height: 450px; width: 100%; z-index: 1; border-radius: 16px; }
+
         :root {
             --primary-green: #1E4D3B;
             --secondary-green: #4CAF6A;
@@ -36,893 +29,524 @@
             background-color: var(--cream);
         }
 
-        h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-        }
-
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; }
         h1 { font-size: 48px; line-height: 1.2; }
         h2 { font-size: 36px; }
         h3 { font-size: 28px; }
 
-        .accent-text {
-            font-family: 'Pacifico', cursive;
-            color: var(--secondary-green);
+        .accent-text { font-family: 'Pacifico', cursive; color: var(--secondary-green); }
+
+        .section-eyebrow {
+            display: inline-block; font-family: 'Montserrat', sans-serif;
+            font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--terracotta); margin-bottom: 16px;
         }
 
-        /* Navigation */
-        nav {
-            position: sticky;
-            top: 0;
-            background: rgba(30, 77, 59, 0.98);
-            padding: 16px 0;
-            z-index: 1000;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
-            backdrop-filter: blur(10px);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 32px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-group {
-            display: flex;
-            align-items: center;    /* Vertically centers the text with the logo */
-            text-decoration: none;  /* Removes underline from the link */
-            gap: 15px;             /* This controls the exact space between logo and text */
-        }
-
-        .brand-logo {
-            width: 50px;           /* Adjust size as needed */
-            height: 50px;
-            border-radius: 50%;    /* Keeps it circular */
-            object-fit: cover;
-            
-            background-color: #fff;
-        }
-
-        .brand-name {
-            color: white;
-            font-size: 1.8rem;
-            font-family: serif;    /* Matches the look in your screenshot */
-            font-weight: 500;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links > li {
-            position: relative;
-        }
-
-        .nav-links a {
-            color: var(--cream);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: 15px;
-            font-weight: 500;
-            display: block;
-            padding: 8px 0;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary-green);
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-toggle {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--cream);
-        }
-
-        .dropdown-toggle.active {
-            color: var(--golden);
-        }
-
-        .dropdown-toggle::after {
-            content: '▼';
-            font-size: 10px;
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            min-width: 220px;
-            border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s;
-            margin-top: 8px;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-menu a {
-            color: var(--charcoal);
-            padding: 12px 20px;
-            border-bottom: 1px solid #eee;
-            font-size: 14px;
-        }
-
-        .dropdown-menu a:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown-menu a:hover {
-            background: var(--cream);
-            color: var(--primary-green);
-        }
-
-        .btn-donate {
-            display: inline-block;
-            padding: 14px 40px;
-            min-width: 120px;
-            border-radius: 10px;
-            background: var(--terracotta);
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            font-weight: 700;
-            transition: all 0.3s;
-        }
-
-        .btn-donate:hover {
-            background: #c55a3a;
-            transform: translateY(-2px);
-        }
-
-
-        /* Hero Section */
+        /* ── HERO ── */
         .hero {
-            background: url(imgs2/volunteers.png);
-            background-size: cover;
-            background-position: center top -200px; /* shifts image up by 50px */
-            color: white;
-            padding: 100px 32px;
-            text-align: center;
             position: relative;
-            overflow: hidden;
+            min-height: 680px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; overflow: hidden; text-align: center;
         }
 
-        .hero::before {
+        .hero-bg {
+            position: absolute; inset: 0; 
+            background: url(imgs2/volunteers.png) center 40% / cover no-repeat;
+            transform: scale(1.05);
+            animation: heroZoom 14s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroZoom {
+            from { transform: scale(1.05); }
+            to   { transform: scale(1.12); }
+        }
+
+        .hero-bg::before {
             content: '';
-            position: absolute;
-            top: -20%;
-            right: -10%;
-            width: 400px;
-            height: 400px;
-            background: rgba(76, 175, 106, 0.1);
-            border-radius: 50%;
+            position: absolute; inset: 0;
+            background: linear-gradient(160deg, rgba(10,40,25,0.82) 0%, rgba(30,77,59,0.65) 50%, rgba(0,0,0,0.7) 100%);
         }
 
         .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
+            position: relative; z-index: 2;
+            max-width: 860px; padding: 120px 32px 80px;
+            animation: fadeUp 1s ease both;
         }
 
-        .hero h1 {
-            margin-bottom: 20px;
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
+
+        .hero-eyebrow {
+            display: inline-block; font-family: 'Montserrat', sans-serif;
+            font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--golden); background: rgba(244,197,66,0.12);
+            border: 1px solid rgba(244,197,66,0.35); border-radius: 100px;
+            padding: 8px 20px; margin-bottom: 28px;
+        }
+
+        .hero h1 { font-size: 58px; margin-bottom: 20px; letter-spacing: -1px; }
+        .hero-accent { font-family: 'Pacifico', cursive; color: var(--golden); font-size: 52px; }
 
         .hero p {
-            font-size: 20px;
-            line-height: 1.8;
+            font-size: 18px; color: rgba(255,255,255,0.82);
+            line-height: 1.8; max-width: 600px; margin: 0 auto 48px;
         }
 
-        
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 32px;
+        .hero-stats {
+            display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
         }
 
-        /* Core Team Section */
-        .core-team {
-            background: white;
+        .hero-stat {
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 16px;
+            padding: 20px 32px; text-align: center;
+            animation: badgeFloat 4s ease-in-out infinite;
+            width: 160px;
         }
 
-        .core-team h2 {
-            text-align: center;
-            color: var(--primary-green);
-            margin-bottom: 60px;
+        .hero-stat:nth-child(2) { animation-delay: 1.5s; }
+        .hero-stat:nth-child(3) { animation-delay: 3s; }
+
+        @keyframes badgeFloat {
+            0%,100% { transform: translateY(0); }
+            50%     { transform: translateY(-8px); }
         }
+
+        .hero-stat-num { font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 800; color: var(--golden); display: block; }
+        .hero-stat-label { font-size: 12px; color: rgba(255,255,255,0.75); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+        /* ── CONTAINER ── */
+        .container { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
+
+        /* ── CORE TEAM ── */
+        .core-team { background: white; }
+
+        .core-team-header {
+            text-align: center; margin-bottom: 72px;
+        }
+
+        .core-team-header h2 { color: var(--primary-green); margin-bottom: 12px; }
+        .core-team-header p { color: #666; font-size: 17px; max-width: 520px; margin: 0 auto; }
 
         .team-grid {
             display: grid;
-            /* This forces 3 columns that are exactly the same width */
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 40px;
-            /* This ensures the grid itself doesn't stretch infinitely */
-            max-width: 1200px; 
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 1200px;
             margin: 0 auto;
-            align-items: start; /* Prevents cards from stretching vertically */
+            align-items: start;
         }
 
         .team-card {
             perspective: 1000px;
-            height: 450px;
+            height: 460px;
             cursor: pointer;
-            /* This ensures the card stays in its 1/3rd column */
-            width: 100%; 
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
+        .team-card.visible { opacity: 1; transform: translateY(0); }
+
         .team-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.6s;
+            position: relative; width: 100%; height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             transform-style: preserve-3d;
         }
 
-        .team-card.flipped .team-card-inner {
-            transform: rotateY(180deg);
-        }
+        .team-card:hover .team-card-inner { transform: rotateY(180deg); }
 
-        .team-card-front,
-        .team-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 16px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        .team-card-front, .team-card-back {
+            position: absolute; width: 100%; height: 100%;
+            backface-visibility: hidden; border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.09);
         }
 
         .team-card-front {
             background: var(--cream);
-            display: flex;
-            flex-direction: column;
+            display: flex; flex-direction: column;
+            border: 1px solid rgba(0,0,0,0.06);
+            transition: box-shadow 0.3s, transform 0.3s;
         }
+
+        .team-card:hover .team-card-front { box-shadow: 0 16px 48px rgba(0,0,0,0.14); }
 
         .team-photo {
-            width: 100%;
-            height: 280px;
-            border-radius: 16px 16px 0 0;
-          
-        
-            font-size: 14px;
-            color: white;
-            padding: 20px;
-            position: relative;
-            overflow: hidden;
+            width: 100%; height: 280px;
+            border-radius: 20px 20px 0 0;
+            position: relative; overflow: hidden;
+            background: var(--primary-green);
         }
 
-        .team-photo::before {
-            content: '👤';
-            font-size: 80px;
-            position: absolute;
-            opacity: 0.3;
-        }
-
-        /* New styles for images */
         .team-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-         
+            width: 100%; height: 100%;
+            object-fit: cover; object-position: center 40%;
+            display: block;
+            transition: transform 0.5s ease;
         }
 
-        /* Hide placeholder when image exists */
-        .team-photo:has(img)::before {
-            display: none;
+        .team-card:hover .team-photo img { transform: scale(1.04); }
+
+        .team-photo-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(30,77,59,0.3), transparent 60%);
+            opacity: 0; transition: opacity 0.3s;
         }
 
-        .team-info {
-            padding: 24px;
-            text-align: center;
+        .team-card:hover .team-photo-overlay { opacity: 1; }
+
+        .flip-hint {
+            position: absolute; bottom: 12px; right: 12px;
+            background: rgba(255,255,255,0.9); border-radius: 100px;
+            font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+            letter-spacing: 1px; text-transform: uppercase; color: var(--primary-green);
+            padding: 4px 10px; opacity: 0; transition: opacity 0.3s;
         }
 
-        .team-info h3 {
-            color: var(--primary-green);
-            margin-bottom: 8px;
-            font-size: 24px;
-        }
+        .team-card:hover .flip-hint { opacity: 1; }
+
+        .team-info { padding: 20px 24px 24px; text-align: center; }
+
+        .team-info h3 { color: var(--primary-green); margin-bottom: 6px; font-size: 20px; }
 
         .team-role {
-            color: var(--terracotta);
-            font-weight: 600;
-            margin-bottom: 12px;
-            font-size: 16px;
+            color: var(--terracotta); font-weight: 600; margin-bottom: 10px; font-size: 13px;
+            text-transform: uppercase; letter-spacing: 1px;
         }
 
-        .team-quote {
-            font-style: italic;
-            color: #666;
-            font-size: 15px;
-        }
+        .team-quote { font-style: italic; color: #888; font-size: 14px; min-height: 4.5em; line-height: 1.6; }
 
         .team-card-back {
             background: var(--primary-green);
-            color: white;
-            transform: rotateY(180deg);
-            padding: 40px 32px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            color: white; transform: rotateY(180deg);
+            padding: 36px 32px; display: flex;
+            flex-direction: column; justify-content: center;
+            position: relative; overflow: hidden;
         }
 
-        .team-bio {
-            margin-bottom: 24px;
-            font-size: 16px;
-            line-height: 1.7;
+        .team-card-back::before {
+            content: '';
+            position: absolute; top: -60px; right: -60px;
+            width: 200px; height: 200px;
+            background: rgba(255,255,255,0.05); border-radius: 50%;
         }
 
-        .team-contact {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
+        .team-card-back::after {
+            content: '';
+            position: absolute; bottom: -40px; left: -40px;
+            width: 140px; height: 140px;
+            background: rgba(76,175,106,0.08); border-radius: 50%;
         }
+
+        .team-bio { margin-bottom: 28px; font-size: 15px; line-height: 1.75; position: relative; z-index: 1; }
+
+        .team-contact { display: flex; gap: 12px; justify-content: center; position: relative; z-index: 1; }
 
         .contact-icon {
-            width: 44px;
-            height: 44px;
-            background: var(--secondary-green);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 18px;
+            width: 44px; height: 44px; background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: white; text-decoration: none; transition: all 0.3s; font-size: 16px;
         }
 
-        .contact-icon:hover {
-            background: var(--terracotta);
-            transform: scale(1.1);
-        }
+        .contact-icon:hover { background: var(--secondary-green); border-color: var(--secondary-green); transform: scale(1.1); }
 
-        /* Advisory Board Section */
-        .advisory-board {
-            background: var(--cream);
-        }
+        /* ── PARTNERS ── */
+        .partners-section { background: var(--cream); }
 
-        .advisory-board h2 {
-            text-align: center;
-            color: var(--primary-green);
-            margin-bottom: 60px;
-        }
-
-        .advisory-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-        }
-
-        .advisor-card {
-            background: white;
-            padding: 32px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-        }
-
-        .advisor-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .advisor-card h3 {
-            color: var(--primary-green);
-            margin-bottom: 8px;
-            font-size: 22px;
-        }
-
-        .advisor-title {
-            color: var(--terracotta);
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 15px;
-        }
-
-        .advisor-affiliation {
-            color: #666;
-            font-size: 15px;
-            margin-bottom: 12px;
-        }
-
-        .advisor-bio {
-            color: #555;
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        /* Partners Section */
-        .partners-section {
-            background: white;
-        }
-
-        .section-divider {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-divider h2 {
-            color: var(--primary-green);
-            margin-bottom: 16px;
-        }
-
-        .section-divider p {
-            color: #666;
-            font-size: 18px;
-        }
+        .partners-header { text-align: center; margin-bottom: 72px; }
+        .partners-header h2 { color: var(--primary-green); margin-bottom: 12px; }
+        .partners-header p { color: #666; font-size: 17px; }
 
         .partners-layout {
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 60px;
-            align-items: start;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 60px; align-items: start;
         }
 
-        .partner-map {
-            position: sticky;
-            top: 100px;
-            background: var(--cream);
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-            min-height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            text-align: center;
+        .partner-map-wrap {
+            position: sticky; top: 100px;
+            background: white; border-radius: 20px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.06);
         }
 
-        
-
-        .map-legend {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            justify-content: center;
+        .partner-map-label {
+            padding: 20px 24px 16px;
+            font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700;
+            color: var(--primary-green); text-transform: uppercase; letter-spacing: 2px;
+            border-bottom: 1px solid #eee;
+            display: flex; align-items: center; gap: 8px;
         }
 
-        .leaflet-popup-content {
-            font-family: 'Montserrat', sans-serif; /* Or your specific font name */
-            font-size: 14px;
-            line-height: 1.5;
+        .map-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--secondary-green); animation: pulse 2s ease-in-out infinite; }
+
+        @keyframes pulse {
+            0%,100% { box-shadow: 0 0 0 0 rgba(76,175,106,0.5); }
+            50%      { box-shadow: 0 0 0 6px rgba(76,175,106,0); }
         }
 
-        /* Change the background color of the popup bubble */
-        .leaflet-popup-content-wrapper {
-            background: var(--terracotta);
-            color: #ffffff;      /* White text */
-            border-radius: 8px;
-            padding: 5px;
-        }
-
-        /* Change the color of the little "tip" triangle at the bottom */
-        .leaflet-popup-tip {
-            background: var(--primary-green);
-        }
-
-        /* Change the 'X' close button color */
-        .leaflet-popup-close-button {
-            color: #ffffff !important;
-        }
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            margin-top: 20px;
-        }
-
-        .legend-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--secondary-green);
-        }
-
+        /* Partner cards grid */
         .partner-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
         }
 
         .partner-card {
-            background: var(--cream);
-            padding: 32px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-            cursor: pointer;
+            background: white; padding: 20px;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            transition: all 0.3s; cursor: pointer;
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex; flex-direction: column; gap: 12px;
         }
 
         .partner-card:hover {
-            transform: translateX(8px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+            border-color: rgba(76,175,106,0.3);
         }
 
-        .partner-header {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            margin-bottom: 16px;
-        }
+        .partner-header { display: flex; align-items: center; gap: 14px; }
 
         .partner-logo {
-            width: 80px;
-            height: 80px;
-            background: white;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            text-align: center;
-            padding: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            position: relative;
+            width: 52px; height: 52px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--cream); border-radius: 10px;
+            overflow: hidden; border: 1px solid #eee;
         }
 
-        .partner-logo::before {
-            content: '🏢';
-            font-size: 32px;
-            position: absolute;
-            opacity: 0.3;
-        }
+        .partner-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
-        .partner-info h3 {
-            color: var(--primary-green);
-            margin-bottom: 4px;
-            font-size: 22px;
-        }
+        .partner-info h3 { color: var(--primary-green); font-size: 15px; margin-bottom: 2px; }
 
         .partner-type {
-            color: var(--terracotta);
-            font-weight: 600;
-            font-size: 14px;
+            display: inline-block; font-family: 'Montserrat', sans-serif;
+            font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+            color: white; padding: 3px 8px; border-radius: 100px;
         }
 
-        .partner-description {
-            color: #555;
-            margin-bottom: 12px;
-            font-size: 15px;
-        }
+        .type-farm     { background: var(--secondary-green); }
+        .type-donation { background: var(--terracotta); }
+        .type-outreach { background: var(--primary-green); }
 
-        .partner-stat {
-            display: inline-block;
-            background: var(--secondary-green);
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-        }
+        .partner-description { color: #666; font-size: 13px; line-height: 1.6; }
 
         .partner-link {
-            display: inline-block;
-            color: var(--primary-green);
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 12px;
-            font-size: 14px;
+            display: inline-flex; align-items: center; gap: 4px;
+            color: var(--primary-green); text-decoration: none;
+            font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--secondary-green); padding-bottom: 1px;
+            width: fit-content; transition: color 0.2s;
         }
 
-        .partner-link:hover {
-            color: var(--secondary-green);
-        }
+        .partner-link:hover { color: var(--secondary-green); }
 
-        /* Quote Banner */
+        /* Leaflet popup */
+        .leaflet-popup-content { font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.5; }
+        .leaflet-popup-content-wrapper { background: var(--primary-green); color: white; border-radius: 10px; padding: 4px; }
+        .leaflet-popup-tip { background: var(--primary-green); }
+        .leaflet-popup-close-button { color: white !important; }
+        .popup-content b { display: block; margin-bottom: 4px; font-size: 14px; }
+        .popup-content a { display: block; margin-top: 6px; color: var(--golden); }
+
+        /* ── QUOTE BANNER ── */
         .quote-banner {
+            position: relative; overflow: hidden;
             background: linear-gradient(135deg, var(--terracotta) 0%, #c55a3a 100%);
-            color: white;
-            padding: 80px 32px;
-            text-align: center;
+            color: white; padding: 100px 32px; text-align: center;
+        }
+
+        .quote-banner::before {
+            content: ''; position: absolute; top: -80px; right: -80px;
+            width: 350px; height: 350px; border-radius: 50%;
+            background: rgba(255,255,255,0.06); pointer-events: none;
+        }
+
+        .quote-banner::after {
+            content: ''; position: absolute; bottom: -60px; left: -60px;
+            width: 250px; height: 250px; border-radius: 50%;
+            background: rgba(255,255,255,0.04); pointer-events: none;
+        }
+
+        .quote-banner-inner { position: relative; z-index: 1; }
+
+        .quote-mark {
+            font-family: 'Pacifico', cursive; font-size: 80px; color: rgba(255,255,255,0.15);
+            line-height: 0.5; display: block; margin-bottom: 16px;
         }
 
         .quote-banner-text {
-            max-width: 900px;
-            margin: 0 auto;
-            font-size: 28px;
-            line-height: 1.6;
-            font-style: italic;
+            max-width: 800px; margin: 0 auto 20px;
+            font-size: 26px; line-height: 1.7; font-style: italic;
         }
 
-        /* Footer */
-        footer {
-            background: var(--charcoal);
-            color: var(--cream);
-            padding: 60px 32px 24px;
+        .quote-attribution {
+            font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.6);
         }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-section h3 {
-            color: var(--secondary-green);
-            margin-bottom: 20px;
-            font-size: 20px;
-        }
-
-        .footer-section p {
-            line-height: 1.8;
-            color: rgba(255,255,255,0.8);
-        }
-
-        .footer-section a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 10px;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: var(--secondary-green);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 16px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            width: 44px;
-            height: 44px;
-            background: rgba(76, 175, 106, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 18px;
-        }
-
-        .social-links a:hover {
-            background: var(--secondary-green);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.5);
-        }
-
+        /* ── RESPONSIVE ── */
         @media (max-width: 968px) {
-            .partners-layout {
-                grid-template-columns: 1fr;
-            }
-            
-            .partner-map {
-                position: static;
-            }
+            .partners-layout { grid-template-columns: 1fr; }
+            .partner-map-wrap { position: static; }
+            .partner-cards { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero h1 { font-size: 38px; }
+            .hero-accent { font-size: 34px; }
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 36px; }
-            h2 { font-size: 28px; }
+            h1 { font-size: 32px; } h2 { font-size: 28px; }
             .container { padding: 60px 24px; }
             .nav-links { display: none; }
-            .team-grid {
-                
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Better responsiveness */
-                gap: 40px;
-                justify-content: center; /* Centers cards if the row isn't full */
-                max-width: 1200px;
-                margin: 0 auto;
-            }
-            .team-card:last-child:nth-child(3n+1) {
-                grid-column: 1; /* Moves the 10th card to the center column */
-    }
+            .team-grid { grid-template-columns: 1fr; }
+            .hero-stats { gap: 16px; }
         }
-
-        .newsletter-form {
-            display: flex;
-            gap: 8px;
-            margin-top: 16px;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 14px;
-            border-radius: 8px;
-            border: 1px solid var(--secondary-green);
-            background: white;
-            font-size: 15px;
-        }
-
-        .newsletter-form button {
-            padding: 14px 28px;
-            background: var(--secondary-green);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: background 0.3s;
-        }
-
-        .newsletter-form button:hover {
-            background: var(--primary-green);
-        }
-
     </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo-group">
-            <img src="imgs2/logo.JPG" alt="Youth Food Recovery Logo" class="brand-logo">
-            <span class="brand-name">Food Recovery Alliance</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li class="dropdown">
-                    <span class="dropdown-toggle active">Who We Are</span>
-                    <div class="dropdown-menu">
-                        <a href="about.html">About Us</a>
-                        <a href="team.html" style="background: var(--cream); color: var(--primary-green);">Our Team</a>
-                        <a href="programs.html">Our Programs</a>
-                        <a href="calendar.html">Calendar</a>
-                    </div>
-                </li>
-                <li><a href="get-involved.html">Get Involved</a></li>
-                <li><a href="donate.html" class="btn-donate">Donate</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Youth-led. <span class="accent-text">Community-powered.</span></h1>
-            <p>Meet the passionate young leaders and dedicated partners who make our mission possible. Together, we're creating a more equitable food network.</p>
-            <div class="hero-illustration">
+<nav id="nav-placeholder"></nav>
 
-            </div>
-        </div>
-    </section>
+<!-- ── HERO ── -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <div class="hero-eyebrow">Meet the Team</div>
+        <h1>Youth-led.<br><span class="hero-accent">Community-powered.</span></h1>
+        <p>Meet the passionate young leaders and dedicated partners who make our mission possible. Together, we're creating a more equitable food network.</p>
+    </div>
+</section>
 
-    <!-- Core Team Section -->
+<!-- ── CORE TEAM ── -->
 <section class="core-team">
     <div class="container">
-        <h2>Core <span class="accent-text">Team</span></h2>
+        <div class="core-team-header">
+            <span class="section-eyebrow">The People Behind The Mission</span>
+            <h2>Core <span class="accent-text">Team</span></h2>
+        </div>
         <div class="team-grid">
-            <div class="team-card" onclick="this.classList.toggle('flipped')">
+
+            <div class="team-card">
                 <div class="team-card-inner">
                     <div class="team-card-front">
                         <div class="team-photo">
-                            <img src="headshots/apollin.JPG" alt="Apollin Lu"> 
+                            <img src="headshots/apollin.JPG" alt="Apollin Lu">
+                            <div class="team-photo-overlay"></div>
+                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Apollin Lu</h3>
-                            <p class="team-role">Founder and Executive Director</p>
-                            <p class="team-quote">"Every young person has the power to change their community."</p>
+                            <p class="team-role">Founder & Executive Director</p>
+                            <p class="team-quote">"Food is the foundation of survival."</p>
                         </div>
                     </div>
                     <div class="team-card-back">
-                        <p class="team-bio">Maya founded Youth Food Recovery in 2019 while in high school. Her passion for food justice and environmental sustainability drives the organization's mission. She has been recognized as a regional youth leader and speaks nationally on food systems change.</p>
+                        <p class="team-bio">Apollin manages the day to day of FRA. Growing up on a farm, supporting farmers and the food system as a whole is critical to her beliefs. She also serves as the secretary at LifeCycles, is a member of the Urban Food Table and a councillor on the Young BC Greens.</p>
                         <div class="team-contact">
                             <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
-                            <a href="#" class="contact-icon" aria-label="Email">✉</a>
+                            <a href="mailto:apollinluing@gmail.com" class="contact-icon" aria-label="Email">✉</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="team-card" onclick="this.classList.toggle('flipped')">
+            <div class="team-card">
                 <div class="team-card-inner">
                     <div class="team-card-front">
                         <div class="team-photo">
-                            <img src="headshots/me.JPG" alt="Yashita Kaku"> 
+                            <img src="headshots/me.JPG" alt="Yashita Kaku">
+                            <div class="team-photo-overlay"></div>
+                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Yashita Kaku</h3>
                             <p class="team-role">Cofounder</p>
-                            <p class="team-quote">"Logistics is love in action."</p>
+                            <p class="team-quote">"Believe you can, and you're halfway there."</p>
                         </div>
                     </div>
                     <div class="team-card-back">
-                        <p class="team-bio">Jordan ensures our food recovery operations run smoothly and efficiently. With a background in supply chain management and a passion for reducing waste, Jordan coordinates our network of volunteers and partners to maximize our impact.</p>
+                        <p class="team-bio">Yashita manages the non-profit website, working behind the scenes to help events function smoothly and expand the Food Recovery Alliance's impact in reducing food waste. She also serves as a youth director with our partner organization, LifeCycles.</p>
                         <div class="team-contact">
-                            <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
-                            <a href="#" class="contact-icon" aria-label="Email">✉</a>
+                            <a href="https://www.linkedin.com/in/yashita-kaku-454861302/" class="contact-icon" aria-label="LinkedIn">in</a>
+                            <a href="mailto:yashitakaku@gmail.com" class="contact-icon" aria-label="Email">✉</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="team-card" onclick="this.classList.toggle('flipped')">
+            <div class="team-card">
                 <div class="team-card-inner">
                     <div class="team-card-front">
                         <div class="team-photo">
                             <img src="headshots/sophie.JPG" alt="Sophie Buckley">
+                            <div class="team-photo-overlay"></div>
+                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Sophie Buckley</h3>
                             <p class="team-role">Communications Director</p>
-                            <p class="team-quote">"Community is our greatest resource."</p>
+                            <p class="team-quote">"Not everything that is faced can be changed, but nothing can be changed until it is faced."</p>
                         </div>
                     </div>
                     <div class="team-card-back">
-                        <p class="team-bio">Priya builds and nurtures our volunteer community, creating meaningful opportunities for youth to engage with food justice. Her work ensures every volunteer feels valued, supported, and empowered to make a difference.</p>
+                        <p class="team-bio">Sophie is the communications director at the Food Recovery Alliance, channelling her passion for writing emails into a good cause. She didn't know much about food waste before joining the FRA, but now enjoys helping out at volunteer events. Hobbies: piano, reading, baking.</p>
                         <div class="team-contact">
-                            <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
-                            <a href="#" class="contact-icon" aria-label="Email">✉</a>
+                            <a href="https://www.linkedin.com/in/sophie-buckley-9b544b329" class="contact-icon" aria-label="LinkedIn">in</a>
+                            <a href="mailto:sophiecbuckley@gmail.com" class="contact-icon" aria-label="Email">✉</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="team-card" onclick="this.classList.toggle('flipped')">
+            <div class="team-card">
                 <div class="team-card-inner">
                     <div class="team-card-front">
                         <div class="team-photo">
-                           <img src="headshots/brenton.JPG" alt="Brenton Hsu"> 
+                            <img src="headshots/brenton.JPG" alt="Brenton Hsu">
+                            <div class="team-photo-overlay"></div>
+                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Brenton Hsu</h3>
                             <p class="team-role">Outreach Director</p>
-                            <p class="team-quote">"Partnerships multiply our impact."</p>
+                            <p class="team-quote">"How are you going to spend your life? I'm not sure, but I do know I'm gonna live every minute of it."</p>
                         </div>
                     </div>
                     <div class="team-card-back">
-                        <p class="team-bio">Alex develops and maintains relationships with farms, food banks, and community organizations. Their strategic approach to partnership building has expanded our reach and deepened our community connections.</p>
+                        <p class="team-bio">Brenton is the Outreach Director at the Food Recovery Alliance, responsible for building and maintaining relationships with farms, organisations, and volunteers to expand the FRA's impact in reducing food waste. He is also in charge of FRA's social media pages.</p>
                         <div class="team-contact">
-                            <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
-                            <a href="#" class="contact-icon" aria-label="Email">✉</a>
+                            <a href="https://www.linkedin.com/in/brenton-hsu-03b33a3a3/" class="contact-icon" aria-label="LinkedIn">in</a>
+                            <a href="mailto:mr.brentonhsu@gmail.com" class="contact-icon" aria-label="Email">✉</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="team-card" onclick="this.classList.toggle('flipped')">
+            <div class="team-card">
                 <div class="team-card-inner">
                     <div class="team-card-front">
                         <div class="team-photo">
-                           <img src="headshots/jehiel.png" alt="Jehiel McCoy">
+                            <img src="headshots/jehiel.png" alt="Jehiel McCoy">
+                            <div class="team-photo-overlay"></div>
+                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Jehiel McCoy</h3>
                             <p class="team-role">Volunteer Director</p>
-                            <p class="team-quote">"Partnerships multiply our impact."</p>
+                            <p class="team-quote"></p>
                         </div>
                     </div>
                     <div class="team-card-back">
-                        <p class="team-bio">Alex develops and maintains relationships with farms, food banks, and community organizations. Their strategic approach to partnership building has expanded our reach and deepened our community connections.</p>
+                        <p class="team-bio"></p>
                         <div class="team-contact">
                             <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
                             <a href="#" class="contact-icon" aria-label="Email">✉</a>
@@ -931,111 +555,193 @@
                 </div>
             </div>
 
-            <div class="team-card" onclick="this.classList.toggle('flipped')">
+            <div class="team-card">
                 <div class="team-card-inner">
                     <div class="team-card-front">
                         <div class="team-photo">
-                           <img src="headshots/angelina.jpeg" alt="Angelina Guo">
+                            <img src="headshots/angelina.jpeg" alt="Angelina Guo">
+                            <div class="team-photo-overlay"></div>
+                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Angelina Guo</h3>
                             <p class="team-role">Vancouver Chapter Head</p>
-                            <p class="team-quote">"Partnerships multiply our impact."</p>
+                            <p class="team-quote">"Fake it till you make it."</p>
                         </div>
                     </div>
                     <div class="team-card-back">
-                        <p class="team-bio">Alex develops and maintains relationships with farms, food banks, and community organizations. Their strategic approach to partnership building has expanded our reach and deepened our community connections.</p>
+                        <p class="team-bio">Angelina is the Vancouver Branch Director for the Food Recovery Alliance. She oversees all activities in the Vancouver Branch including gathering food donations from farms, outreach to food-focused organizations in the Lower Mainland, and connecting Vancouver Branch members to the main branch.</p>
                         <div class="team-contact">
                             <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
-                            <a href="#" class="contact-icon" aria-label="Email">✉</a>
+                            <a href="mailto:ayxg318@gmail.com" class="contact-icon" aria-label="Email">✉</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="team-card" onclick="this.classList.toggle('flipped')">
+            <div class="team-card">
                 <div class="team-card-inner">
                     <div class="team-card-front">
                         <div class="team-photo">
-                           <img src="headshots/calvinli.JPG" alt="Calvin Li">
+                            <img src="headshots/calvinli.JPG" object-position="center 80%" alt="Calvin Li">
+                            <div class="team-photo-overlay"></div>
+                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Calvin Li</h3>
-                            <p class="team-role">Position</p>
-                            <p class="team-quote">"Partnerships multiply our impact."</p>
+                            <p class="team-role">Food Donation Director</p>
+                            <p class="team-quote">"Sometimes, you need the darkness to see the light."</p>
                         </div>
                     </div>
                     <div class="team-card-back">
-                        <p class="team-bio">Alex develops and maintains relationships with farms, food banks, and community organizations. Their strategic approach to partnership building has expanded our reach and deepened our community connections.</p>
+                        <p class="team-bio">Calvin is the donations manager for the Vancouver Branch of the Food Recovery Alliance; he logs donations from local farms around BC. He is also an avid musician who can play three instruments.</p>
                         <div class="team-contact">
                             <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
-                            <a href="#" class="contact-icon" aria-label="Email">✉</a>
+                            <a href="mailto:notcalvin16837250@gmail.com" class="contact-icon" aria-label="Email">✉</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="team-card" onclick="this.classList.toggle('flipped')">
+            <div class="team-card">
                 <div class="team-card-inner">
                     <div class="team-card-front">
                         <div class="team-photo">
-                           <img src="headshots/harrissyed.JPG" alt="Harris Syed">
+                            <img src="headshots/harrissyed.JPG" alt="Harris Syed">
+                            <div class="team-photo-overlay"></div>
+                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Harris Syed</h3>
-                            <p class="team-role">Position</p>
-                            <p class="team-quote">"Partnerships multiply our impact."</p>
+                            <p class="team-role">Vancouver Outreach Director</p>
+                            <p class="team-quote">"To love, is to trust. To trust is to believe."</p>
                         </div>
                     </div>
                     <div class="team-card-back">
-                        <p class="team-bio">Alex develops and maintains relationships with farms, food banks, and community organizations. Their strategic approach to partnership building has expanded our reach and deepened our community connections.</p>
+                        <p class="team-bio">Haris is the Outreach Manager of the Vancouver Branch of the Food Recovery Alliance. He is responsible for reaching out to farms in Richmond and greater Vancouver with partnership and collaboration opportunities. He also manages the Vancouver Branch's social media.</p>
                         <div class="team-contact">
                             <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
-                            <a href="#" class="contact-icon" aria-label="Email">✉</a>
+                            <a href="mailto:harissyed100@gmail.com" class="contact-icon" aria-label="Email">✉</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="team-card" onclick="this.classList.toggle('flipped')">
+            <div class="team-card">
                 <div class="team-card-inner">
                     <div class="team-card-front">
                         <div class="team-photo">
-                           <img src="headshots/ivanli.JPG" alt="Ivan Li">
+                            <img src="headshots/ivanli.JPG" alt="Ivan Leung">
+                            <div class="team-photo-overlay"></div>
+                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
-                            <h3>Ivan Li</h3>
-                            <p class="team-role">Position</p>
-                            <p class="team-quote">"Partnerships multiply our impact."</p>
+                            <h3>Ivan Leung</h3>
+                            <p class="team-role">Finance Director</p>
+                            <p class="team-quote"></p>
                         </div>
                     </div>
                     <div class="team-card-back">
-                        <p class="team-bio">Alex develops and maintains relationships with farms, food banks, and community organizations. Their strategic approach to partnership building has expanded our reach and deepened our community connections.</p>
+                        <p class="team-bio">Ivan is the financial manager and director for the Vancouver Branch of the Food Recovery Alliance, in charge of raising funds and logging revenues. He also has connections with local parishes and manages donations to them.</p>
                         <div class="team-contact">
                             <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
-                            <a href="#" class="contact-icon" aria-label="Email">✉</a>
+                            <a href="mailto:ivanfrederickleung@gmail.com" class="contact-icon" aria-label="Email">✉</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="team-card" onclick="this.classList.toggle('flipped')">
+            <div class="team-card">
                 <div class="team-card-inner">
                     <div class="team-card-front">
                         <div class="team-photo">
-                            <img src="headshots/semion.jpg" alt="Semion">
+                            <img src="headshots/semion.jpg" alt="Semeion Francisco">
+                            <div class="team-photo-overlay"></div>
+                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
-                            <h3>Semion</h3>
-                            <p class="team-role">Position</p>
-                            <p class="team-quote">"Partnerships multiply our impact."</p>
+                            <h3>Semeion Francisco</h3>
+                            <p class="team-role">Deputy Vancouver Outreach Director</p>
+                            <p class="team-quote">"The more people that you let into your life, the more they can just walk right out."</p>
                         </div>
                     </div>
                     <div class="team-card-back">
-                        <p class="team-bio">Bio text here...</p>
+                        <p class="team-bio">Semeion is the Deputy Outreach Manager of the Vancouver Branch of the Food Recovery Alliance. He helps reach out to farms, schools, and organizations across the Lower Mainland for partnerships. Semeion also enjoys eating and appreciates good food!</p>
+                        <div class="team-contact">
+                            <a href="https://www.linkedin.com/in/semeion-francisco-1634952b1" class="contact-icon" aria-label="LinkedIn">in</a>
+                            <a href="mailto:semeionfrancisco6987@gmail.com" class="contact-icon" aria-label="Email">✉</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-card-inner">
+                    <div class="team-card-front">
+                        <div class="team-photo">
+                            <img src="headshots/lilian.JPG" alt="Lilian Yu">
+                            <div class="team-photo-overlay"></div>
+                            <span class="flip-hint">Flip ↩</span>
+                        </div>
+                        <div class="team-info">
+                            <h3>Lilian Yu</h3>
+                            <p class="team-role">Distribution Manager</p>
+                            <p class="team-quote">"Volatility is negated when you focus on the long term vision."</p>
+                        </div>
+                    </div>
+                    <div class="team-card-back">
+                        <p class="team-bio">As the distribution manager, Lilian is glad to be in charge of managing volunteers by contacting, leading, and assisting them around the community for food distribution. Outside of Food Recovery Alliance, she can be found side questing around Vancouver, eating out, and doomscrolling reels.</p>
+                        <div class="team-contact">
+                            <a href="https://www.linkedin.com/in/lilian-yu-1571bb372" class="contact-icon" aria-label="LinkedIn">in</a>
+                            <a href="mailto:lilian3856@gmail.com" class="contact-icon" aria-label="Email">✉</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-card-inner">
+                    <div class="team-card-front">
+                        <div class="team-photo">
+                            <img src="headshots/haley.png" alt="Haley Paetkau">
+                            <div class="team-photo-overlay"></div>
+                            <span class="flip-hint">Flip ↩</span>
+                        </div>
+                        <div class="team-info">
+                            <h3>Haley Paetkau</h3>
+                            <p class="team-role">Food Literacy Lead</p>
+                            <p class="team-quote">"Every choice that we make would create countless other possibilities."</p>
+                        </div>
+                    </div>
+                    <div class="team-card-back">
+                        <p class="team-bio">Haley is responsible for managing our soup kitchen initiatives in Victoria. Haley loves volunteer work and generally being involved in the community around her.</p>
                         <div class="team-contact">
                             <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
-                            <a href="#" class="contact-icon" aria-label="Email">✉</a>
+                            <a href="mailto:haleypaetkau07@gmail.com" class="contact-icon" aria-label="Email">✉</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-card-inner">
+                    <div class="team-card-front">
+                        <div class="team-photo">
+                            <img src="headshots/levi.JPG" alt="Levi Tolentino">
+                            <div class="team-photo-overlay"></div>
+                            <span class="flip-hint">Flip ↩</span>
+                        </div>
+                        <div class="team-info">
+                            <h3>Levi Tolentino</h3>
+                            <p class="team-role">Deputy Finance Director</p>
+                            <p class="team-quote"></p>
+                        </div>
+                    </div>
+                    <div class="team-card-back">
+                        <p class="team-bio">Levi is the deputy financial manager of the Vancouver Branch of the Food Recovery Alliance. He supports Ivan by overseeing fund records and coordinating volunteer registrations.</p>
+                        <div class="team-contact">
+                            <a href="#" class="contact-icon" aria-label="LinkedIn">in</a>
+                            <a href="mailto:levitolentino999@gmail.com" class="contact-icon" aria-label="Email">✉</a>
                         </div>
                     </div>
                 </div>
@@ -1045,249 +751,351 @@
     </div>
 </section>
 
-    <!-- Advisory Board Section -->
-    <section class="advisory-board">
-        <div class="container">
-            <h2>Advisory <span class="accent-text">Board</span></h2>
-            <div class="advisory-grid">
-                <div class="advisor-card">
-                    <h3>Dr. Pratap-Singh</h3>
-                    <p class="advisor-title">Food Systems Advisor</p>
-                    <p class="advisor-affiliation">Associate Professor, Food, Nutrition and Health, University of British Columbia</p>
-                    <p class="advisor-bio">Dr. Pratap-Singh brings 15 years of expertise in sustainable agriculture and food security policy. He advises on program development and partnership strategy.</p>
+<!-- ── PARTNERS ── -->
+<section class="partners-section">
+    <div class="container">
+        <div class="partners-header">
+            <span class="section-eyebrow">Who We Work With</span>
+            <h2>Our Partners <span class="accent-text">in Impact</span></h2>
+            <p>Working together to create a more sustainable and equitable food system.</p>
+        </div>
+        <div class="partners-layout">
+            <div class="partner-map-wrap">
+                <div class="partner-map-label">
+                    <div class="map-dot"></div>
+                    Partner Locations
+                </div>
+                <div id="map"></div>
+            </div>
+
+            <div class="partner-cards">
+
+                <!-- ── EXISTING FARM PARTNERS ── -->
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://www.camasfarm.com/static/picture/splitter_horizontal_3c8e4f48-46c4-462a-b4a1-801af248339a.png" alt="Camas Farm" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>Camas Farm</h3><span class="partner-type type-farm">Farm</span></div>
+                    </div>
+                    <p class="partner-description">Organic farm in Victoria specializing in sustainably grown garlic and regenerative soil practices.</p>
+                    <a href="https://www.camasfarm.com/" target="_blank" class="partner-link">Visit Website →</a>
                 </div>
 
-                <div class="advisor-card">
-                    <h3>David Lu</h3>
-                    <p class="advisor-title">Onsite Farm Advisor</p>
-                    <p class="advisor-affiliation">Owner, Camas Farms</p>
-                    <p class="advisor-bio">Mr. Lu has over 20 years of experience in community organizing and nonprofit management. He provides guidance on organizational growth and community engagement.</p>
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://d2f0ora2gkri0g.cloudfront.net/49/de/49defb9f-9d09-4b99-b113-da34dcd917d5.png" alt="City's Edge Farm" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>City's Edge Farm</h3><span class="partner-type type-farm">Farm</span></div>
+                    </div>
+                    <p class="partner-description">Certified organic farm in Saanich producing vegetables for CSA programs, restaurants, and markets.</p>
+                    <a href="https://www.citysedgefarm.ca/" target="_blank" class="partner-link">Visit Website →</a>
                 </div>
 
-                <div class="advisor-card">
-                    <h3>Sophie Buckely</h3>
-                    <p class="advisor-title">Youth Leadership Advisor</p>
-                    <p class="advisor-affiliation">Communications Director, Food Recovery Alliance</p>
-                    <p class="advisor-bio">Sophie specializes in youth development and leadership training. She helps ensure our programs effectively empower young people to lead change.</p>
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://images.squarespace-cdn.com/content/v1/5f288aa07d2aa6653bbc1366/405f9036-ae0d-437f-8fc4-e356b5d603c4/IMG_20230607_104914178_HDR.jpg?format=500w" alt="Black Dirt Farm" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>Black Dirt Farm</h3><span class="partner-type type-farm">Farm</span></div>
+                    </div>
+                    <p class="partner-description">Small-scale regenerative vegetable farm serving Cowichan Valley and surrounding communities.</p>
+                    <a href="http://blackdirtfarm.ca/" target="_blank" class="partner-link">Visit Website →</a>
                 </div>
+
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://uminamifarm.wordpress.com/wp-content/uploads/2026/02/img_0311.jpg?w=300" alt="Umi Nami Farm" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>Umi Nami Farm</h3><span class="partner-type type-farm">Farm</span></div>
+                    </div>
+                    <p class="partner-description">Sustainable farm focused on ecological balance and diversified crop production.</p>
+                    <a href="http://uminamifarm.wordpress.com/" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://static.wixstatic.com/media/354abc_1053b1e92c0f4d12b3369aa0e88e45a9~mv2.png/v1/fill/w_154,h_154,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Logo%20(1)%20(1).png" alt="Sidney Microgreens" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>Sidney Microgreens</h3><span class="partner-type type-farm">Farm</span></div>
+                    </div>
+                    <p class="partner-description">Local producer of fresh microgreens supplying restaurants and community members year-round.</p>
+                    <a href="https://www.sidneymicrogreens.ca/" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://images.squarespace-cdn.com/content/v1/564e8ed8e4b0274f1a5eca09/1456003367243-0P66MFZ5GIF7WFX4RLRF/TRF-web-header.jpg?format=300w" alt="Tatlo Road Farms" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>Tatlo Road Farms</h3><span class="partner-type type-farm">Farm</span></div>
+                    </div>
+                    <p class="partner-description">Duncan-based urban farm growing culturally relevant produce using regenerative methods.</p>
+                    <a href="https://tatloroadfarm.com/" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://static.wixstatic.com/media/da0303_5a093c520831478da093d8936b9aae84~mv2.png/v1/fill/w_128,h_128,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/FEDlogo-green.png" alt="FED Urban Farm" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>FED Urban Farm</h3><span class="partner-type type-farm">Farm</span></div>
+                    </div>
+                    <p class="partner-description">Youth-driven urban agriculture initiative promoting food justice and education.</p>
+                    <a href="http://get-fed.ca/fed-urban-farm" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://lh3.googleusercontent.com/p/AF1QipM4yb7JYH5N_d-d6kwvWd6ehotyaqLjaIE90tMz=s200-w200-h200" alt="Kind Hearted Farm" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>Kind Hearted Farm</h3><span class="partner-type type-farm">Farm</span></div>
+                    </div>
+                    <p class="partner-description">Small farm focused on ethical production and strengthening local food systems.</p>
+                    <a href="https://pacscertifiedorganic.ca/client/kind-hearted-farm-ltd" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://static.wixstatic.com/media/043edf_fb4692ff6fe14f24b38fbb3a22831299~mv2.png/v1/fill/w_226,h_224,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Windberry-Logo08_edited.png" alt="Windberry Farms" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>Windberry Farms</h3><span class="partner-type type-farm">Farm</span></div>
+                    </div>
+                    <p class="partner-description">Fourth-generation family-owned organic farm in Abbotsford, known for certified organic blueberries, premium poultry, and seasonal produce.</p>
+                    <a href="http://windberryorganic.ca/" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://www.habitat-systems.com/wp-content/uploads/2024/03/HB-1016.jpg" alt="South Arm Park" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>South Arm Park</h3><span class="partner-type type-farm">Farm</span></div>
+                    </div>
+                    <p class="partner-description">Municipal park in Richmond with community garden and urban agriculture programs.</p>
+                    <a href="https://www.richmond.ca/parks-recreation/parks/parksearch/park.aspx?ID=50" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <!-- ── EXISTING DONATION PARTNERS ── -->
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRHM7l1SOYreFMLzAfFRxD4o8XbsRpSn-IpwnkwtggTrnyW3Q" alt="Mustard Seed" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>Mustard Seed</h3><span class="partner-type type-donation">Donation</span></div>
+                    </div>
+                    <p class="partner-description">Major nonprofit providing meals, food support, and services to vulnerable populations.</p>
+                    <a href="https://mustardseed.ca/" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5tXJ3pXxgl7yqdJmqmGKO14NgCJGa79DSKw&s" alt="Women's Transition House" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>Women's Transition House</h3><span class="partner-type type-donation">Donation</span></div>
+                    </div>
+                    <p class="partner-description">Provides emergency shelter, housing, and support for women and children fleeing violence.</p>
+                    <a href="https://www.transitionhouse.net/" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYZlpfXxdSxjjEvVcNL7uBL1V4jwIpS3YzRg&s" alt="Project Hastings" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>Project Hastings</h3><span class="partner-type type-donation">Donation</span></div>
+                    </div>
+                    <p class="partner-description">Supports food security and local community assistance initiatives.</p>
+                    <a href="https://www.projecthastings.org/" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbqxpSG6zTf68mbhEOHJZx8l3f6kA3QPEn7w&s" alt="Cool Aid Society" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>Cool Aid Society</h3><span class="partner-type type-donation">Donation</span></div>
+                    </div>
+                    <p class="partner-description">Provides housing, healthcare, and food support services in Victoria.</p>
+                    <a href="https://coolaid.org/" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <!-- ── NEW DONATION PARTNERS ── -->
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://rfbs.org/wp-content/uploads/2024/09/cropped-RFBS_Primary-Logo-Colour-3.png" alt="Richmond Food Bank" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>Richmond Food Bank</h3><span class="partner-type type-donation">Donation</span></div>
+                    </div>
+                    <p class="partner-description">Registered non-profit providing essential grocery assistance, advocacy, and support to Richmond residents.</p>
+                    <a href="http://rfbs.org/" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://lymtcanada.com/wp-content/uploads/2021/04/NewLogo-Banner-A-fix2.png" alt="Lingyen Mountain Temple" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>Lingyen Mountain Temple</h3><span class="partner-type type-donation">Donation</span></div>
+                    </div>
+                    <p class="partner-description">Large Buddhist temple and cultural center in Richmond, BC, supporting community outreach and food programs.</p>
+                    <a href="https://lymtcanada.com/" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="data:image/jpeg;base64,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" alt="Root Cellar" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>Root Cellar</h3><span class="partner-type type-donation">Donation</span></div>
+                    </div>
+                    <p class="partner-description">Home of the largest selection of locally grown produce on Vancouver Island, supporting regional food systems.</p>
+                    <a href="https://therootcellar.ca/" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVrf2TCIYtRXQ5EPadCTKnkAzxE24KaAvWIw&s" alt="Garden City Plaza" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>Garden City Plaza</h3><span class="partner-type type-donation">Donation</span></div>
+                    </div>
+                    <p class="partner-description">Commercial hub in Richmond known for diverse Asian-influenced dining and retail, supporting local food community initiatives.</p>
+                    <a href="https://www.gardencityshoppingcentre.com/" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://www.stpaulparish.ca/images/titles/t-welcome.gif" alt="St. Paul's Parish" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>St. Paul's Parish</h3><span class="partner-type type-donation">Donation</span></div>
+                    </div>
+                    <p class="partner-description">Catholic parish in Richmond, BC, contributing to community food support and outreach programs.</p>
+                    <a href="https://www.stpaulparish.ca/" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <!-- ── OUTREACH PARTNERS ── -->
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTMmYrr918FN7xrCjxnblbryVMd2UQQmYkIO5muHShuaN3p-Q" alt="RiseUp!" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>RiseUp!</h3><span class="partner-type type-outreach">Outreach</span></div>
+                    </div>
+                    <p class="partner-description">Youth empowerment initiative focused on leadership and social engagement.</p>
+                    <a href="https://riseup-phabc.ca/" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://sunsetmarket.org/_assets/media/a8d339902b73870ef60d8356bb761b01.png" alt="Oaklands Sunset Market" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>Oaklands Sunset Market</h3><span class="partner-type type-outreach">Outreach</span></div>
+                    </div>
+                    <p class="partner-description">Weekly farmers market connecting local producers and the Victoria community.</p>
+                    <a href="https://sunsetmarket.org/" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC_4Bv9KCa8SU5JmgHyje34cP30IkAKTaq1yiKV85wxqo11Q" alt="Urban Food Table" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>Urban Food Table</h3><span class="partner-type type-outreach">Outreach</span></div>
+                    </div>
+                    <p class="partner-description">Promotes food literacy, accessibility, and sustainable food systems.</p>
+                    <a href="https://www.victoriaurbanfoodtable.com/" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://cdn-ch-prod-bqhwa0ewbpg6eyc2.z01.azurefd.net/prod-img-cache/CDN-ik-images/charityprofile/6/9113/LifeCycles%20Logo%20Primary%20FULL%20WEB.png" alt="LifeCycles" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>LifeCycles</h3><span class="partner-type type-outreach">Outreach</span></div>
+                    </div>
+                    <p class="partner-description">Promotes food security, youth engagement, and urban agriculture.</p>
+                    <a href="https://lifecyclesproject.ca/" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://stellys.saanichschools.ca/sites/stellys.saanichschools.ca/files/styles/normal_3_2_/public/assets/images/events/Stelly%27s%20Logo_0.png?itok=fNVdNnTf" alt="Stelly's" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>Stelly's Secondary School</h3><span class="partner-type type-outreach">Outreach</span></div>
+                    </div>
+                    <p class="partner-description">Public secondary school involved in student-led community initiatives.</p>
+                    <a href="https://stellys.sd63.bc.ca/" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://resources.finalsite.net/images/f_auto,q_auto/v1613248929/cesi/eshsa8nvmptcfztk4xgy/St-Michaels-University-School-Logo-Google-Sheet-and-School-Profile.jpg" alt="SMUS" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>St. Michaels University School</h3><span class="partner-type type-outreach">Outreach</span></div>
+                    </div>
+                    <p class="partner-description">Independent school supporting community engagement and service initiatives.</p>
+                    <a href="https://www.smus.ca/" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-header">
+                        <div class="partner-logo"><img src="https://i.ebayimg.com/images/g/dqYAAOSwI0Vmzbw0/s-l300.jpg" alt="Amazon Volunteers" onerror="this.style.display='none'"></div>
+                        <div class="partner-info"><h3>Amazon Volunteers</h3><span class="partner-type type-outreach">Outreach</span></div>
+                    </div>
+                    <p class="partner-description">Corporate volunteer network supporting community food recovery and nonprofit initiatives.</p>
+                    <a href="https://www.aboutamazon.com/impact/community" target="_blank" class="partner-link">Visit Website →</a>
+                </div>
+
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Partners Section -->
-    <section class="partners-section">
-        <div class="container">
-            <div class="section-divider">
-                <h2>Our Partners <span class="accent-text">in Impact</span></h2>
-                <p>Working together to create a more sustainable and equitable food system.</p>
-            </div>
-            <div class="partners-layout">
-                <div class="partner-map">
-                    <div id="map"></div>
-                    <div class="map-legend">
-                        <div class="legend-item">
-                            <div class="legend-dot" style="background: var(--secondary-green);"></div>
-                            <span>Farms</span>
-                        </div>
-                
-                    </div>
-                </div>
+<!-- ── QUOTE BANNER ── -->
+<section class="quote-banner">
+    <div class="quote-banner-inner">
+        <span class="quote-mark">"</span>
+        <p class="quote-banner-text">This work is only possible because of collaboration across food systems.</p>
+        <p class="quote-attribution">— Food Recovery Alliance</p>
+    </div>
+</section>
 
-                <div class="partner-cards">
-                    <div class="partner-card">
-                        <div class="partner-header">
-                            <div class="partner-logo">
-                                [LOGO<br>PLACEHOLDER]
-                            </div>
-                            <div class="partner-info">
-                                <h3>Green Valley Farms</h3>
-                                <p class="partner-type">Farm Partner</p>
-                            </div>
-                        </div>
-                        <p class="partner-description">Organic farm providing surplus produce weekly. Our longest-standing partner committed to reducing agricultural waste.</p>
-                        
-                        <a href="#" class="partner-link">Visit Website →</a>
-                    </div>
-
-                    <div class="partner-card">
-                        <div class="partner-header">
-                            <div class="partner-logo">
-                                [LOGO<br>PLACEHOLDER]
-                            </div>
-                            <div class="partner-info">
-                                <h3>Community Food Bank</h3>
-                                <p class="partner-type">Distribution Partner</p>
-                            </div>
-                        </div>
-                        <p class="partner-description">Primary distribution hub serving families across the region. Together we've delivered thousands of meals to those in need.</p>
-                       
-                        <a href="#" class="partner-link">Visit Website →</a>
-                    </div>
-
-                    <div class="partner-card">
-                        <div class="partner-header">
-                            <div class="partner-logo">
-                                [LOGO<br>PLACEHOLDER]
-                            </div>
-                            <div class="partner-info">
-                                <h3>Fresh Market Co-op</h3>
-                                <p class="partner-type">Grocery Partner</p>
-                            </div>
-                        </div>
-                        <p class="partner-description">Local grocery cooperative donating produce approaching sell-by dates. Supporting both sustainability and community.</p>
-                        
-                        <a href="#" class="partner-link">Visit Website →</a>
-                    </div>
-
-                    <div class="partner-card">
-                        <div class="partner-header">
-                            <div class="partner-logo">
-                                [LOGO<br>PLACEHOLDER]
-                            </div>
-                            <div class="partner-info">
-                                <h3>Sunrise Orchards</h3>
-                                <p class="partner-type">Farm Partner</p>
-                            </div>
-                        </div>
-                        <p class="partner-description">Family-owned orchard providing seasonal fruit donations. Helping us bring fresh, local produce to our community.</p>
-                        
-                        <a href="#" class="partner-link">Visit Website →</a>
-                    </div>
-
-                    <div class="partner-card">
-                        <div class="partner-header">
-                            <div class="partner-logo">
-                                [LOGO<br>PLACEHOLDER]
-                            </div>
-                            <div class="partner-info">
-                                <h3>Hope Shelter Network</h3>
-                                <p class="partner-type">Service Partner</p>
-                            </div>
-                        </div>
-                        <p class="partner-description">Homeless shelter receiving regular food deliveries. Ensuring vulnerable community members have access to nutritious meals.</p>
-                       
-                        <a href="#" class="partner-link">Visit Website →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quote Banner -->
-    <section class="quote-banner">
-        <p class="quote-banner-text">"This work is only possible because of collaboration across food systems."</p>
-    </section>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Food Recovery Alliance</h3>
-                <p>A youth-led organization fighting food waste and food insecurity through community action.</p>
-                <div class="social-links">
-                    <a href="http://instagram.com/foodrecoveryalliance/" aria-label="Instagram">📷</a>
-                    <a href="https://www.linkedin.com/company/food-recoveriy-alliance/about/" aria-label="LinkedIn">in</a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <a href="about.html">About Us</a>
-                <a href="programs.html">Our Programs</a>
-                <a href="team.html">Our Team</a>
-                <a href="getinvolved.html">Get Involved</a>
-                <a href="gallery.html">Gallery</a>
-                <a href="donate.html">Donate</a>
-            </div>
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p>foodrecoveryalliance@gmail.com</p>
-                <p>+1 (604) 861-9688</p>
-                <p>2901 Seapoint Drive <br>Victoria, BC</p>
-            </div>
-            <div class="footer-section">
-                <h3>Stay Connected</h3>
-                <p>Get updates on our impact, events, and opportunities to get involved.</p>
-                <form class="newsletter-form" id="newsletter-form">
-                    <input type="email" name="Email" placeholder="Your email address" aria-label="Email address" required>
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Food Recovery Alliance. All rights reserved. </p>
-        </div>
-    </footer>
-
+<footer id="footer-placeholder"></footer>
+<script src="stats.js"></script>
+<script src="components.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
-    // 1. Initialize map centered on Saanichton
-    var map = L.map('map').setView([48.5910, -123.4075], 14); 
+    // Staggered card entrance
+    const cards = document.querySelectorAll('.team-card');
+    const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                cardObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    cards.forEach(c => cardObserver.observe(c));
 
-    // 2. Load the map images
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap'
-    }).addTo(map);
-    
+    // Map
+    var map = L.map('map').setView([48.9, -123.0], 8);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
+
     var farmIcon = new L.Icon({
         iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
+        iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
     });
-    
-    // 3. Add your markers
-    var marker = L.marker([48.5910, -123.4075], {icon: farmIcon}).addTo(map)
-        .bindPopup("<b>Sunrise Orchards</b>");
-    
-    var marker = L.marker([48.5915, -123.4075], {icon: farmIcon}).addTo(map)
-        .bindPopup("<b>Camas Orchards</b>");
-    
-</script>
 
-<script>
-    // Newsletter form
-    const newsletterForm = document.querySelector('.newsletter-form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', (e) => {
+    var locations = [
+        { name: "Camas Farm", lat: 48.5967, lng: -123.4241, desc: "Organic farm specializing in sustainably grown garlic.", web: "https://www.camasfarm.com/" },
+        { name: "City's Edge Farm", lat: 48.5577, lng: -123.4039, desc: "Certified organic farm in Saanich.", web: "https://www.citysedgefarm.ca/" },
+        { name: "Umi Nami Farm", lat: 48.3530, lng: -123.5832, desc: "Sustainable diversified crop production.", web: "http://uminamifarm.wordpress.com/" },
+        { name: "Tatlo Road Farms", lat: 48.8526, lng: -123.6429, desc: "Duncan-based regenerative urban farm.", web: "https://tatloroadfarm.com/" },
+        { name: "FED Urban Farm", lat: 48.4233, lng: -123.3633, desc: "Youth-driven urban agriculture initiative.", web: "http://get-fed.ca/fed-urban-farm" },
+        { name: "Mustard Seed", lat: 48.4341, lng: -123.3660, desc: "Meals and food support for vulnerable populations.", web: "https://mustardseed.ca/" },
+        { name: "Women's Transition House", lat: 48.4473, lng: -123.3448, desc: "Emergency shelter and support for women and children.", web: "https://www.transitionhouse.net/" },
+        { name: "RiseUp!", lat: 48.4694, lng: -123.3614, desc: "Youth empowerment and social engagement.", web: "https://riseup-phabc.ca/" },
+        { name: "Oaklands Sunset Market", lat: 48.4410, lng: -123.3385, desc: "Weekly farmers market in Victoria.", web: "https://sunsetmarket.org/" },
+        { name: "Cool Aid Society", lat: 48.4270, lng: -123.3638, desc: "Housing, healthcare, and food support in Victoria.", web: "https://coolaid.org/" },
+        { name: "LifeCycles", lat: 48.4338, lng: -123.3955, desc: "Food security and urban agriculture.", web: "https://lifecyclesproject.ca/" },
+        { name: "Stelly's Secondary School", lat: 48.5789, lng: -123.4322, desc: "Student-led community initiatives.", web: "https://stellys.sd63.bc.ca/" },
+        { name: "St. Michaels University School", lat: 48.4520, lng: -123.3284, desc: "Community engagement and service.", web: "https://www.smus.ca/" },
+        { name: "South Arm Park", lat: 49.1393, lng: -123.1253, desc: "Community garden and urban agriculture in Richmond.", web: "https://www.richmond.ca/" },
+        { name: "Richmond Food Bank", lat: 49.1729, lng: -123.1417, desc: "Essential grocery assistance and support for Richmond residents.", web: "http://rfbs.org/" },
+        { name: "Lingyen Mountain Temple", lat: 49.13, lng: -123.10, desc: "Buddhist temple and cultural center in Richmond supporting community outreach.", web: "https://lymtcanada.com/" },
+        { name: "Root Cellar", lat: 48.41, lng: -123.36, desc: "Largest selection of locally grown produce on Vancouver Island.", web: "https://therootcellar.ca/" },
+        { name: "Garden City Plaza", lat: 49.1788, lng: -123.1257, desc: "Commercial hub in Richmond supporting local food community.", web: "https://www.gardencityshoppingcentre.com/" },
+        { name: "St. Paul's Parish", lat: 49.15, lng: -123.13, desc: "Catholic parish in Richmond supporting community food programs.", web: "https://www.stpaulparish.ca/" },
+        { name: "Windberry Farms", lat: 49.0242, lng: -122.1282, desc: "Fourth-generation organic farm in Abbotsford with blueberries and seasonal produce.", web: "http://windberryorganic.ca/" }
+    ];
+
+    locations.forEach(function(loc) {
+        L.marker([loc.lat, loc.lng], { icon: farmIcon })
+            .addTo(map)
+            .bindPopup('<div class="popup-content"><b>' + loc.name + '</b>' + loc.desc + '<a href="' + loc.web + '" target="_blank">Visit Website</a></div>');
+    });
+
+    // Newsletter
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('newsletter-form');
+        if (!form) return;
+        form.addEventListener('submit', e => {
             e.preventDefault();
-            const input = newsletterForm.querySelector('input');
-            if (input.value) {
-                alert('Thank you for subscribing! We\'ll keep you updated on our impact.');
-                input.value = '';
-            }
-        });
-    }
-    
-    const form = document.getElementById('newsletter-form');
-    if (form) {
-        form.addEventListener("submit", e => {
-            e.preventDefault();
-            
-            // Get the value from the input
             const emailValue = form.querySelector('input[name="Email"]').value;
-
             fetch('https://sheetdb.io/api/v1/wp0ely7f39kfl', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    data: [
-                        { 'Email': emailValue }
-                    ]
-                })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ data: [{ 'Email': emailValue }] })
             })
             .then(res => res.json())
-            .then(result => {
-                console.log('Success:', result);
-                alert("Success! Check your Google Sheet now.");
-                form.reset();
-            })
+            .then(() => { alert('Thank you for subscribing!'); form.reset(); })
             .catch(err => console.error('Error:', err));
         });
-    }
+    });
 </script>
 </body>
 </html>

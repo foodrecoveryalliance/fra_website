@@ -7,11 +7,7 @@
     <link rel="icon" type="image/png" href="imgs2/logo.JPG">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Lora:wght@400;500&family=Pacifico&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --primary-green: #1E4D3B;
@@ -22,1147 +18,519 @@
             --cream: #FAF9F6;
         }
 
-        body {
-            font-family: 'Lora', serif;
-            font-size: 17px;
-            line-height: 1.7;
-            color: var(--charcoal);
-            background-color: var(--cream);
-        }
-
-        h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-        }
-
+        body { font-family: 'Lora', serif; font-size: 17px; line-height: 1.7; color: var(--charcoal); background-color: var(--cream); }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; }
         h1 { font-size: 56px; line-height: 1.2; }
         h2 { font-size: 36px; }
-        h3 { font-size: 28px; }
+        h3 { font-size: 24px; }
+        .accent-text { font-family: 'Pacifico', cursive; color: var(--secondary-green); }
 
-        .accent-text {
-            font-family: 'Pacifico', cursive;
-            color: var(--secondary-green);
+        .section-eyebrow {
+            display: inline-block; font-family: 'Montserrat', sans-serif;
+            font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--terracotta); margin-bottom: 16px;
         }
 
-        /* Navigation */
-        nav {
-            position: sticky;
-            top: 0;
-            background: rgba(30, 77, 59, 0.98);
-            padding: 16px 0;
-            z-index: 1000;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
-            backdrop-filter: blur(10px);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 32px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-group {
-            display: flex;
-            align-items: center;    /* Vertically centers the text with the logo */
-            text-decoration: none;  /* Removes underline from the link */
-            gap: 15px;             /* This controls the exact space between logo and text */
-        }
-
-        .brand-logo {
-            width: 50px;           /* Adjust size as needed */
-            height: 50px;
-            border-radius: 50%;    /* Keeps it circular */
-            object-fit: cover;
-            
-            background-color: #fff;
-        }
-
-        .brand-name {
-            color: white;
-            font-size: 1.8rem;
-            font-family: serif;    /* Matches the look in your screenshot */
-            font-weight: 500;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links > li {
-            position: relative;
-        }
-
-        .nav-links a {
-            color: var(--cream);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: 15px;
-            font-weight: 500;
-            display: block;
-            padding: 8px 0;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary-green);
-        }
-
-        .nav-links .active {
-            color: var(--golden);
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-toggle {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--cream);
-        }
-
-        .dropdown-toggle::after {
-            content: '▼';
-            font-size: 10px;
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            min-width: 220px;
-            border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s;
-            margin-top: 8px;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-menu a {
-            color: var(--charcoal);
-            padding: 12px 20px;
-            border-bottom: 1px solid #eee;
-            font-size: 14px;
-        }
-
-        .dropdown-menu a:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown-menu a:hover {
-            background: var(--cream);
-            color: var(--primary-green);
-        }
-
-        .btn-donate {
-            display: inline-block;
-            padding: 14px 40px;
-            min-width: 120px;
-            border-radius: 10px;
-            background: var(--terracotta);
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            font-weight: 700;
-            transition: all 0.3s;
-        }
-
-        .btn-donate:hover {
-            background: #c55a3a;
-            transform: translateY(-2px);
-        }
-
-
-        .btn {
-            display: inline-block;
-            padding: 16px 32px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 17px;
-        }
-
-        .btn-primary {
-            background: var(--primary-green);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--secondary-green);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(30, 77, 59, 0.3);
-        }
-
-        .btn-secondary {
-            background: var(--secondary-green);
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary-green);
-        }
-
-        /* Hero Section */
+        /* ── HERO ── */
         .hero {
-            position: relative;
-            min-height: 600px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            overflow: hidden;
+            position: relative; min-height: 700px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; overflow: hidden;
         }
 
-        .hero-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url(imgs/getinvolved\ hero.jpeg);
-            background-size: cover;
-            background-position: center;
-            z-index: 0;
+        .hero-bg {
+            position: absolute; inset: 0;
+            background: url('imgs/getinvolved\ hero.jpeg') center / cover no-repeat;
+            transform: scale(1.05);
+            animation: heroZoom 14s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroZoom {
+            from { transform: scale(1.05); }
+            to   { transform: scale(1.12); }
+        }
+
+        .hero-bg::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(160deg, rgba(10,40,25,0.82) 0%, rgba(30,77,59,0.65) 50%, rgba(0,0,0,0.72) 100%);
         }
 
         .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 100px 32px;
+            position: relative; z-index: 2;
+            max-width: 860px; padding: 120px 32px 80px; text-align: center;
+            animation: fadeUp 1s ease both;
         }
 
-        .hero h1 {
-            margin-bottom: 24px;
-            text-shadow: 2px 4px 8px rgba(0,0,0,0.3);
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        .hero-subheading {
-            font-size: 22px;
-            margin-bottom: 40px;
-            line-height: 1.6;
-            text-shadow: 1px 2px 4px rgba(0,0,0,0.3);
+        .hero-eyebrow {
+            display: inline-block; font-family: 'Montserrat', sans-serif;
+            font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--golden); background: rgba(244,197,66,0.12);
+            border: 1px solid rgba(244,197,66,0.35); border-radius: 100px;
+            padding: 8px 20px; margin-bottom: 28px;
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
+        .hero h1 { font-size: 58px; margin-bottom: 20px; letter-spacing: -1px; }
+        .hero-accent { font-family: 'Pacifico', cursive; color: var(--golden); font-size: 52px; }
+
+        .hero p {
+            font-size: 18px; color: rgba(255,255,255,0.82);
+            line-height: 1.8; max-width: 580px; margin: 0 auto 48px;
         }
 
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 32px;
-        }
+        .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
-        /* How to Get Involved Section */
-        .how-to-section {
-            background: white;
-        }
+        .btn-hero-primary, .btn-hero-secondary { min-width: 220px; justify-content: center; }
 
-        .how-to-section h2 {
-            text-align: center;
-            color: var(--primary-green);
-            margin-bottom: 60px;
+        .btn-hero-primary {
+            display: inline-flex; align-items: center; gap: 10px; padding: 16px 36px;
+            background: var(--terracotta); color: white; border-radius: 12px;
+            text-decoration: none; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px;
+            transition: all 0.3s; box-shadow: 0 8px 24px rgba(217,108,72,0.4);
         }
+        .btn-hero-primary:hover { background: #c55a3a; transform: translateY(-3px); }
 
-        .involvement-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+        .btn-hero-secondary {
+            display: inline-flex; align-items: center; padding: 16px 36px;
+            background: transparent; color: white; border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 12px; text-decoration: none; font-family: 'Montserrat', sans-serif;
+            font-weight: 700; font-size: 15px; transition: all 0.3s; backdrop-filter: blur(4px);
         }
+        .btn-hero-secondary:hover { background: rgba(255,255,255,0.15); border-color: white; transform: translateY(-3px); }
+
+        /* ── CONTAINER ── */
+        .container { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
+
+        /* ── HOW TO GET INVOLVED ── */
+        .how-to-section { background: white; }
+
+        .how-to-header { text-align: center; margin-bottom: 64px; }
+        .how-to-header h2 { color: var(--primary-green); margin-bottom: 12px; }
+        .how-to-header p { color: #666; font-size: 17px; max-width: 520px; margin: 0 auto; }
+
+        .involvement-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 
         .involvement-card {
-            background: var(--cream);
-            padding: 48px 36px;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-            border: 2px solid transparent;
+            border-radius: 20px; overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.09);
+            transition: all 0.35s; position: relative;
+            display: flex; flex-direction: column;
         }
 
-        .involvement-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
-            border-color: var(--secondary-green);
+        .involvement-card:hover { transform: translateY(-8px); box-shadow: 0 20px 48px rgba(0,0,0,0.14); }
+
+        .card-color-bar { height: 6px; width: 100%; }
+        .card-volunteer .card-color-bar { background: var(--secondary-green); }
+        .card-partner  .card-color-bar { background: var(--terracotta); }
+        .card-leader   .card-color-bar { background: var(--golden); }
+
+        .card-inner { background: var(--cream); padding: 40px 32px 36px; flex: 1; display: flex; flex-direction: column; }
+
+        .card-emoji { font-size: 48px; margin-bottom: 20px; display: block; }
+
+        .involvement-card h3 { color: var(--primary-green); margin-bottom: 12px; font-size: 22px; }
+        .involvement-card p { color: #555; margin-bottom: 28px; line-height: 1.7; font-size: 15px; flex: 1; }
+
+        .card-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700;
+            text-decoration: none; border-radius: 100px; padding: 12px 24px;
+            transition: all 0.3s; width: fit-content;
         }
 
-        .card-icon {
-            font-size: 64px;
-            margin-bottom: 24px;
-            color: var(--secondary-green);
-        }
+        .card-volunteer .card-btn { background: var(--secondary-green); color: white; }
+        .card-volunteer .card-btn:hover { background: var(--primary-green); }
+        .card-partner  .card-btn { background: var(--terracotta); color: white; }
+        .card-partner  .card-btn:hover { background: #c55a3a; }
+        .card-leader   .card-btn { background: var(--golden); color: var(--charcoal); }
+        .card-leader   .card-btn:hover { background: #d4a832; }
 
-        .involvement-card h3 {
-            color: var(--primary-green);
-            margin-bottom: 16px;
-            font-size: 26px;
-        }
+        /* ── PATHWAYS ── */
+        .pathways-section { background: var(--cream); }
 
-        .involvement-card p {
-            color: #555;
-            margin-bottom: 28px;
-            line-height: 1.7;
-        }
+        .pathways-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
 
-        /* Volunteer Pathways Section */
-        .pathways-section {
-            background: var(--cream);
-        }
+        .pathways-content h2 { color: var(--primary-green); margin-bottom: 16px; }
 
-        .pathways-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
+        .pathways-intro { color: #555; margin-bottom: 36px; font-size: 17px; line-height: 1.85; }
 
-        .pathways-content h2 {
-            color: var(--primary-green);
-            margin-bottom: 24px;
-        }
-
-        .pathways-intro {
-            color: #555;
-            margin-bottom: 32px;
-            font-size: 18px;
-            line-height: 1.8;
-        }
-
-        .pathways-list {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 32px;
-        }
+        .pathways-list { list-style: none; padding: 0; margin-bottom: 36px; }
 
         .pathways-list li {
-            padding: 16px 0;
-            padding-left: 32px;
-            position: relative;
-            color: var(--charcoal);
-            font-size: 18px;
-            font-weight: 500;
+            padding: 16px 20px 16px 56px; position: relative;
+            color: var(--charcoal); font-size: 16px; font-weight: 500;
+            background: white; border-radius: 12px; margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 3px solid var(--secondary-green);
+            transition: all 0.3s;
         }
 
+        .pathways-list li:hover { transform: translateX(6px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+
         .pathways-list li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--secondary-green);
-            font-weight: bold;
-            font-size: 24px;
+            content: '→'; position: absolute; left: 20px;
+            color: var(--secondary-green); font-weight: bold; font-size: 20px;
+        }
+
+        .quote-callout {
+            background: var(--primary-green); padding: 28px 32px;
+            border-radius: 16px; font-style: italic; font-size: 17px;
+            color: rgba(255,255,255,0.9); line-height: 1.7; position: relative;
+        }
+
+        .quote-callout::before {
+            content: '"'; font-family: 'Pacifico', cursive; font-size: 60px;
+            color: rgba(255,255,255,0.15); position: absolute; top: 8px; left: 16px; line-height: 1;
         }
 
         .pathways-image {
-            width: 100%;
-            height: 500px;
-            background: url(imgs2/jane.jpg);
-            background-size: cover;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 14px;
-            text-align: center;
-            padding: 30px;
-            position: relative;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            width: 100%; height: 520px;
+            background: url(imgs2/jane.jpg) center / cover;
+            border-radius: 20px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+            position: relative; overflow: hidden;
         }
 
-
-        .quote-callout {
-            background: white;
-            padding: 32px;
-            border-left: 4px solid var(--secondary-green);
-            border-radius: 8px;
-            font-style: italic;
-            font-size: 20px;
-            color: var(--primary-green);
-            font-family: 'Pacifico', cursive;
+        .pathways-image::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(30,77,59,0.4), transparent 60%);
         }
 
-        /* Partner Section */
-        .partner-section {
-            background: white;
+        .pathways-image-label {
+            position: absolute; bottom: 24px; left: 24px; z-index: 2;
+            color: white; font-family: 'Montserrat', sans-serif; font-size: 13px;
+            font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+            background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+            padding: 8px 16px; border-radius: 100px;
+            border: 1px solid rgba(255,255,255,0.25);
         }
 
-        .partner-split {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
+        /* ── PARTNER ── */
+        .partner-section { background: white; }
 
-        .partner-content h2 {
-            color: var(--primary-green);
-            margin-bottom: 24px;
-        }
+        .partner-split { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
 
-        .partner-intro {
-            color: #555;
-            margin-bottom: 32px;
-            font-size: 18px;
-            line-height: 1.8;
-        }
+        .partner-content h2 { color: var(--primary-green); margin-bottom: 16px; }
+
+        .partner-intro { color: #555; margin-bottom: 32px; font-size: 17px; line-height: 1.85; }
 
         .partner-types {
-            background: var(--cream);
-            padding: 32px;
-            border-radius: 12px;
-            margin-bottom: 32px;
+            border-radius: 16px; overflow: hidden; margin-bottom: 32px;
+            border: 1px solid rgba(0,0,0,0.07);
         }
 
-        .partner-types h4 {
-            color: var(--primary-green);
-            margin-bottom: 16px;
-            font-size: 20px;
-            font-family: 'Montserrat', sans-serif;
+        .partner-types-header {
+            background: var(--primary-green); padding: 16px 24px;
+            font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px; color: white;
         }
 
-        .partner-types ul {
-            list-style: none;
-            padding: 0;
-        }
+        .partner-types ul { list-style: none; padding: 0; background: var(--cream); }
 
         .partner-types li {
-            padding: 12px 0;
-            padding-left: 28px;
-            position: relative;
-            color: #555;
-            font-size: 17px;
+            padding: 16px 24px 16px 52px; position: relative;
+            color: #555; font-size: 15px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
+        .partner-types li:last-child { border-bottom: none; }
+
         .partner-types li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--secondary-green);
-            font-weight: bold;
-            font-size: 20px;
+            content: '✓'; position: absolute; left: 20px;
+            color: var(--secondary-green); font-weight: bold; font-size: 18px;
         }
 
         .partner-image {
-            width: 100%;
-            height: 450px;
-            background: url(imgs/partner.jpeg);
-            background-size: cover;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 14px;
-            text-align: center;
-            padding: 30px;
-            position: relative;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            width: 100%; height: 480px;
+            background: url(imgs/partner.jpeg) center / cover;
+            border-radius: 20px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+            position: relative; overflow: hidden;
         }
 
-        
-
-        /* What to Expect Section */
-        .expect-section {
-            background: var(--cream);
+        .partner-image::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(30,77,59,0.4), transparent 60%);
         }
 
-        .expect-section h2 {
-            text-align: center;
-            color: var(--primary-green);
-            margin-bottom: 60px;
+        .partner-image-badge {
+            position: absolute; bottom: 24px; right: 24px; z-index: 2;
+            background: white; border-radius: 14px; padding: 16px 20px; text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
         }
 
-        .timeline {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            position: relative;
-        }
+        .partner-image-badge-num { font-family: 'Montserrat', sans-serif; font-size: 28px; font-weight: 800; color: var(--terracotta); display: block; line-height: 1; }
+        .partner-image-badge-label { font-size: 11px; color: #777; font-family: 'Montserrat', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 60px;
-            left: 16.66%;
-            right: 16.66%;
-            height: 4px;
-            background: linear-gradient(to right, var(--secondary-green), var(--primary-green));
-            z-index: 0;
-        }
-
-        .timeline-step {
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            opacity: 0.5;
-            transition: all 0.5s;
-        }
-
-        .timeline-step.active {
-            opacity: 1;
-            transform: scale(1.05);
-        }
-
-        .timeline-icon {
-            width: 120px;
-            height: 120px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 24px;
-            font-size: 48px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-            border: 4px solid var(--cream);
-            transition: all 0.5s;
-        }
-
-        .timeline-step.active .timeline-icon {
-            background: var(--secondary-green);
-            border-color: var(--primary-green);
-            transform: scale(1.1);
-        }
-
-        .timeline-step h3 {
-            color: var(--primary-green);
-            margin-bottom: 12px;
-            font-size: 24px;
-        }
-
-        .timeline-step p {
-            color: #555;
-            line-height: 1.7;
-        }
-
-        /* Impact Snapshot Section */
-        .impact-snapshot {
-            background: white;
-        }
-
-        .impact-snapshot h2 {
-            text-align: center;
-            color: var(--primary-green);
-            margin-bottom: 60px;
-        }
-
-        .impact-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-        }
-
-        .impact-stat {
-            text-align: center;
-            padding: 48px 32px;
-            background: var(--cream);
-            border-radius: 16px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-        }
-
-        .impact-stat:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-number {
-            font-size: 56px;
-            font-weight: 800;
-            color: var(--secondary-green);
-            font-family: 'Montserrat', sans-serif;
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 18px;
-            color: var(--charcoal);
-            font-weight: 600;
-        }
-
-        /* Upcoming Opportunities Section */
-        .opportunities-section {
-            background: var(--cream);
-        }
-
-        .opportunities-section h2 {
-            text-align: center;
-            color: var(--primary-green);
-            margin-bottom: 60px;
-        }
-
-        .opportunities-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-        }
-
-        .opportunity-card {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-        }
-
-        .opportunity-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
-        }
-
-        .opportunity-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, var(--secondary-green) 0%, var(--primary-green) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 13px;
-            text-align: center;
-            padding: 20px;
-            position: relative;
-        }
-
-        .opportunity-image::before {
-            content: '📷';
-            font-size: 50px;
-            position: absolute;
-            opacity: 0.3;
-        }
-
-        .opportunity-content {
-            padding: 28px;
-        }
-
-        .opportunity-content h3 {
-            color: var(--primary-green);
-            margin-bottom: 12px;
-            font-size: 22px;
-        }
-
-        .opportunity-date {
-            color: var(--terracotta);
-            font-weight: 700;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-
-        .opportunity-location {
-            color: #666;
-            margin-bottom: 20px;
-            font-size: 15px;
-        }
-
-        /* Final CTA Section */
+        /* ── FINAL CTA ── */
         .final-cta {
-            background: var(--cream);
-            text-align: center;
-            padding:  -20px -20px;
+            position: relative; overflow: hidden;
+            background: linear-gradient(135deg, var(--primary-green) 0%, #2a6950 100%);
+            color: white; text-align: center; padding: 100px 32px;
         }
 
-        .final-cta h2 {
-            color: var(--primary-green);
-            margin-bottom: 40px;
-            font-size: 42px;
+        .final-cta::before {
+            content: ''; position: absolute; top: -80px; right: -80px;
+            width: 350px; height: 350px; border-radius: 50%;
+            background: rgba(255,255,255,0.05); pointer-events: none;
         }
 
-        .final-cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
+        .final-cta::after {
+            content: ''; position: absolute; bottom: -60px; left: -60px;
+            width: 250px; height: 250px; border-radius: 50%;
+            background: rgba(255,255,255,0.04); pointer-events: none;
         }
 
-        /* Footer */
-        footer {
-            background: var(--charcoal);
-            color: var(--cream);
-            padding: 60px 32px 24px;
+        .final-cta-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+
+        .final-cta-eyebrow {
+            display: inline-block; font-family: 'Montserrat', sans-serif;
+            font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--golden); margin-bottom: 20px;
         }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+        .final-cta h2 { font-size: 44px; margin-bottom: 16px; line-height: 1.15; }
+        .final-cta p { font-size: 18px; color: rgba(255,255,255,0.8); margin-bottom: 48px; line-height: 1.7; }
+
+        .final-cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+        .btn-cta {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 16px 32px; border-radius: 12px; text-decoration: none;
+            font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px;
+            transition: all 0.3s; width: 220px; text-align: center;
         }
 
-        .footer-section h3 {
-            color: var(--secondary-green);
-            margin-bottom: 20px;
-            font-size: 20px;
-        }
+        .btn-cta-white { background: white; color: var(--primary-green); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+        .btn-cta-white:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(0,0,0,0.2); }
 
-        .footer-section p {
-            line-height: 1.8;
-            color: rgba(255,255,255,0.8);
-        }
+        .btn-cta-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.5); }
+        .btn-cta-outline:hover { background: rgba(255,255,255,0.12); border-color: white; transform: translateY(-3px); }
 
-        .footer-section a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 10px;
-            transition: color 0.3s;
-        }
+        .btn-cta-golden { background: var(--golden); color: var(--charcoal); box-shadow: 0 8px 24px rgba(244,197,66,0.3); }
+        .btn-cta-golden:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(244,197,66,0.4); }
 
-        .footer-section a:hover {
-            color: var(--secondary-green);
-        }
+        /* ── FOOTER ── */
+        footer { background: var(--charcoal); color: var(--cream); padding: 60px 32px 24px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-section h3 { color: var(--secondary-green); margin-bottom: 20px; font-size: 20px; }
+        .footer-section p { line-height: 1.8; color: rgba(255,255,255,0.8); }
+        .footer-section a { color: rgba(255,255,255,0.8); text-decoration: none; display: block; margin-bottom: 10px; transition: color 0.3s; }
+        .footer-section a:hover { color: var(--secondary-green); }
+        .social-links { display: flex; gap: 16px; margin-top: 20px; }
+        .social-links a { width: 44px; height: 44px; background: rgba(76,175,106,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s; font-size: 18px; }
+        .social-links a:hover { background: var(--secondary-green); transform: translateY(-3px); }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
+        .newsletter-form { display: flex; gap: 8px; margin-top: 16px; }
+        .newsletter-form input { flex: 1; padding: 14px; border-radius: 8px; border: 1px solid var(--secondary-green); background: white; font-size: 15px; }
+        .newsletter-form button { padding: 14px 28px; background: var(--secondary-green); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; transition: background 0.3s; }
+        .newsletter-form button:hover { background: var(--primary-green); }
 
-        .social-links {
-            display: flex;
-            gap: 16px;
-            margin-top: 20px;
-        }
+        .btn { display: inline-block; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-weight: 700; transition: all 0.3s; border: none; cursor: pointer; font-size: 16px; font-family: 'Montserrat', sans-serif; }
+        .btn-primary { background: var(--primary-green); color: white; }
+        .btn-primary:hover { background: var(--secondary-green); transform: translateY(-2px); }
 
-        .social-links a {
-            width: 44px;
-            height: 44px;
-            background: rgba(76, 175, 106, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 18px;
-        }
-
-        .social-links a:hover {
-            background: var(--secondary-green);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.5);
-        }
-
+        /* ── RESPONSIVE ── */
         @media (max-width: 968px) {
-            .involvement-cards,
-            .impact-stats,
-            .opportunities-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline::before {
-                display: none;
-            }
-
-            .pathways-grid,
-            .partner-split {
-                grid-template-columns: 1fr;
-            }
+            .involvement-cards { grid-template-columns: 1fr; }
+            .pathways-grid, .partner-split { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 38px; }
+            .hero-accent { font-size: 34px; }
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 36px; }
-            h2 { font-size: 28px; }
+            h1 { font-size: 32px; } h2 { font-size: 28px; }
             .container { padding: 60px 24px; }
             .nav-links { display: none; }
+            .final-cta h2 { font-size: 32px; }
+            .final-cta-buttons { flex-direction: column; align-items: center; }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 8px;
-            margin-top: 16px;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 14px;
-            border-radius: 8px;
-            border: 1px solid var(--secondary-green);
-            background: white;
-            font-size: 15px;
-        }
-
-        .newsletter-form button {
-            padding: 14px 28px;
-            background: var(--secondary-green);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: background 0.3s;
-        }
-
-        .newsletter-form button:hover {
-            background: var(--primary-green);
+            * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo-group">
-            <img src="imgs2/logo.JPG" alt="Youth Food Recovery Logo" class="brand-logo">
-            <span class="brand-name">Food Recovery Alliance</span>
+
+<nav id="nav-placeholder"></nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <div class="hero-eyebrow">Make a Difference</div>
+        <h1>Get involved.<br><span class="hero-accent">Make real impact.</span></h1>
+        <p>Join a youth-powered movement recovering food and strengthening local communities across British Columbia.</p>
+        <div class="hero-buttons">
+            <a href="#volunteer" class="btn-hero-primary">
+                Volunteer With Us
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li class="dropdown">
-                    <span class="dropdown-toggle">Who We Are</span>
-                    <div class="dropdown-menu">
-                        <a href="about.html">About Us</a>
-                        <a href="team.html">Our Team</a>
-                        <a href="programs.html">Our Programs</a>
-                        <a href="calendar.html">Calendar</a>
-                    </div>
-                </li>
-                <li><a href="get-involved.html" class="active">Get Involved</a></li>
-                <li><a href="donate.html" class="btn-donate">Donate</a></li>
-            </ul>
+            <a href="#partner" class="btn-hero-secondary">Partner With Us</a>
         </div>
-    </nav>
+    </div>
+</section>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-background"></div>
-        <div class="hero-content">
-            <h1>Get involved. Make a real impact.</h1>
-            <p class="hero-subheading">Join a youth-powered movement recovering food and strengthening local communities.</p>
-            <div class="hero-buttons">
-                <a href="#volunteer" class="btn btn-primary">Volunteer With Us</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfW6gWTrfEJerXS1G4uZp8zLoGgtiGeRC4kONVZJLfBFnhkqw/viewform?usp=publish-editor" class="btn btn-secondary">Partner With Us</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- How You Can Get Involved -->
-    <section class="how-to-section">
-        <div class="container">
+<!-- ── HOW TO GET INVOLVED ── -->
+<section class="how-to-section">
+    <div class="container">
+        <div class="how-to-header">
+            <span class="section-eyebrow">Three Ways In</span>
             <h2>How You Can <span class="accent-text">Get Involved</span></h2>
-            <div class="involvement-cards">
-                <div class="involvement-card">
-                    <div class="card-icon"></div>
+            <p>Whether you have two hours or twenty, there's a place for you in this movement.</p>
+        </div>
+        <div class="involvement-cards">
+
+            <div class="involvement-card card-volunteer">
+                <div class="card-color-bar"></div>
+                <div class="card-inner">
+                    <span class="card-emoji"></span>
                     <h3>Volunteer</h3>
-                    <p>Join our team of youth volunteers recovering food, coordinating deliveries, and building community connections. No experience is required but bring your passion for making a difference.</p>
-                    <a href="https://docs.google.com/forms/d/1KoeeaV1oyw8UKRA5P_MkF2kJJ7reeo9xxHQPBl3tYu0/edit" class="btn btn-primary">Sign up here</a>
+                    <p>Join our team of youth volunteers recovering food, coordinating deliveries, and building community connections. No experience needed — just passion.</p>
+                    <a href="https://docs.google.com/forms/d/1KoeeaV1oyw8UKRA5P_MkF2kJJ7reeo9xxHQPBl3tYu0/edit" class="card-btn">Sign Up →</a>
                 </div>
+            </div>
 
-                <div class="involvement-card">
-                    <div class="card-icon"></div>
+            <div class="involvement-card card-partner">
+                <div class="card-color-bar"></div>
+                <div class="card-inner">
+                    <span class="card-emoji"></span>
                     <h3>Partner</h3>
-                    <p>Connect your farm, business, or organization with our food recovery network. Together we can reduce waste and feed more families in need.</p>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfW6gWTrfEJerXS1G4uZp8zLoGgtiGeRC4kONVZJLfBFnhkqw/viewform?usp=publish-editor" class="btn btn-primary">Become a Partner</a>
-                </div>
-
-                <div class="involvement-card">
-                    <div class="card-icon"></div>
-                    <h3>Leader</h3>
-                    <p>Join our network of youth leaders advocating for food justice and sustainability in their communities by applying for a leadership role or starting your own chapter.</p>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScvmVTHLkntQW0KJq0ltUF7bMYlrqK9OwivzjDqDycmhhSKyQ/viewform?usp=dialog" class="btn btn-primary">Apply here</a>
+                    <p>Connect your farm, business, or organization with our food recovery network. Together we reduce waste and feed families in need — and we may even be able to provide a tax receipt.</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfW6gWTrfEJerXS1G4uZp8zLoGgtiGeRC4kONVZJLfBFnhkqw/viewform?usp=publish-editor" class="card-btn">Become a Partner →</a>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Volunteer Pathways -->
-    <section class="pathways-section" id="volunteer">
-        <div class="container">
-            <div class="pathways-grid">
-                <div class="pathways-content">
-                    <h2>Volunteer <span class="accent-text">Pathways</span></h2>
-                    <p class="pathways-intro">We offer flexible volunteer opportunities designed to fit your schedule and interests. Whether you have a few hours a week or want to take on a leadership role, there's a place for you.</p>
-                    
-                    <ul class="pathways-list">
-                        <li>Food Recovery or harvesting Shifts – Hands-on work at farms and partner locations collecting and harvesting surplus food</li>
-                        <li>Logistics & Coordination – Plan routes, manage schedules and conduct deliveries</li>
-                        <li>Outreach & Education – Lead workshops, speak at schools, fundraise money and advocate for food justice</li>
+            <div class="involvement-card card-leader">
+                <div class="card-color-bar"></div>
+                <div class="card-inner">
+                    <span class="card-emoji"></span>
+                    <h3>Lead</h3>
+                    <p>Apply for a leadership role or start your own chapter. We're growing across BC and need motivated youth advocates ready to drive change in their communities.</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScvmVTHLkntQW0KJq0ltUF7bMYlrqK9OwivzjDqDycmhhSKyQ/viewform?usp=dialog" class="card-btn">Apply Here →</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ── VOLUNTEER PATHWAYS ── -->
+<section class="pathways-section" id="volunteer">
+    <div class="container">
+        <div class="pathways-grid">
+            <div class="pathways-content">
+                <span class="section-eyebrow">Find Your Role</span>
+                <h2>Volunteer <span class="accent-text">Pathways</span></h2>
+                <p class="pathways-intro">We offer flexible volunteer opportunities designed to fit your schedule and interests. Whether you have a few hours a week or want to take on a leadership role, there's a place for you.</p>
+
+                <ul class="pathways-list">
+                    <li>Food Recovery & Harvesting Shifts — Hands-on work at farms and partner locations collecting and harvesting surplus food</li>
+                    <li>Logistics & Coordination — Plan routes, manage schedules and conduct deliveries</li>
+                    <li>Outreach & Education — Lead workshops, speak at schools, fundraise and advocate for food justice</li>
+                </ul>
+
+                <div class="quote-callout">
+                    "I first joined for the service hours, but volunteering with the Food Recovery Alliance has been so fun and rewarding."
+                </div>
+            </div>
+
+            <div class="pathways-image">
+                <div class="pathways-image-label">Active in Victoria & Vancouver</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── PARTNER ── -->
+<section class="partner-section" id="partner">
+    <div class="container">
+        <div class="partner-split">
+            <div class="partner-content">
+                <span class="section-eyebrow">Work With Us</span>
+                <h2>Partner <span class="accent-text">With Us</span></h2>
+                <p class="partner-intro">We collaborate with farms, food businesses, and community organizations to create a comprehensive food recovery network. Our partnerships are mutually beneficial — we help reduce your waste while feeding families in need.</p>
+
+                <div class="partner-types">
+                    <div class="partner-types-header">We Work With</div>
+                    <ul>
+                        <li>Farms & Growers — Surplus produce recovery, farmers markets, small farms</li>
+                        <li>Schools & Community Groups — Shelters, middle/high schools, youth programs, food justice organizations</li>
                     </ul>
-
-                    <div class="quote-callout">
-                        "I first joined for the service hours, but volunteering with the Food Recovery Alliance has been so fun and rewarding."
-                    </div>
                 </div>
 
-                <div class="pathways-image">
-                    
-                </div>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfW6gWTrfEJerXS1G4uZp8zLoGgtiGeRC4kONVZJLfBFnhkqw/viewform?usp=publish-editor" class="btn btn-primary">Become a Partner →</a>
             </div>
-        </div>
-    </section>
 
-    <!-- Partner With Us -->
-    <section class="partner-section" id="partner">
-        <div class="container">
-            <div class="partner-split">
-                <div class="partner-content">
-                    <h2>Partner <span class="accent-text">With Us</span></h2>
-                    <p class="partner-intro">We collaborate with farms, food businesses, and community organizations to create a comprehensive food recovery network. Our partnerships are mutually beneficial because we help reduce your waste while feeding families in need. Check with us because if you are a local farm we may even be able to provide you a tax receipt. </p>
-                    
-                    <div class="partner-types">
-                        <h4>We Work With:</h4>
-                        <ul>
-                            <li>Farms & Growers – Surplus produce recovery programs, farmers markets, small farms</li>
-                        
-                            <li>Schools / Community Groups – Shelters, middle/high schools, youth leadership programs, food justice organizations</li>
-                        </ul>
-                    </div>
-
-                    <a href="#contact" class="btn btn-primary">Become a Partner</a>
-                </div>
-
-                <div class="partner-image">
-                   
+            <div class="partner-image">
+                <div class="partner-image-badge">
+                    <span class="partner-image-badge-num">20+</span>
+                    <span class="partner-image-badge-label">Active Partners</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    
-
-
-    <!-- Upcoming Opportunities -->
-    <section class="opportunities-section">
-        <div class="container">
-            <h2>Upcoming <span class="accent-text">Opportunities</span></h2>
-            <div class="opportunities-grid">
-                <div class="opportunity-card">
-                    <div class="opportunity-image">
-                        [EVENT IMAGE PLACEHOLDER]
-                    </div>
-                    <div class="opportunity-content">
-                        <h3>Farm Recovery Day</h3>
-                        <p class="opportunity-date">Saturday, January 11, 2026 • 9:00 AM</p>
-                        <p class="opportunity-location">📍 Green Valley Farms</p>
-                        <a href="calendar.html" class="btn btn-primary">Sign Up</a>
-                    </div>
-                </div>
-
-                <div class="opportunity-card">
-                    <div class="opportunity-image">
-                        [EVENT IMAGE PLACEHOLDER]
-                    </div>
-                    <div class="opportunity-content">
-                        <h3>Youth Leadership Training</h3>
-                        <p class="opportunity-date">Friday, January 16, 2026 • 6:00 PM</p>
-                        <p class="opportunity-location">📍 Community Center</p>
-                        <a href="calendar.html" class="btn btn-primary">Sign Up</a>
-                    </div>
-                </div>
-
-                <div class="opportunity-card">
-                    <div class="opportunity-image">
-                        [EVENT IMAGE PLACEHOLDER]
-                    </div>
-                    <div class="opportunity-content">
-                        <h3>Food Justice Fair</h3>
-                        <p class="opportunity-date">Saturday, January 24, 2026 • 10:00 AM</p>
-                        <p class="opportunity-location">📍 City Park Pavilion</p>
-                        <a href="calendar.html" class="btn btn-primary">Sign Up</a>
-                    </div>
-                </div>
-            </div>
+<!-- ── FINAL CTA ── -->
+<section class="final-cta">
+    <div class="final-cta-inner">
+        <div class="final-cta-eyebrow">Ready?</div>
+        <h2>Take action today.</h2>
+        <p>Every volunteer shift, every partnership, every pound of food recovered brings us closer to a hunger-free British Columbia.</p>
+        <div class="final-cta-buttons">
+            <a href="https://docs.google.com/forms/d/1KoeeaV1oyw8UKRA5P_MkF2kJJ7reeo9xxHQPBl3tYu0/edit" class="btn-cta btn-cta-white">
+                Join as a Volunteer
+            </a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfW6gWTrfEJerXS1G4uZp8zLoGgtiGeRC4kONVZJLfBFnhkqw/viewform?usp=publish-editor" class="btn-cta btn-cta-outline">
+                Partner With Us
+            </a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScvmVTHLkntQW0KJq0ltUF7bMYlrqK9OwivzjDqDycmhhSKyQ/viewform?usp=dialog" class="btn-cta btn-cta-golden">
+                Become a Youth Leader
+            </a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Final CTA -->
-    <section class="final-cta">
-        <div class="container">
-            <h2>Ready to take action?</h2>
-            <div class="final-cta-buttons">
-                <a href="https://docs.google.com/forms/d/1KoeeaV1oyw8UKRA5P_MkF2kJJ7reeo9xxHQPBl3tYu0/edit" class="btn btn-primary">Join as a Volunteer</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfW6gWTrfEJerXS1G4uZp8zLoGgtiGeRC4kONVZJLfBFnhkqw/viewform?usp=publish-editor" class="btn btn-secondary">Partner With Us</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfW6gWTrfEJerXS1G4uZp8zLoGgtiGeRC4kONVZJLfBFnhkqw/viewform?usp=publish-editor" class="btn btn-primary">Become a Youth Leader</a>
-            </div>
-        </div>
-    </section>
+<footer id="footer-placeholder"></footer>
+<script src="stats.js"></script>
+<script src="components.js"></script>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Food Recovery Alliance</h3>
-                <p>A youth-led organization fighting food waste and food insecurity through community action.</p>
-                <div class="social-links">
-                    <a href="http://instagram.com/foodrecoveryalliance/" aria-label="Instagram">📷</a>
-                    <a href="https://www.linkedin.com/company/food-recoveriy-alliance/about/" aria-label="LinkedIn">in</a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <a href="about.html">About Us</a>
-                <a href="programs.html">Our Programs</a>
-                <a href="team.html">Our Team</a>
-                <a href="getinvolved.html">Get Involved</a>
-                <a href="gallery.html">Gallery</a>
-                <a href="donate.html">Donate</a>
-            </div>
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p>foodrecoveryalliance@gmail.com</p>
-                <p>+1 (604) 861-9688</p>
-                <p>2901 Seapoint Drive <br>Victoria, BC</p>
-            </div>
-             <div class="footer-section">
-                <h3>Stay Connected</h3>
-                <p>Get updates on our impact, events, and opportunities to get involved.</p>
-                <form class="newsletter-form" onsubmit="return false;">
-                    <input type="email" placeholder="Your email address" aria-label="Email address" required>
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Food Recovery Alliance. All rights reserved. </p>
-        </div>
-    </footer>
-
-
-    <script>
-        // Animated Counter
-        function animateCounter(element) {
-            const target = parseInt(element.getAttribute('data-target'));
-            const duration = 2000;
-            const increment = target / (duration / 16);
-            let current = 0;
-
-            const updateCounter = () => {
-                current += increment;
-                if (current < target) {
-                    element.textContent = Math.floor(current).toLocaleString();
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    element.textContent = target.toLocaleString();
-                }
-            };
-
-            updateCounter();
-        }
-
-        // Timeline scroll activation
-        const timelineObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('active');
-                    }, index * 300);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        document.querySelectorAll('.timeline-step').forEach(step => {
-            timelineObserver.observe(step);
-        });
-
-        // Stats counter animation
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && entry.target.classList.contains('stat-number')) {
-                    animateCounter(entry.target);
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        document.querySelectorAll('.stat-number').forEach(stat => {
-            statsObserver.observe(stat);
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== 'https://docs.google.com/forms/d/1KoeeaV1oyw8UKRA5P_MkF2kJJ7reeo9xxHQPBl3tYu0/edit' && href !== '#https://docs.google.com/forms/d/e/1FAIpQLSfW6gWTrfEJerXS1G4uZp8zLoGgtiGeRC4kONVZJLfBFnhkqw/viewform?usp=publish-edito' && href !== '#contact' && href !== '#support') {
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href.startsWith('#') && href.length > 1) {
+                const target = document.querySelector(href);
+                if (target) {
                     e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-            });
+            }
         });
-    </script>
-    <script>
-        // Newsletter form
-        const newsletterForm = document.querySelector('.newsletter-form');
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const input = newsletterForm.querySelector('input');
-                if (input.value) {
-                    alert('Thank you for subscribing! We\'ll keep you updated on our impact.');
-                    input.value = '';
-                }
-            });
-        }
-        const form = document.getElementById('newsletter-form');
-  
-        form.addEventListener("submit", e => {
-            e.preventDefault();
-            
-            // Get the value from the input
-            const emailValue = form.querySelector('input[name="Email"]').value;
+    });
 
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('newsletter-form');
+        if (!form) return;
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const emailValue = form.querySelector('input[name="Email"]').value;
             fetch('https://sheetdb.io/api/v1/wp0ely7f39kfl', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                // The key 'Email' must match Cell A1 in your sheet exactly
-                body: JSON.stringify({
-                    data: [
-                        { 'Email': emailValue }
-                    ]
-                })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ data: [{ 'Email': emailValue }] })
             })
             .then(res => res.json())
-            .then(result => {
-                console.log('Success:', result);
-                alert("Success! Check your Google Sheet now.");
-                form.reset();
-            })
+            .then(() => { alert('Thank you for subscribing!'); form.reset(); })
             .catch(err => console.error('Error:', err));
         });
-    </script>
+    });
+</script>
 </body>
 </html>

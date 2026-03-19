@@ -7,11 +7,7 @@
     <link rel="icon" type="image/png" href="imgs2/logo.JPG">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Lora:wght@400;500&family=Pacifico&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --primary-green: #1E4D3B;
@@ -22,1130 +18,595 @@
             --cream: #FAF9F6;
         }
 
-        body {
-            font-family: 'Lora', serif;
-            font-size: 17px;
-            line-height: 1.7;
-            color: var(--charcoal);
-            background-color: var(--cream);
-        }
-
-        h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-        }
-
+        body { font-family: 'Lora', serif; font-size: 17px; line-height: 1.7; color: var(--charcoal); background-color: var(--cream); }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; }
         h1 { font-size: 48px; line-height: 1.2; }
         h2 { font-size: 36px; }
-        h3 { font-size: 28px; }
+        h3 { font-size: 24px; }
+        .accent-text { font-family: 'Pacifico', cursive; color: var(--secondary-green); }
 
-        .accent-text {
-            font-family: 'Pacifico', cursive;
-            color: var(--secondary-green);
+        .section-eyebrow {
+            display: inline-block; font-family: 'Montserrat', sans-serif;
+            font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--terracotta); margin-bottom: 16px;
         }
 
-        /* Navigation */
-        nav {
-            position: sticky;
-            top: 0;
-            background: rgba(30, 77, 59, 0.98);
-            padding: 16px 0;
-            z-index: 1000;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
-            backdrop-filter: blur(10px);
-        }
+        .btn { display: inline-block; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-weight: 700; transition: all 0.3s; border: none; cursor: pointer; font-size: 15px; font-family: 'Montserrat', sans-serif; }
+        .btn-primary { background: var(--primary-green); color: white; }
+        .btn-primary:hover { background: var(--secondary-green); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(30,77,59,0.3); }
+        .btn-secondary { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.6); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.15); border-color: white; }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 32px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-group {
-            display: flex;
-            align-items: center;    /* Vertically centers the text with the logo */
-            text-decoration: none;  /* Removes underline from the link */
-            gap: 15px;             /* This controls the exact space between logo and text */
-        }
-
-        .brand-logo {
-            width: 50px;           /* Adjust size as needed */
-            height: 50px;
-            border-radius: 50%;    /* Keeps it circular */
-            object-fit: cover;
-            
-            background-color: #fff;
-        }
-
-        .brand-name {
-            color: white;
-            font-size: 1.8rem;
-            font-family: serif;    /* Matches the look in your screenshot */
-            font-weight: 500;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links > li {
-            position: relative;
-        }
-
-        .nav-links a {
-            color: var(--cream);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: 15px;
-            font-weight: 500;
-            display: block;
-            padding: 8px 0;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary-green);
-        }
-
-        .nav-links .active {
-            color: var(--golden);
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-toggle {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--cream);
-        }
-
-        .dropdown-toggle.active {
-            color: var(--golden);
-        }
-
-        .dropdown-toggle::after {
-            content: '▼';
-            font-size: 10px;
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            min-width: 220px;
-            border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s;
-            margin-top: 8px;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-menu a {
-            color: var(--charcoal);
-            padding: 12px 20px;
-            border-bottom: 1px solid #eee;
-            font-size: 14px;
-        }
-
-        .dropdown-menu a:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown-menu a:hover {
-            background: var(--cream);
-            color: var(--primary-green);
-        }
-
-        .btn-donate {
-            display: inline-block;
-            padding: 14px 40px;
-            min-width: 120px;
-            border-radius: 10px;
-            background: var(--terracotta);
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            font-weight: 700;
-            transition: all 0.3s;
-        }
-
-        .btn-donate:hover {
-            background: #c55a3a;
-            transform: translateY(-2px);
-        }
-
-
-        .btn {
-            display: inline-block;
-            padding: 14px 28px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .btn-primary {
-            background: var(--primary-green);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--secondary-green);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(30, 77, 59, 0.3);
-        }
-
-        .btn-secondary {
-            background: var(--secondary-green);
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary-green);
-        }
-
-        /* Hero Section */
+        /* ── HERO ── */
         .hero {
-            background: var(--cream);
-            padding: 80px 0;
+            position: relative; min-height: 680px;
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
         }
 
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 32px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+        .hero-bg {
+            position: absolute; inset: 0;
+            background: url(imgs2/sophiefra.png) center / cover no-repeat;
+            transform: scale(1.05);
+            animation: heroZoom 14s ease-in-out infinite alternate;
         }
 
-        .hero-content h1 {
-            color: var(--primary-green);
-            margin-bottom: 32px;
+        @keyframes heroZoom {
+            from { transform: scale(1.05); }
+            to   { transform: scale(1.12); }
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            margin-top: 32px;
+        .hero-bg::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(160deg, rgba(10,40,25,0.82) 0%, rgba(30,77,59,0.65) 50%, rgba(0,0,0,0.72) 100%);
         }
 
-        .hero-illustration {
-            width: 100%;
-            height: 450px;
-            background: url(imgs2/sophiefra.png);
-            background-size: cover;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 14px;
-            text-align: center;
-            padding: 30px;
-            position: relative;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-            animation: float 6s ease-in-out infinite;
+        .hero-content {
+            position: relative; z-index: 2;
+            max-width: 760px; padding: 120px 32px 100px; margin: 0 auto;
+            text-align: center; animation: fadeUp 1s ease both;
         }
 
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        .hero-eyebrow {
+            display: inline-block; font-family: 'Montserrat', sans-serif;
+            font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--golden); background: rgba(244,197,66,0.12);
+            border: 1px solid rgba(244,197,66,0.35); border-radius: 100px;
+            padding: 8px 20px; margin-bottom: 28px;
         }
 
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 32px;
-        }
+        .hero h1 { color: white; font-size: 54px; margin-bottom: 20px; letter-spacing: -1px; }
+        .hero-accent { font-family: 'Pacifico', cursive; color: var(--golden); }
+        .hero p { font-size: 18px; color: rgba(255,255,255,0.82); line-height: 1.85; margin-bottom: 40px; max-width: 520px; margin-left: auto; margin-right: auto; }
 
-        /* The Problem Section */
-        .problem-section {
-            background: white;
-        }
+        .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 
-        .problem-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 60px;
-            align-items: center;
+        .btn-hero-primary {
+            display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px;
+            background: var(--terracotta); color: white; border-radius: 12px;
+            text-decoration: none; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px;
+            transition: all 0.3s; box-shadow: 0 8px 24px rgba(217,108,72,0.4);
         }
+        .btn-hero-primary:hover { background: #c55a3a; transform: translateY(-3px); }
 
-        .problem-text p {
-            font-size: 20px;
-            line-height: 1.8;
-            color: #555;
+        .btn-hero-secondary {
+            display: inline-flex; align-items: center; padding: 16px 32px;
+            background: transparent; color: white; border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 12px; text-decoration: none; font-family: 'Montserrat', sans-serif;
+            font-weight: 700; font-size: 15px; transition: all 0.3s; backdrop-filter: blur(4px);
         }
+        .btn-hero-secondary:hover { background: rgba(255,255,255,0.15); border-color: white; transform: translateY(-3px); }
+
+        /* ── CONTAINER ── */
+        .container { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
+
+        /* ── MISSION ── */
+        .mission-section { background: white; }
+
+        .mission-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 72px; align-items: center; }
+
+        .mission-text p { font-size: 19px; line-height: 1.9; color: #555; margin-bottom: 20px; }
 
         .stat-card-large {
             background: linear-gradient(135deg, var(--terracotta) 0%, #c55a3a 100%);
-            padding: 60px 40px;
-            border-radius: 16px;
-            text-align: center;
-            color: white;
-            box-shadow: 0 12px 40px rgba(217, 108, 72, 0.3);
-            position: relative;
-            overflow: hidden;
+            padding: 56px 40px; border-radius: 20px; text-align: center; color: white;
+            box-shadow: 0 16px 48px rgba(217,108,72,0.3); position: relative; overflow: hidden;
         }
 
         .stat-card-large::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200px;
-            height: 200px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
+            content: ''; position: absolute; top: -60px; right: -60px;
+            width: 220px; height: 220px; background: rgba(255,255,255,0.08); border-radius: 50%;
         }
 
-        .stat-card-large .stat-number {
-            font-size: 72px;
-            font-weight: 800;
-            font-family: 'Montserrat', sans-serif;
-            margin-bottom: 16px;
-            display: block;
-            position: relative;
+        .stat-card-large::after {
+            content: ''; position: absolute; bottom: -40px; left: -40px;
+            width: 160px; height: 160px; background: rgba(255,255,255,0.05); border-radius: 50%;
         }
 
-        .stat-card-large .stat-text {
-            font-size: 24px;
-            font-weight: 600;
-            position: relative;
+        .stat-number {
+            font-size: 80px; font-weight: 800; font-family: 'Montserrat', sans-serif;
+            margin-bottom: 12px; display: block; position: relative; z-index: 1; line-height: 1;
         }
 
-        /* Food Path Section */
-        .food-path-section {
-            background: var(--cream);
-            overflow-x: auto;
-            overflow-y: hidden;
+        .stat-text { font-size: 20px; font-weight: 600; position: relative; z-index: 1; line-height: 1.4; }
+
+        /* ── VALUES ── */
+        .values-section { background: var(--cream); }
+
+        .values-header { text-align: center; margin-bottom: 64px; }
+        .values-header h2 { color: var(--primary-green); margin-bottom: 12px; }
+        .values-header p { color: #666; max-width: 500px; margin: 0 auto; }
+
+        .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+
+        .value-card {
+            border-radius: 20px; overflow: hidden; min-height: 380px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.09); cursor: pointer;
+            position: relative; transition: all 0.35s;
         }
 
-        .food-path-container {
-            padding: 80px 32px;
+        .value-card:hover { transform: translateY(-8px); box-shadow: 0 20px 48px rgba(0,0,0,0.14); }
+
+        .value-card-front {
+            position: absolute; inset: 0;
+            background: white; padding: 40px 32px;
+            display: flex; flex-direction: column; justify-content: center;
+            transition: opacity 0.35s;
+            border: 2px solid transparent;
         }
 
-        .food-path-title {
-            text-align: center;
-            color: var(--primary-green);
-            margin-bottom: 60px;
+        .value-card:hover .value-card-front { opacity: 0; }
+
+        .value-icon { font-size: 40px; margin-bottom: 20px; display: block; }
+
+        .value-card-front h3 { color: var(--primary-green); margin-bottom: 14px; font-size: 22px; }
+        .value-card-front p { color: #666; font-size: 15px; line-height: 1.75; }
+
+        .value-card-image {
+            position: absolute; inset: 0;
+            opacity: 0; transition: opacity 0.35s;
         }
 
-        .food-path {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
+        .value-card:hover .value-card-image { opacity: 1; }
+
+        .value-card-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .value-card-image-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(30,77,59,0.85) 0%, transparent 55%);
         }
 
-        .food-path::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(to right, var(--secondary-green), var(--primary-green));
-            z-index: 0;
+        .value-card-image-label {
+            position: absolute; bottom: 24px; left: 24px;
+            color: white; font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700;
         }
 
-        .path-step {
-            flex: 1;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            opacity: 0.5;
-            transition: all 0.5s;
+        .value-card-color-bar { height: 5px; width: 100%; position: absolute; top: 0; left: 0; z-index: 2; }
+        .bar-collaboration { background: var(--secondary-green); }
+        .bar-youth { background: var(--golden); }
+        .bar-equity { background: var(--terracotta); }
+
+        /* ── ORIGIN STORY ── */
+        .origin-section { background: white; }
+
+        .origin-grid { display: block; }
+
+        .origin-image-frame {
+            float: left; width: 45%; margin: 0 48px 24px 0;
+            border-radius: 20px; overflow: hidden; position: relative;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.14);
         }
 
-        .path-step.active {
-            opacity: 1;
-            transform: scale(1.05);
+        .origin-image-frame img { width: 100%; display: block; transition: transform 0.6s ease; }
+        .origin-image-frame:hover img { transform: scale(1.04); }
+
+        .origin-content { min-width: 0; overflow-wrap: break-word; }
+
+        .origin-section .container::after { content: ''; display: table; clear: both; }
+
+        .origin-image-frame::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(30,77,59,0.35), transparent 60%);
         }
 
-        .path-icon {
-            width: 120px;
-            height: 120px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 48px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-            border: 4px solid var(--secondary-green);
+        .origin-image-caption {
+            position: absolute; bottom: 20px; left: 20px; z-index: 2;
+            color: white; font-size: 13px; font-style: italic; color: rgba(255,255,255,0.85);
         }
 
-        .path-step.active .path-icon {
-            background: var(--secondary-green);
-            border-color: var(--primary-green);
+        .origin-content h2 { color: var(--primary-green); margin-bottom: 24px; }
+
+        .origin-content p {
+            color: #555; line-height: 1.9; font-size: 17px; margin-bottom: 20px;
         }
 
-        .path-label {
-            font-weight: 700;
-            color: var(--primary-green);
-            font-size: 18px;
-            margin-top: 12px;
+        .origin-quote {
+            background: var(--cream); padding: 28px 32px;
+            border-left: 4px solid var(--golden); border-radius: 0 14px 14px 0;
+            margin: 32px 0; position: relative;
         }
 
-        .path-caption {
-            font-size: 14px;
-            color: #666;
-            margin-top: 8px;
+        .origin-quote::before {
+            content: '"'; font-family: 'Pacifico', cursive; font-size: 52px;
+            color: rgba(244,197,66,0.3); position: absolute; top: 8px; left: 14px; line-height: 1;
         }
 
-        /* Values Section */
-        .values-section {
-            background: white;
-        }
+        .origin-quote p { font-style: italic; font-size: 17px; color: #555; line-height: 1.8; padding-left: 8px; }
+        .origin-quote .quote-attr { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; color: var(--primary-green); text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; padding-left: 8px; font-style: normal; }
 
-        .values-section h2 {
-            text-align: center;
-            color: var(--primary-green);
-            margin-bottom: 60px;
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 30px;
-            
-        }
-
-        /* Ensure the card has a stable size and hide the image by default */
-        .value-card1 {
-            background: var(--cream);
-            padding: 40px 32px;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            border: 2px solid transparent; /* Starting border */
-            min-height: 380px; /* Prevents the card from jumping/changing size */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            cursor: pointer;
-            overflow: hidden; /* Keeps the image inside the rounded corners */
-        }
-
-        /* Default state: Image is hidden */
-        .value-image2 {
-            display: none;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 12px;
-        }
-
-        /* --- THE HOVER SWAP --- */
-
-        /* 1. Change Border and Lift Card */
-        .value-card1:hover {
-            transform: translateY(-8px);
-            border: 2px solid #2d4a3e; /* Your primary green or secondary green */
-            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
-            background: white;
-        }
-
-        /* 2. Hide Text Content on Hover */
-        .value-card1:hover .card-content {
-            display: none;
-        }
-
-        /* 3. Show Image on Hover */
-        .value-card1:hover .value-image2 {
-            display: block;
-        }
-        .value-card1 h3 {
-            color: var(--primary-green);
-            margin-bottom: 16px;
-            font-size: 24px;
-        }
-
-        .value-card1 p {
-            color: #555;
-            line-height: 1.7;
-        }
-
-        /* Quote Section */
+        /* ── QUOTE CALLOUT ── */
         .quote-section {
-            background: var(--cream);
-            text-align: center;
-            padding: 100px 32px;
+            position: relative; overflow: hidden;
+            background: var(--cream); text-align: center; padding: 100px 32px;
         }
 
         .quote-callout {
-            max-width: 900px;
-            margin: 0 auto;
-            font-family: 'Pacifico', cursive;
-            font-size: 32px;
-            color: var(--primary-green);
-            line-height: 1.6;
-            position: relative;
-            padding-bottom: 20px;
+            max-width: 860px; margin: 0 auto;
+            font-family: 'Pacifico', cursive; font-size: 30px;
+            color: var(--primary-green); line-height: 1.65;
+            position: relative; padding-bottom: 28px;
         }
+
+        .quote-callout p { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; color: var(--terracotta); letter-spacing: 1px; text-transform: uppercase; margin-top: 20px; font-style: normal; }
 
         .quote-callout::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 4px;
-            background: var(--terracotta);
-            border-radius: 2px;
+            content: ''; position: absolute; bottom: 0; left: 50%;
+            transform: translateX(-50%); width: 80px; height: 4px;
+            background: var(--terracotta); border-radius: 2px;
         }
 
-        /* Image Grid Section */
-        .image-grid-section {
-            background: white;
-            padding: 60px 0; /* Adds some breathing room above/below the grid */
-            
-        }
+        /* ── IMAGE GRID ── */
+        .image-grid-section { background: white; padding: 60px 0; }
 
-        .image-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
+        .image-grid-header { text-align: center; margin-bottom: 48px; }
+        .image-grid-header h2 { color: var(--primary-green); margin-bottom: 12px; }
+        .image-grid-header p { color: #666; }
+
+        .image-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 
         .grid-image {
-            width: 100%;
-            height: 350px; /* Increased height for a more professional look */
-            border-radius: 12px;
-            overflow: hidden; /* Ensures the image doesn't "leak" out of the rounded corners */
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            width: 100%; height: 300px; border-radius: 14px; overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.09); transition: all 0.3s;
         }
 
-        /* Make the actual image fill the container */
-        .grid-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* This crops the image to fit perfectly without stretching */
-            display: block;
-        }
+        .grid-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
 
-        /* Optional: Add a hover effect to make the grid feel interactive */
-        .grid-image:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-        }
+        .grid-image:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,0.16); }
+        .grid-image:hover img { transform: scale(1.05); }
 
-        /* Remove the placeholder camera emoji icon */
-        .grid-image::before {
-            display: none;
-        }
+        /* ── FOOTER ── */
+        footer { background: var(--charcoal); color: var(--cream); padding: 60px 32px 24px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-section h3 { color: var(--secondary-green); margin-bottom: 20px; font-size: 20px; }
+        .footer-section p { line-height: 1.8; color: rgba(255,255,255,0.8); }
+        .footer-section a { color: rgba(255,255,255,0.8); text-decoration: none; display: block; margin-bottom: 10px; transition: color 0.3s; }
+        .footer-section a:hover { color: var(--secondary-green); }
+        .social-links { display: flex; gap: 16px; margin-top: 20px; }
+        .social-links a { width: 44px; height: 44px; background: rgba(76,175,106,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s; font-size: 18px; }
+        .social-links a:hover { background: var(--secondary-green); transform: translateY(-3px); }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
+        .newsletter-form { display: flex; gap: 8px; margin-top: 16px; }
+        .newsletter-form input { flex: 1; padding: 14px; border-radius: 8px; border: 1px solid var(--secondary-green); background: white; font-size: 15px; }
+        .newsletter-form button { padding: 14px 28px; background: var(--secondary-green); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; transition: background 0.3s; }
+        .newsletter-form button:hover { background: var(--primary-green); }
 
-        /* Footer */
-        footer {
-            background: var(--charcoal);
-            color: var(--cream);
-            padding: 60px 32px 24px;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-section h3 {
-            color: var(--secondary-green);
-            margin-bottom: 20px;
-            font-size: 20px;
-        }
-
-        .footer-section p {
-            line-height: 1.8;
-            color: rgba(255,255,255,0.8);
-        }
-
-        .footer-section a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 10px;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: var(--secondary-green);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 16px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            width: 44px;
-            height: 44px;
-            background: rgba(76, 175, 106, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 18px;
-        }
-
-        .social-links a:hover {
-            background: var(--secondary-green);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.5);
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 8px;
-            margin-top: 16px;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 14px;
-            border-radius: 8px;
-            border: 1px solid var(--secondary-green);
-            background: white;
-            font-size: 15px;
-        }
-
-        .newsletter-form button {
-            padding: 14px 28px;
-            background: var(--secondary-green);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: background 0.3s;
-        }
-
-        .newsletter-form button:hover {
-            background: var(--primary-green);
-        }
+        /* ── RESPONSIVE ── */
         @media (max-width: 968px) {
-            .hero-container, .problem-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .food-path {
-                flex-direction: column;
-                gap: 40px;
-            }
-            
-            .food-path::before {
-                display: none;
-            }
-            
-            .image-grid {
-                grid-template-columns: 1fr;
-            }
+            .mission-grid, .origin-grid { grid-template-columns: 1fr; gap: 48px; }
+            .values-grid { grid-template-columns: 1fr; }
+            .image-grid { grid-template-columns: 1fr 1fr; }
+            .hero-content { padding: 100px 32px 80px; }
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 36px; }
-            h2 { font-size: 28px; }
+            h1 { font-size: 36px; } h2 { font-size: 28px; }
             .container { padding: 60px 24px; }
             .nav-links { display: none; }
-            .quote-callout { font-size: 24px; }
+            .quote-callout { font-size: 22px; }
+            .image-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo-group">
-            <img src="imgs2/logo.JPG" alt="Youth Food Recovery Logo" class="brand-logo">
-            <span class="brand-name">Food Recovery Alliance</span>
+
+<nav id="nav-placeholder"></nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <div class="hero-eyebrow">Who We Are</div>
+        <h1>Rescuing food.<br><span class="hero-accent">Empowering youth.</span></h1>
+        <p>We bridge the gap between surplus farm produce and communities in need — empowering young people to build a more equitable food system across British Columbia.</p>
+        <div class="hero-buttons">
+            <a href="get-involved.html" class="btn-hero-primary">
+                Get Involved
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li class="dropdown">
-                    <span class="dropdown-toggle active">Who We Are</span>
-                    <div class="dropdown-menu">
-                        <a href="about.html" style="background: var(--cream); color: var(--primary-green);">About Us</a>
-                        <a href="team.html">Our Team</a>
-                        <a href="programs.html">Our Programs</a>
-                        <a href="calendar.html">Calendar</a>
-                    </div>
-                </li>
-                <li><a href="get-involved.html">Get Involved</a></li>
-                <li><a href="donate.html" class="btn-donate">Donate</a></li>
-            </ul>
+            <a href="#impact" class="btn-hero-secondary">View Our Impact</a>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1>Rescuing food. Empowering youth. Strengthening communities.</h1>
-                <div class="hero-buttons">
-                    <a href="get-involved.html" class="btn btn-primary">Get Involved</a>
-                    <a href="#impact" class="btn btn-secondary">View Our Impact</a>
-                </div>
-            </div>
-            <div class="hero-illustration">
-                
-            </div>
-        </div>
-    </section>
-
-    <!-- The Problem Section -->
-    <section class="problem-section">
-        <div class="container">
-            <div class="problem-grid">
-                <div class="problem-text">
-                    <p>We bridge the gap between surplus farm produce and communities in need through combatting food waste by empowering farmers, and ensuring that fresh, healthy food reaches those who need it most. Together, we are building stronger, hunger-free communities. </p>
-                </div>
-                <div class="stat-card-large">
-                    <span class="stat-number" data-target="26">0</span>
-                    <div class="stat-text">people in Canada are food insecure</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-   
-
-    <!-- Values Section -->
-    <div class="values-grid">
-    <div class="value-card1">
-        <div class="card-content">
-            <h3>Collaboration</h3>
-            <p>At the Food Recovery Alliance, collaboration is at the heart of our impact. By building strong relationships with farmers, food banks, youth volunteers and local organizations, we create a united front against food waste and hunger.</p>
-        </div>
-        <img src="imgs/baking.png" alt="Collaboration" class="value-image2">
     </div>
+</section>
 
-    <div class="value-card1">
-        <div class="card-content">
-            <h3>Youth Leadership</h3>
-            <p>We give youth a voice and a mission. Whether gleaning food from local farms or organizing community events, young people are at the core of our movement to fight food waste and food insecurity.</p>
-        </div>
-        <img src="imgs/meeting.PNG" alt="Youth Leadership" class="value-image2">
-    </div>
-
-    <div class="value-card1">
-        <div class="card-content">
-            <h3>Community Equity and Well-being</h3>
-            <p>Everyone deserves access to fresh, nutritious food. We work to address root causes of food insecurity and strengthen food equity.</p>
-        </div>
-        <img src="imgs/lettuce.jpg" alt="Community Equity" class="value-image2">
-    </div>
-    </div>
-
-    <!-- Quote Callout -->
-    <section class="quote-section">
-        <div class="quote-callout">
-            "The Food Recovery Alliance isn't just about donating; it's a youth movement for change." 
-            <p> - Apollin Lu (Founder & Executive Director)</p>
-        </div>
-    </section>
-
-   <!-- Image Grid Section -->
-    <section class="image-grid-section">
+<!-- ── MISSION ── -->
+<section class="mission-section" id="impact">
     <div class="container">
-        <div class="image-grid">
-            <!-- Image Grid Section --><div class="grid-image">
-                <img src="imgs/apples.png" alt="Harvesting">
-            </div><!-- Image Grid Section -->
-            <div class="grid-image">
-                <img src="imgs/babyapollin.jpg" alt="Youth delivering food">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/baking.png" alt="Community impact moment">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/brenton.jpeg" alt="Community impact moment">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/club.jpg" alt="Community impact moment">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/crumble.png" alt="Community impact moment">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/firsttomato.png" alt="Community impact moment">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/garden.png" alt="Community impact moment">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/garlicbutter.JPG" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/gleaning.jpg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/hastings.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/home.png" alt="Harvesting">
-            </div>
-            
-            <div class="grid-image">
-                <img src="imgs/IMG_6328.JPG" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/IMG_6329.jpeg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/IMG_6330.jpeg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/IMG_6331.jpeg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/impact.JPG" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/incorporation.jpeg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/lettuce.jpg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/lola.jpg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/makesoup.jpeg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/meeting.PNG" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/meeting2.PNG" alt="Harvesting">
-            </div>
-             <div class="grid-image">
-                <img src="imgs/oaklands.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/onion.JPG" alt="Harvesting">
-            </div>
-            
-            <div class="grid-image">
-                <img src="imgs/rapid.jpeg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/seeding.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/soup.jpeg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/van.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/van2.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/van3.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/van4.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/van5.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs/van7.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs3/1.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs3/2.jpg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs3/3.jpg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs3/4.jpg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs3/5.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs3/6.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs3/7.jpg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs3/8.jpg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs6/9.jpg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs6/10.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs6/11.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs6/12.jpg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs6/13.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs6/14.JPG" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs6/15.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs4/17.JPG" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs4/16.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs4/19.jpg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs4/18.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs4/20.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs4/21.JPG" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs4/22.jpeg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs4/23.jpeg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs5/24.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs5/25.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs5/26.jpg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs5/27.jpg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs5/28.jpg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs5/29.jpg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs5/30.png" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs5/31.jpg" alt="Harvesting">
-            </div>
-            <div class="grid-image">
-                <img src="imgs6/32.JPG" alt="Harvesting">
+        <div class="mission-grid">
+            <div class="mission-text">
+                <span class="section-eyebrow">Our Mission</span>
+                <h2 style="color:var(--primary-green);margin-bottom:24px;">Turning waste<br><span class="accent-text">into nourishment.</span></h2>
+                <p>We bridge the gap between surplus farm produce and communities in need through combatting food waste by empowering farmers, and ensuring that fresh, healthy food reaches those who need it most.</p>
+                <p>Together, we are building stronger, hunger-free communities — one harvest at a time.</p>
+            </div>
+            <div class="stat-card-large">
+                <span class="stat-number" data-target="26">0</span>
+                <div class="stat-text">% of people in Canada<br>are food insecure</div>
             </div>
         </div>
     </div>
-    </section>
+</section>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Food Recovery Alliance</h3>
-                <p>A youth-led organization fighting food waste and food insecurity through community action.</p>
-                <div class="social-links">
-                    <a href="http://instagram.com/foodrecoveryalliance/" aria-label="Instagram">📷</a>
-                    <a href="https://www.linkedin.com/company/food-recoveriy-alliance/about/" aria-label="LinkedIn">in</a>
+<!-- ── VALUES ── -->
+<section class="values-section">
+    <div class="container">
+        <div class="values-header">
+            <span class="section-eyebrow">What Drives Us</span>
+            <h2>Our <span class="accent-text">Values</span></h2>
+            <p>Hover over each card to see these values in action.</p>
+        </div>
+        <div class="values-grid">
+
+            <div class="value-card">
+                <div class="value-card-color-bar bar-collaboration"></div>
+                <div class="value-card-front">
+                    <span class="value-icon"></span>
+                    <h3>Collaboration</h3>
+                    <p>By building strong relationships with farmers, food banks, youth volunteers and local organizations, we create a united front against food waste and hunger.</p>
+                </div>
+                <div class="value-card-image">
+                    <img src="imgs/baking.png" alt="Collaboration">
+                    <div class="value-card-image-overlay"></div>
+                    <div class="value-card-image-label">Collaboration</div>
                 </div>
             </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <a href="about.html">About Us</a>
-                <a href="programs.html">Our Programs</a>
-                <a href="team.html">Our Team</a>
-                <a href="getinvolved.html">Get Involved</a>
-                <a href="gallery.html">Gallery</a>
-                <a href="donate.html">Donate</a>
+
+            <div class="value-card">
+                <div class="value-card-color-bar bar-youth"></div>
+                <div class="value-card-front">
+                    <span class="value-icon"></span>
+                    <h3>Youth Leadership</h3>
+                    <p>We give youth a voice and a mission. Whether gleaning food from local farms or organizing community events, young people are at the core of our movement.</p>
+                </div>
+                <div class="value-card-image">
+                    <img src="imgs/meeting.PNG" alt="Youth Leadership">
+                    <div class="value-card-image-overlay"></div>
+                    <div class="value-card-image-label">Youth Leadership</div>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p>foodrecoveryalliance@gmail.com</p>
-                <p>+1 (604) 861-9688</p>
-                <p>2901 Seapoint Drive <br>Victoria, BC</p>
+
+            <div class="value-card">
+                <div class="value-card-color-bar bar-equity"></div>
+                <div class="value-card-front">
+                    <span class="value-icon"></span>
+                    <h3>Community Equity</h3>
+                    <p>Everyone deserves access to fresh, nutritious food. We work to address the root causes of food insecurity and strengthen food equity across our communities.</p>
+                </div>
+                <div class="value-card-image">
+                    <img src="imgs/lettuce.jpg" alt="Community Equity">
+                    <div class="value-card-image-overlay"></div>
+                    <div class="value-card-image-label">Community Equity</div>
+                </div>
             </div>
-             <div class="footer-section">
-                <h3>Stay Connected</h3>
-                <p>Get updates on our impact, events, and opportunities to get involved.</p>
-                <form class="newsletter-form" onsubmit="return false;">
-                    <input type="email" name="Email" placeholder="Your Email Address" required>
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
+
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Food Recovery Alliance. All rights reserved. </p>
+    </div>
+</section>
+
+<!-- ── ORIGIN STORY ── -->
+<section class="origin-section">
+    <div class="container">
+        <div class="origin-grid">
+
+            <div class="origin-image-frame">
+                <!-- REPLACE src WITH YOUR ORIGIN STORY IMAGE -->
+                <img src="imgs/babyapollin.jpg" alt="Where it all began">
+                <div class="origin-image-caption">Summer 2024 — where it all started.</div>
+            </div>
+
+            <div class="origin-content">
+                <span class="section-eyebrow">How We Started</span>
+                <h2>Our <span class="accent-text">Origin Story</span></h2>
+
+                <p>My entire life has been spent on farms. Summers filled with harvesting vegetables, autumns dedicated to packaging and delivering them, and winters focused on maintaining the farm's website and designing packaging. Spring was dominated by endless weddings, before the cycle repeated itself. My tanned hands, forever etched with dirt. Growing up, I often wondered why it had to be me, working on my family's farm. As I got older, I realized the larger issue — the lack of support for farmers.</p>
+
+                <p>Finding reliable workers has always been a challenge, and with many farmers reaching their 60s, the ability to navigate the modern, internet-driven world is overwhelming. Few understand that, in the 21st century, having a website is critical to making sales. The result? Small, local farms are closing at alarming rates, and fewer young people are choosing to start or continue operating farms. It's undeniable — small-scale farming is a dying business. Farms feed the world. What will we do if they're gone?</p>
+
+                <p>Then, something happened that I still can't forget. My father threw away an entire tray of garlic scapes I had just harvested. I couldn't understand it. My hands were still stinging from their juices — garlic scapes are delicious! My mother's stir-fries were the highlight of my evenings. But what I couldn't understand most was: why were we throwing out perfectly good food when so many people went hungry? I later learned the reason — no one wanted to buy garlic scapes. Few people knew how to cook them, and storing them was too expensive. So we threw them away. The revelation changed me.</p>
+
+                <p>If farmers are already struggling to stay afloat, yet have surplus food, and there are people on the streets going hungry, why are we wasting it? We often hear that "farmers are the backbone of society," but it seemed to me that no one actually cared about them. This realization was the catalyst for founding the Food Recovery Alliance — to bridge the gap between surplus farm produce and communities in need, combat food waste by empowering farmers, and ensure that fresh, healthy food reaches those who need it most.</p>
+
+                <div class="origin-quote">
+                    <p>"We believe no food should go to waste, and every person deserves access to the nourishment needed to thrive. Together, we support sustainable farming and build stronger, hunger-free communities."</p>
+                    <p class="quote-attr">— Apollin Lu, Founder & Executive Director</p>
+                </div>
+
+                <a href="get-involved.html" class="btn btn-primary">Join the Movement →</a>
+            </div>
+
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script>
-        // Animated Counter
-        function animateCounter(element) {
-            const target = parseInt(element.getAttribute('data-target'));
-            const duration = 2000;
-            const increment = target / (duration / 16);
-            let current = 0;
+<!-- ── QUOTE ── -->
+<section class="quote-section">
+    <div class="quote-callout">
+        "The Food Recovery Alliance isn't just about donating; it's a youth movement for change."
+        <p>— Apollin Lu, Founder & Executive Director</p>
+    </div>
+</section>
 
-            const updateCounter = () => {
-                current += increment;
-                if (current < target) {
-                    element.textContent = Math.floor(current) + '%';
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    element.textContent = target + '%';
-                }
-            };
+<!-- ── IMAGE GRID ── -->
+<section class="image-grid-section">
+    <div class="container">
+        <div class="image-grid-header">
+            <span class="section-eyebrow">Our Community in Action</span>
+            <h2>Moments <span class="accent-text">from the Field</span></h2>
+            <p>From farms to food banks — a glimpse into life at FRA.</p>
+        </div>
+        <div class="image-grid">
+            <!-- GALLERY:START -->
+            <div class="grid-image"><img src="imgs/IMG_6322.jpeg" alt="IMG 6322" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/IMG_6324.jpeg" alt="IMG 6324" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/IMG_6328.JPG" alt="IMG 6328" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/IMG_6329.jpeg" alt="IMG 6329" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/IMG_6330.jpeg" alt="IMG 6330" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/IMG_6331.jpeg" alt="IMG 6331" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/amazon.png" alt="amazon" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/apples.png" alt="apples" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/babyapollin.jpg" alt="babyapollin" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/baking.png" alt="baking" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/brenton.jpeg" alt="brenton" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/club.jpg" alt="club" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/crumble.png" alt="crumble" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/firsttomato.png" alt="firsttomato" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/garden.png" alt="garden" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/garlicbutter.JPG" alt="garlicbutter" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/getinvolved hero.jpeg" alt="getinvolved hero" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/gleaning.jpg" alt="gleaning" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/hastings.png" alt="hastings" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/home.png" alt="home" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/impact.JPG" alt="impact" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/incorporation.jpeg" alt="incorporation" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/lettuce.jpg" alt="lettuce" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/lola.jpg" alt="lola" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/makesoup.jpeg" alt="makesoup" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/meeting.PNG" alt="meeting" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/meeting2.PNG" alt="meeting2" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/oaklands.png" alt="oaklands" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/onion.JPG" alt="onion" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/partner.jpeg" alt="partner" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/planting.png" alt="planting" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/rapid.jpeg" alt="rapid" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/seeding.png" alt="seeding" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/soup.jpeg" alt="soup" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/van.png" alt="van" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/van2.png" alt="van2" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/van3.png" alt="van3" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/van4.png" alt="van4" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/van5.png" alt="van5" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/van7.png" alt="van7" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs/youth_outreach.JPG" alt="youth outreach" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs2/hastings2.png" alt="hastings2" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs2/ivan.JPG" alt="ivan" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs2/jane.jpg" alt="jane" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs2/logo.JPG" alt="logo" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs2/sophiefra.png" alt="sophiefra" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs2/volunteers.png" alt="volunteers" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs3/1.png" alt="1" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs3/2.jpg" alt="2" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs3/3.jpg" alt="3" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs3/4.jpg" alt="4" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs3/5.png" alt="5" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs3/6.png" alt="6" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs3/7.jpg" alt="7" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs3/8.jpg" alt="8" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs4/16.png" alt="16" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs4/17.JPG" alt="17" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs4/18.png" alt="18" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs4/19.jpg" alt="19" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs4/20.png" alt="20" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs4/21.JPG" alt="21" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs4/22.jpeg" alt="22" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs4/23.jpeg" alt="23" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs5/24.png" alt="24" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs5/25.png" alt="25" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs5/26.jpg" alt="26" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs5/27.jpg" alt="27" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs5/28.jpg" alt="28" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs5/29.jpg" alt="29" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs5/30.png" alt="30" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs5/31.jpg" alt="31" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs6/10.png" alt="10" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs6/11.png" alt="11" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs6/12.jpg" alt="12" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs6/13.png" alt="13" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs6/14.JPG" alt="14" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs6/15.png" alt="15" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs6/32.JPG" alt="32" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs6/9.jpg" alt="9" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs7/35.JPG" alt="35" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs7/36.JPG" alt="36" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs7/37.JPG" alt="37" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs7/38.JPG" alt="38" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs7/40.JPG" alt="40" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs7/41.JPG" alt="41" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs7/42.JPG" alt="42" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs7/43.JPG" alt="43" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs7/44.JPG" alt="44" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs8/45.JPG" alt="45" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs8/46.JPG" alt="46" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs8/47.JPG" alt="47" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs8/48.JPG" alt="48" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs8/49.JPG" alt="49" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs8/50.JPG" alt="50" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs8/51.JPG" alt="51" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs8/52.JPG" alt="52" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs8/55.JPG" alt="55" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs8/56.JPG" alt="56" loading="lazy"></div>
+            <div class="grid-image"><img src="imgs8/57.png" alt="57" loading="lazy"></div>
+            <!-- GALLERY:END -->
+    </div>
+</section>
 
-            updateCounter();
-        }
+<footer id="footer-placeholder"></footer>
+<script src="stats.js"></script>
+<script src="components.js"></script>
 
-        // Food Path Animation on Scroll
-        const pathSteps = document.querySelectorAll('.path-step');
-        let currentStep = 0;
+<script>
+    // Stat counter
+    function animateCounter(el) {
+        const target = parseInt(el.getAttribute('data-target'));
+        const increment = target / (2000 / 16);
+        let current = 0;
+        const update = () => {
+            current += increment;
+            if (current < target) { el.textContent = Math.floor(current) + '%'; requestAnimationFrame(update); }
+            else { el.textContent = target + '%'; }
+        };
+        update();
+    }
 
-        function activateNextStep() {
-            if (currentStep < pathSteps.length) {
-                pathSteps[currentStep].classList.add('active');
-                currentStep++;
+    const statObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting && e.target.classList.contains('stat-number')) {
+                animateCounter(e.target); statObserver.unobserve(e.target);
             }
-        }
-
-        const pathObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    activateNextStep();
-                    setTimeout(activateNextStep, 600);
-                    setTimeout(activateNextStep, 1200);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        const foodPathSection = document.querySelector('.food-path-section');
-        if (foodPathSection) {
-            pathObserver.observe(foodPathSection);
-        }
-
-        // Stat counter animation
-        const statObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && entry.target.classList.contains('stat-number')) {
-                    animateCounter(entry.target);
-                    statObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        document.querySelectorAll('.stat-number').forEach(stat => {
-            statObserver.observe(stat);
         });
-    </script>
-    <script>
-        // Newsletter form
-        const newsletterForm = document.querySelector('.newsletter-form');
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const input = newsletterForm.querySelector('input');
-                if (input.value) {
-                    alert('Thank you for subscribing! We\'ll keep you updated on our impact.');
-                    input.value = '';
-                }
-            });
-        }
-        const form = document.getElementById('newsletter-form');
-  
-        form.addEventListener("submit", e => {
-            e.preventDefault();
-            
-            // Get the value from the input
-            const emailValue = form.querySelector('input[name="Email"]').value;
+    }, { threshold: 0.5 });
 
+    document.querySelectorAll('.stat-number').forEach(s => statObserver.observe(s));
+
+    // Newsletter
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('newsletter-form');
+        if (!form) return;
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const emailValue = form.querySelector('input[name="Email"]').value;
             fetch('https://sheetdb.io/api/v1/wp0ely7f39kfl', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                // The key 'Email' must match Cell A1 in your sheet exactly
-                body: JSON.stringify({
-                    data: [
-                        { 'Email': emailValue }
-                    ]
-                })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ data: [{ 'Email': emailValue }] })
             })
             .then(res => res.json())
-            .then(result => {
-                console.log('Success:', result);
-                alert("Success! Check your Google Sheet now.");
-                form.reset();
-            })
+            .then(() => { alert('Thank you for subscribing!'); form.reset(); })
             .catch(err => console.error('Error:', err));
         });
-    </script>
+    });
+</script>
 </body>
 </html>
