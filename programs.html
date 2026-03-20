@@ -31,7 +31,6 @@
             color: var(--terracotta); margin-bottom: 16px;
         }
 
-        /* ── HERO ── */
         .hero {
             position: relative; min-height: 680px;
             display: flex; align-items: center; justify-content: center;
@@ -71,7 +70,6 @@
         }
         .hero-pill:hover { background: var(--secondary-green); border-color: var(--secondary-green); transform: translateY(-2px); }
 
-        /* ── PROGRAM NAV ── */
         .program-nav {
             background: white; position: sticky; top: 0; z-index: 100;
             box-shadow: 0 2px 12px rgba(0,0,0,0.08); border-bottom: 1px solid #eee;
@@ -100,10 +98,8 @@
         .program-nav-link:hover { color: var(--primary-green); border-bottom-color: var(--secondary-green); }
         .program-nav-link.active { color: var(--primary-green); border-bottom-color: var(--primary-green); }
 
-        /* ── CONTAINER ── */
         .container { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
 
-        /* ── PROGRAM BLOCKS ── */
         .program-section { background: white; }
         .program-block { padding: 60px 0 100px; border-bottom: 1px solid #eee; }
         .program-block:last-child { border-bottom: none; }
@@ -115,13 +111,8 @@
         .program-content { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
         .program-text p { margin-bottom: 20px; line-height: 1.85; color: #555; }
 
-        /* ══════════════════════════════════════════
-           EXCITING INFO SECTION
-        ══════════════════════════════════════════ */
-
         .program-info-section { margin: 36px 0; }
 
-        /* ── OUTCOMES: giant animated stats ── */
         .outcomes-strip {
             background: var(--primary-green);
             border-radius: 20px;
@@ -140,83 +131,44 @@
             letter-spacing: 3px; text-transform: uppercase;
             color: rgba(255,255,255,0.5); margin-bottom: 20px;
         }
-        .outcomes-numbers {
-            display: flex; flex-direction: row; align-items: stretch; gap: 0;
-        }
+        .outcomes-numbers { display: flex; flex-direction: row; align-items: stretch; gap: 0; }
         .outcome-stat { text-align: center; padding: 8px 4px; flex: 1; }
         .outcome-num {
             font-family: 'Montserrat', sans-serif; font-size: 36px; font-weight: 800;
-            color: var(--golden); line-height: 1; display: block;
-            transition: all 0.3s;
+            color: var(--golden); line-height: 1; display: block; transition: all 0.3s;
         }
         .outcome-unit {
             font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
             letter-spacing: 1.5px; text-transform: uppercase;
             color: rgba(255,255,255,0.6); margin-top: 6px; display: block;
         }
-        .outcome-divider {
-            width: 1px; background: rgba(255,255,255,0.1);
-            align-self: stretch;
-        }
+        .outcome-divider { width: 1px; background: rgba(255,255,255,0.1); align-self: stretch; }
 
-        /* ── WHO + WHERE: two-col horizontal cards ── */
-        .who-where-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-        }
-
-        .who-card, .where-card {
-            border-radius: 16px; padding: 24px;
-            position: relative; overflow: hidden;
-        }
-
-        .who-card {
-            background: white;
-            border: 1.5px solid rgba(76,175,106,0.2);
-        }
+        .who-where-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .who-card, .where-card { border-radius: 16px; padding: 24px; position: relative; overflow: hidden; }
+        .who-card { background: white; border: 1.5px solid rgba(76,175,106,0.2); }
         .program-block:nth-child(even) .who-card { background: var(--cream); }
-
-        .where-card {
-            background: white;
-            border: 1.5px solid rgba(244,197,66,0.3);
-        }
+        .where-card { background: white; border: 1.5px solid rgba(244,197,66,0.3); }
         .where-chip {
-            background: rgba(244,197,66,0.1);
-            border: 1px solid rgba(244,197,66,0.3);
+            background: rgba(244,197,66,0.1); border: 1px solid rgba(244,197,66,0.3);
             border-radius: 100px; padding: 6px 14px;
             font-size: 13px; color: var(--primary-green);
-            font-family: 'Montserrat', sans-serif; font-weight: 600;
-            transition: all 0.2s;
+            font-family: 'Montserrat', sans-serif; font-weight: 600; transition: all 0.2s;
         }
         .where-chip:hover { background: var(--golden); color: var(--primary-green); border-color: var(--golden); transform: translateY(-1px); }
         .program-block:nth-child(even) .where-card { background: var(--cream); }
-
-        .info-card-header {
-            margin-bottom: 16px;
-        }
-
-        .info-card-title {
-            font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
-            letter-spacing: 2px; text-transform: uppercase; color: #999;
-        }
-
-        /* Persona chips for Who */
+        .info-card-header { margin-bottom: 16px; }
+        .info-card-title { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #999; }
         .persona-chips { display: flex; flex-wrap: wrap; gap: 8px; }
         .persona-chip {
-            background: rgba(76,175,106,0.08);
-            border: 1px solid rgba(76,175,106,0.2);
+            background: rgba(76,175,106,0.08); border: 1px solid rgba(76,175,106,0.2);
             border-radius: 100px; padding: 6px 14px;
             font-size: 13px; color: var(--primary-green);
-            font-family: 'Montserrat', sans-serif; font-weight: 600;
-            transition: all 0.2s;
+            font-family: 'Montserrat', sans-serif; font-weight: 600; transition: all 0.2s;
         }
         .persona-chip:hover { background: var(--secondary-green); color: white; border-color: var(--secondary-green); transform: translateY(-1px); }
-
-        /* Location items for Where */
         .location-list { display: flex; flex-wrap: wrap; gap: 8px; }
 
-        /* ══════════════════════════════════════════ */
-
-        /* Impact accordion */
         .impact-panel { border-radius: 14px; overflow: hidden; margin: 28px 0; border: 1px solid rgba(0,0,0,0.07); }
         .impact-toggle {
             background: var(--primary-green); color: white; padding: 16px 24px; cursor: pointer;
@@ -236,7 +188,6 @@
         .progress-fill { height: 100%; background: linear-gradient(90deg, var(--secondary-green), var(--golden)); border-radius: 100px; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); width: 0; }
         .impact-panel.expanded .progress-fill { width: var(--progress-width); }
 
-        /* Quote */
         .quote-callout {
             background: var(--cream); padding: 28px 32px;
             border-left: 4px solid var(--golden); border-radius: 0 12px 12px 0;
@@ -248,7 +199,6 @@
         .quote-callout p { padding-left: 8px; }
         .quote-author { margin-top: 12px; font-family: 'Montserrat', sans-serif; color: var(--primary-green); font-style: normal; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
 
-        /* CTA cards */
         .cta-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
         .cta-card { padding: 32px 28px; border-radius: 16px; text-align: left; position: relative; overflow: hidden; transition: all 0.35s; cursor: pointer; }
         .cta-card-volunteer { background: var(--primary-green); color: white; }
@@ -264,7 +214,6 @@
         .cta-card-partner .btn-white   { color: var(--terracotta); }
         .cta-card .btn-white:hover { transform: translateX(4px); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
 
-        /* ── VISUAL SIDE ── */
         .program-visual { position: sticky; top: 120px; }
         .program-image-frame { border-radius: 20px; overflow: hidden; position: relative; box-shadow: 0 16px 48px rgba(0,0,0,0.15); height: 420px; }
         .program-image-frame img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
@@ -279,7 +228,6 @@
         .image-strip-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
         .image-strip-item:hover img { transform: scale(1.06); }
 
-        /* ── FOOTER ── */
         footer { background: var(--charcoal); color: var(--cream); padding: 60px 32px 24px; }
         .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
         .footer-section h3 { color: var(--secondary-green); margin-bottom: 20px; font-size: 20px; }
@@ -288,7 +236,6 @@
         .footer-section a:hover { color: var(--secondary-green); }
         .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
 
-        /* ── RESPONSIVE ── */
         @media (max-width: 968px) {
             .program-content { grid-template-columns: 1fr; gap: 48px; }
             .program-visual { position: static; }
@@ -312,7 +259,6 @@
 
 <nav id="nav-placeholder"></nav>
 
-<!-- ── HERO ── -->
 <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
@@ -356,33 +302,29 @@
                     <p>Through this program, we're not just addressing food waste — we're teaching young people about sustainable agriculture, food supply chains, and the importance of resource conservation.</p>
 
                     <div class="program-info-section">
-                        <!-- Outcomes strip -->
                         <div class="outcomes-strip">
                             <div class="outcomes-label">Measurable Outcomes</div>
                             <div class="outcomes-numbers">
                                 <div class="outcome-stat">
-                                    <span class="outcome-num" data-count-stat="pounds" data-suffix="K+">7K+</span>
+                                    <span class="outcome-num" data-stat="pounds">—</span>
                                     <span class="outcome-unit">Lbs Recovered</span>
                                 </div>
                                 <div class="outcome-divider"></div>
                                 <div class="outcome-stat">
-                                    <span class="outcome-num" data-count-stat="volunteers" data-suffix="+">80+</span>
+                                    <span class="outcome-num" data-stat="volunteers">—</span>
                                     <span class="outcome-unit">Youth Volunteers</span>
                                 </div>
                                 <div class="outcome-divider"></div>
                                 <div class="outcome-stat">
-                                    <span class="outcome-num" data-count-stat="organizations" data-suffix="+">60+</span>
+                                    <span class="outcome-num" data-stat="organizations">—</span>
                                     <span class="outcome-unit">Orgs Reached</span>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Who + Where -->
                         <div class="who-where-grid">
                             <div class="who-card">
-                                <div class="info-card-header">
-                                    <span class="info-card-title">Who It Serves</span>
-                                </div>
+                                <div class="info-card-header"><span class="info-card-title">Who It Serves</span></div>
                                 <div class="persona-chips">
                                     <span class="persona-chip">Food Banks</span>
                                     <span class="persona-chip">Community Centers</span>
@@ -392,9 +334,7 @@
                                 </div>
                             </div>
                             <div class="where-card">
-                                <div class="info-card-header">
-                                    <span class="info-card-title">Where It Operates</span>
-                                </div>
+                                <div class="info-card-header"><span class="info-card-title">Where It Operates</span></div>
                                 <div class="location-list">
                                     <span class="where-chip">Partner Farms — Victoria &amp; Vancouver</span>
                                     <span class="where-chip">Farmer's Markets</span>
@@ -450,7 +390,7 @@
                     <div class="program-image-frame">
                         <img src="imgs/rapid.jpeg" alt="Gleaning Program">
                         <div class="stat-overlay">
-                            <div class="stat-overlay-number"><span data-stat="pounds"></span>K+</div>
+                            <div class="stat-overlay-number"><span data-stat="pounds"></span></div>
                             <div class="stat-overlay-label">Lbs Recovered</div>
                         </div>
                         <div class="program-image-caption">Volunteers gleaning surplus produce at a partner farm</div>
@@ -483,17 +423,17 @@
                             <div class="outcomes-label">Measurable Outcomes</div>
                             <div class="outcomes-numbers">
                                 <div class="outcome-stat">
-                                    <span class="outcome-num">200+</span>
+                                    <span class="outcome-num">200</span>
                                     <span class="outcome-unit">Meals Delivered</span>
                                 </div>
                                 <div class="outcome-divider"></div>
                                 <div class="outcome-stat">
-                                    <span class="outcome-num" data-count-stat="volunteers" data-suffix="+">80+</span>
+                                    <span class="outcome-num" data-stat="volunteers">—</span>
                                     <span class="outcome-unit">Youth Volunteers</span>
                                 </div>
                                 <div class="outcome-divider"></div>
                                 <div class="outcome-stat">
-                                    <span class="outcome-num" data-count-stat="events" data-suffix="+">10+</span>
+                                    <span class="outcome-num" data-stat="events">—</span>
                                     <span class="outcome-unit">Events Hosted</span>
                                 </div>
                             </div>
@@ -501,9 +441,7 @@
 
                         <div class="who-where-grid">
                             <div class="who-card">
-                                <div class="info-card-header">
-                                    <span class="info-card-title">Who It Serves</span>
-                                </div>
+                                <div class="info-card-header"><span class="info-card-title">Who It Serves</span></div>
                                 <div class="persona-chips">
                                     <span class="persona-chip">Families with Kids</span>
                                     <span class="persona-chip">Farm Owners</span>
@@ -512,9 +450,7 @@
                                 </div>
                             </div>
                             <div class="where-card">
-                                <div class="info-card-header">
-                                    <span class="info-card-title">Where It Operates</span>
-                                </div>
+                                <div class="info-card-header"><span class="info-card-title">Where It Operates</span></div>
                                 <div class="location-list">
                                     <span class="where-chip">Farms — Victoria &amp; Vancouver</span>
                                     <span class="where-chip">Community Centers &amp; Markets</span>
@@ -569,7 +505,7 @@
                     <div class="program-image-frame">
                         <img src="imgs/crumble.png" alt="Community Outreach">
                         <div class="stat-overlay">
-                            <div class="stat-overlay-number">200+</div>
+                            <div class="stat-overlay-number">200</div>
                             <div class="stat-overlay-label">Meals Delivered</div>
                         </div>
                         <div class="program-image-caption">Youth volunteers preparing food for community shelters</div>
@@ -603,17 +539,17 @@
                             <div class="outcomes-label">Measurable Outcomes</div>
                             <div class="outcomes-numbers">
                                 <div class="outcome-stat">
-                                    <span class="outcome-num" data-count-stat="volunteers" data-suffix="+">80+</span>
+                                    <span class="outcome-num" data-stat="volunteers">—</span>
                                     <span class="outcome-unit">Students Reached</span>
                                 </div>
                                 <div class="outcome-divider"></div>
                                 <div class="outcome-stat">
-                                    <span class="outcome-num" data-count-stat="leaders" data-suffix="+">15+</span>
+                                    <span class="outcome-num" data-stat="leaders">—</span>
                                     <span class="outcome-unit">Leaders Trained</span>
                                 </div>
                                 <div class="outcome-divider"></div>
                                 <div class="outcome-stat">
-                                    <span class="outcome-num" data-count-stat="schools" data-suffix="+">3+</span>
+                                    <span class="outcome-num" data-stat="schools">—</span>
                                     <span class="outcome-unit">Schools Engaged</span>
                                 </div>
                             </div>
@@ -621,9 +557,7 @@
 
                         <div class="who-where-grid">
                             <div class="who-card">
-                                <div class="info-card-header">
-                                    <span class="info-card-title">Who It Serves</span>
-                                </div>
+                                <div class="info-card-header"><span class="info-card-title">Who It Serves</span></div>
                                 <div class="persona-chips">
                                     <span class="persona-chip">Middle & High Schoolers</span>
                                     <span class="persona-chip">Youth Leaders</span>
@@ -632,9 +566,7 @@
                                 </div>
                             </div>
                             <div class="where-card">
-                                <div class="info-card-header">
-                                    <span class="info-card-title">Where It Operates</span>
-                                </div>
+                                <div class="info-card-header"><span class="info-card-title">Where It Operates</span></div>
                                 <div class="location-list">
                                     <span class="where-chip">Local Schools — Victoria</span>
                                     <span class="where-chip">Summer Programs &amp; Workshops</span>
@@ -714,15 +646,11 @@
         document.getElementById(id).classList.toggle('expanded');
     }
 
-    // Animate outcome numbers on scroll into view
     const outcomeObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (!entry.isIntersecting) return;
-            entry.target.querySelectorAll('.outcome-num[data-count-stat]').forEach(el => {
-                const suffix = el.getAttribute('data-suffix') || '';
-                // Just pulse the existing text since real values come from stats.js
+            entry.target.querySelectorAll('.outcome-num').forEach(el => {
                 el.style.transform = 'scale(1.15)';
-                el.style.color = '#F4C542';
                 setTimeout(() => { el.style.transform = 'scale(1)'; }, 400);
             });
             outcomeObserver.unobserve(entry.target);
@@ -731,7 +659,6 @@
 
     document.querySelectorAll('.outcomes-strip').forEach(el => outcomeObserver.observe(el));
 
-    // Active nav on scroll
     const sections = ['gleaning', 'outreach', 'education'];
     const sectionLabels = { gleaning: 'Farm to Community', outreach: 'Hands-On Impact', education: 'Knowledge is Power' };
     const navLinks = document.querySelectorAll('.program-nav-link');
@@ -746,7 +673,6 @@
             link.classList.remove('active');
             if (link.getAttribute('href') === '#' + current) link.classList.add('active');
         });
-        // Always show context label, update text as user scrolls
         if (navContext) {
             navContext.textContent = current ? (sectionLabels[current] || 'Our Programs') : 'Our Programs';
         }
