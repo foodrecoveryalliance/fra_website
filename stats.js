@@ -1,7 +1,7 @@
 const FRA_STATS = {
-    pounds:        { display: '8,832',   count: 8832  },
-    dollars:       { display: '32,211', count: 32211 },
-    volunteers:    { display: '140',     count: 140    },
+    pounds:        { display: '8,992',   count: 8992  },
+    dollars:       { display: '32,851', count: 32851 },
+    volunteers:    { display: '200',     count: 200    },
     organizations: { display: '75',     count: 75    },
     leaders:    { display: '16',     count: 16    },
     schools:    { display: '3',     count: 3    },
