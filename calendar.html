@@ -25,7 +25,7 @@
         h3 { font-size: 28px; }
         .accent-text { font-family: 'Pacifico', cursive; color: var(--secondary-green); }
 
-        /* ── HERO ── */
+        /* HERO */
         .hero {
             position: relative; min-height: 480px;
             display: flex; align-items: center; justify-content: center;
@@ -65,13 +65,13 @@
         .hero-accent { font-family: 'Pacifico', cursive; color: var(--golden); }
         .hero p { font-size: 18px; color: rgba(255,255,255,0.82); line-height: 1.8; max-width: 520px; margin: 0 auto; }
 
-        /* ── CONTAINER ── */
+        /* CONTAINER */
         .container { max-width: 1200px; margin: 0 auto; padding: 60px 32px; }
 
-        /* ── CALENDAR SECTION ── */
+        /* CALENDAR SECTION */
         .calendar-section { background: white; }
 
-        /* ── CONTROLS ── */
+        /* CONTROLS */
         .calendar-controls {
             display: flex; justify-content: space-between; align-items: center;
             margin-bottom: 32px; flex-wrap: wrap; gap: 16px;
@@ -95,7 +95,7 @@
         .legend-training   { background: var(--golden); }
         .legend-community  { background: var(--terracotta); }
 
-        /* ── CALENDAR CARD ── */
+        /* CALENDAR CARD */
         .calendar {
             background: white; border-radius: 20px;
             box-shadow: 0 4px 24px rgba(0,0,0,0.08);
@@ -118,7 +118,7 @@
         }
         .nav-btn:hover { background: var(--primary-green); color: white; border-color: var(--primary-green); }
 
-        /* ── LOADING STATE ── */
+        /* LOADING STATE */
         .calendar-loading {
             display: flex; align-items: center; justify-content: center;
             gap: 12px; padding: 48px; color: #999;
@@ -133,7 +133,7 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* ── ERROR STATE ── */
+        /* ERROR STATE */
         .calendar-error {
             display: none; text-align: center; padding: 40px;
             color: var(--terracotta); font-family: 'Montserrat', sans-serif;
@@ -141,7 +141,7 @@
         }
         .calendar-error a { color: var(--primary-green); }
 
-        /* ── MONTH GRID ── */
+        /* MONTH GRID */
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
         .calendar-day-header {
             text-align: center; font-family: 'Montserrat', sans-serif;
@@ -178,7 +178,7 @@
         .chip-community { background: var(--terracotta); }
         .chip-default   { background: var(--primary-green); }
 
-        /* ── WEEK VIEW ── */
+        /* WEEK VIEW */
         .week-view { display: none; }
         .week-view.active { display: block; }
         .week-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
@@ -202,7 +202,151 @@
         .week-event.community { border-left-color: var(--terracotta); }
         .event-time { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--primary-green); font-size: 11px; margin-bottom: 3px; }
 
-        /* ── QUOTE FOOTER ── */
+        /* ── RECENT EVENTS SECTION ── */
+        .recent-events-section {
+            background: var(--cream);
+            padding: 80px 32px;
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+        .recent-events-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-eyebrow {
+            display: inline-block; font-family: 'Montserrat', sans-serif;
+            font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--secondary-green); background: rgba(76,175,106,0.1);
+            border: 1px solid rgba(76,175,106,0.25); border-radius: 100px;
+            padding: 6px 18px; margin-bottom: 16px;
+        }
+        .recent-events-header {
+            display: flex; justify-content: space-between; align-items: flex-end;
+            margin-bottom: 48px; flex-wrap: wrap; gap: 16px;
+        }
+        .recent-events-header h2 {
+            font-size: 38px; color: var(--primary-green); line-height: 1.2;
+        }
+        .recent-events-header p {
+            max-width: 420px; color: #777; font-size: 16px; line-height: 1.75;
+            text-align: right;
+        }
+
+        /* VIDEO GRID */
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            align-items: start;
+            max-width: 900px;
+        }
+
+        /* Video cards */
+        .video-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .video-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+        .video-card.featured { grid-row: span 1; }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: #111;
+        }
+        .video-preview {
+            position: absolute;
+            inset: 0;
+            display: block;
+            color: white;
+            text-decoration: none;
+        }
+        .video-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.35s, filter 0.35s;
+        }
+        .video-preview::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(30,77,59,0.05), rgba(0,0,0,0.34));
+            z-index: 1;
+        }
+        .video-preview::after {
+            content: '▶';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.92);
+            color: var(--primary-green);
+            font-size: 28px;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 10px 28px rgba(0,0,0,0.22);
+            z-index: 2;
+            padding-left: 4px;
+        }
+        .video-preview:hover img {
+            transform: scale(1.04);
+            filter: brightness(0.9);
+        }
+        .video-card.small .video-preview::after {
+            width: 42px;
+            height: 42px;
+            font-size: 18px;
+        }
+
+        .video-meta {
+            padding: 20px 24px 24px;
+        }
+        .video-tag {
+            display: inline-block; font-family: 'Montserrat', sans-serif;
+            font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+            color: var(--terracotta); margin-bottom: 10px;
+        }
+        .video-meta h3 {
+            font-size: 18px; color: var(--primary-green); line-height: 1.4;
+            margin-bottom: 8px;
+        }
+        .video-card.featured .video-meta h3 { font-size: 22px; }
+        .video-meta p {
+            color: #888; font-size: 14px; line-height: 1.65;
+        }
+        .video-card.featured .video-meta p { font-size: 15px; }
+
+        /* Small cards — horizontal layout */
+        .video-card.small {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+        }
+        .video-card.small .video-wrapper {
+            padding-bottom: 0;
+            height: 120px;
+        }
+        .video-card.small .video-meta {
+            padding: 14px 16px;
+        }
+        .video-card.small .video-meta h3 { font-size: 14px; margin-bottom: 4px; }
+        .video-card.small .video-meta p  { font-size: 12px; }
+
+        /* QUOTE FOOTER */
         .quote-footer {
             position: relative; overflow: hidden;
             background: linear-gradient(135deg, var(--terracotta) 0%, #c55a3a 100%);
@@ -230,7 +374,7 @@
             letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.6);
         }
 
-        /* ── EVENT PANEL ── */
+        /* EVENT PANEL */
         .event-panel {
             position: fixed; top: 0; right: -520px; width: 500px;
             height: 100vh; background: white;
@@ -281,7 +425,7 @@
         }
         .panel-signup:hover { background: var(--secondary-green); transform: translateY(-2px); }
 
-        /* ── FOOTER ── */
+        /* FOOTER */
         footer { background: var(--charcoal); color: var(--cream); padding: 60px 32px 24px; }
         .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
         .footer-section h3 { color: var(--secondary-green); margin-bottom: 20px; font-size: 20px; }
@@ -290,12 +434,16 @@
         .footer-section a:hover { color: var(--secondary-green); }
         .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
 
-        /* ── RESPONSIVE ── */
+        /* RESPONSIVE */
         @media (max-width: 968px) {
             .calendar-grid { gap: 4px; }
             .calendar-day { min-height: 72px; padding: 6px; }
             .week-grid { grid-template-columns: repeat(2, 1fr); }
             .event-panel { width: 100%; right: -100%; }
+            .video-grid { grid-template-columns: 1fr; }
+            .video-card.featured { grid-row: span 1; }
+            .video-card.small { grid-template-columns: 1fr; }
+            .video-card.small .video-wrapper { height: 0; padding-bottom: 56.25%; }
         }
         @media (max-width: 768px) {
             h1 { font-size: 34px; } h2 { font-size: 28px; }
@@ -303,6 +451,9 @@
             .nav-links { display: none; }
             .calendar-day-header { font-size: 10px; padding: 6px 2px; }
             .week-grid { grid-template-columns: 1fr; }
+            .recent-events-section { padding: 60px 20px; }
+            .recent-events-header { flex-direction: column; align-items: flex-start; }
+            .recent-events-header p { text-align: left; }
         }
     </style>
 </head>
@@ -310,17 +461,17 @@
 
 <nav id="nav-placeholder"></nav>
 
-<!-- ── HERO ── -->
+<!-- HERO -->
 <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
-        <div class="hero-eyebrow">Events & Volunteering</div>
+        <div class="hero-eyebrow">Events &amp; Volunteering</div>
         <h1>Show up.<br><span class="hero-accent">Make an impact.</span></h1>
         <p>Join us at upcoming volunteer events, training sessions, and community gatherings across Victoria and Vancouver.</p>
     </div>
 </section>
 
-<!-- ── CALENDAR ── -->
+<!-- CALENDAR -->
 <section class="calendar-section">
     <div class="container">
         <div class="calendar-controls">
@@ -339,8 +490,8 @@
             <div class="calendar-header">
                 <h2 class="calendar-month" id="calendarMonth">Loading...</h2>
                 <div class="calendar-nav">
-                    <button class="nav-btn" onclick="changeMonth(-1)">‹</button>
-                    <button class="nav-btn" onclick="changeMonth(1)">›</button>
+                    <button class="nav-btn" onclick="changeMonth(-1)">&#8249;</button>
+                    <button class="nav-btn" onclick="changeMonth(1)">&#8250;</button>
                 </div>
             </div>
 
@@ -350,7 +501,7 @@
                 </div>
                 <div class="calendar-error" id="calendarError">
                     Could not load events. Check your API key and Calendar ID in the config above.<br>
-                    <a href="https://console.cloud.google.com" target="_blank">Google Cloud Console →</a>
+                    <a href="https://console.cloud.google.com" target="_blank">Google Cloud Console &rarr;</a>
                 </div>
                 <div class="calendar-grid" id="calendarGrid"></div>
             </div>
@@ -362,7 +513,37 @@
     </div>
 </section>
 
-<!-- ── QUOTE ── -->
+<!-- ── RECENT EVENTS ── -->
+<section class="recent-events-section">
+    <div class="recent-events-inner">
+        <div class="recent-events-header">
+            <div>
+                <div class="section-eyebrow">On the Ground</div>
+                <h2>Recent Events</h2>
+            </div>
+        </div>
+
+        <div class="video-grid">
+
+            <!-- FEATURED VIDEO -->
+            <div class="video-card featured">
+                <div class="video-wrapper">
+                    <a class="video-preview" href="https://www.youtube.com/watch?v=my7GB5Z8Lm0" target="_blank" rel="noopener" aria-label="Watch featured recent event on YouTube">
+                        <img src="https://img.youtube.com/vi/my7GB5Z8Lm0/maxresdefault.jpg" alt="Featured recent event video preview" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/my7GB5Z8Lm0/hqdefault.jpg';">
+                    </a>
+                </div>
+                <div class="video-meta">
+                    <div class="video-tag">Featured</div>
+                    <h3>Women In Farming Panel</h3>
+                    <p>This panel discussion brought together women farmers and SMUS students in Victoria to share  challenges, and successes in sustainable agriculture for women.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- QUOTE -->
 <section class="quote-footer">
     <div class="quote-footer-inner">
         <span class="quote-mark">"</span>
@@ -371,11 +552,11 @@
     </div>
 </section>
 
-<!-- ── EVENT PANEL ── -->
+<!-- EVENT PANEL -->
 <div class="panel-overlay" id="panelOverlay" onclick="closeEvent()"></div>
 <div class="event-panel" id="eventPanel">
     <div class="panel-header">
-        <button class="panel-close" onclick="closeEvent()">×</button>
+        <button class="panel-close" onclick="closeEvent()">&#215;</button>
         <h2 id="panelTitle">Event Details</h2>
     </div>
     <div class="panel-content" id="panelContent">
@@ -388,16 +569,9 @@
 <script src="components.js"></script>
 
 <script>
-    // ╔══════════════════════════════════════════════════════════════╗
-    // ║  GOOGLE CALENDAR CONFIG — fill these two values in          ║
-    // ║  1. API_KEY:     Google Cloud Console → Credentials         ║
-    // ║  2. CALENDAR_ID: Calendar Settings → "Calendar ID" field    ║
-    // ╚══════════════════════════════════════════════════════════════╝
     const GCAL_API_KEY    = 'AIzaSyAu78lLfdUTjKaZD19IHZklj9r6b-tjkUo';
     const GCAL_CALENDAR_ID = '6c82724cc5564d08697821002cd6e28e3f9ef5e1cb0b89399381d6a5be37c533@group.calendar.google.com';
-    // ── Event type detection ──────────────────────────────────────
-    // Keywords in the event title/description determine its colour chip.
-    // Add your own keywords here to match your Google Calendar event names.
+
     const TYPE_RULES = [
         { type: 'training',  keywords: ['training','workshop','orientation','learn'] },
         { type: 'community', keywords: ['fair','potluck','community','celebration','market'] },
@@ -409,16 +583,15 @@
         for (const rule of TYPE_RULES) {
             if (rule.keywords.some(kw => text.includes(kw))) return rule.type;
         }
-        return 'volunteer'; // default colour
+        return 'volunteer';
     }
 
-    // ── State ─────────────────────────────────────────────────────
-    let currentDate     = new Date();
+    let currentDate      = new Date();
     currentDate.setDate(1);
-    let currentView     = 'month';
+    let currentView      = 'month';
     let currentWeekStart = new Date();
-    let eventCache      = {};   // keyed by 'YYYY-MM' → array of GCal events
-    let allFetchedEvents = [];  // flat list for panel lookup
+    let eventCache       = {};
+    let allFetchedEvents = [];
 
     const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
     const dayNames   = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
@@ -432,12 +605,10 @@
         return date.getDate()===t.getDate() && date.getMonth()===t.getMonth() && date.getFullYear()===t.getFullYear();
     }
 
-    // ── Google Calendar fetch ─────────────────────────────────────
     async function fetchEvents(year, month) {
         const cacheKey = `${year}-${month}`;
         if (eventCache[cacheKey]) return eventCache[cacheKey];
 
-        // Fetch slightly beyond month boundaries to cover week view overflow
         const timeMin = new Date(year, month - 1, 1).toISOString();
         const timeMax = new Date(year, month + 1, 7).toISOString();
 
@@ -453,10 +624,8 @@
         if (!res.ok) throw new Error(`GCal API ${res.status}`);
         const data = await res.json();
 
-        // Index events by date string
         const indexed = {};
         for (const item of data.items || []) {
-            // All-day events use item.start.date; timed events use item.start.dateTime
             const dateStr = (item.start.date || item.start.dateTime || '').slice(0, 10);
             if (!indexed[dateStr]) indexed[dateStr] = [];
             indexed[dateStr].push(item);
@@ -485,14 +654,12 @@
         return str;
     }
 
-    // ── Render month ──────────────────────────────────────────────
     async function renderMonthView() {
         const year  = currentDate.getFullYear();
         const month = currentDate.getMonth();
         document.getElementById('calendarMonth').textContent = `${monthNames[month]} ${year}`;
         document.getElementById('calendarGrid').innerHTML = '';
 
-        // Show spinner, hide error
         document.querySelector('.calendar-loading').style.display = 'flex';
         document.getElementById('calendarError').style.display    = 'none';
 
@@ -538,14 +705,12 @@
         document.getElementById('calendarGrid').innerHTML = html;
     }
 
-    // ── Render week ───────────────────────────────────────────────
     async function renderWeekView() {
         const weekEnd = new Date(currentWeekStart);
         weekEnd.setDate(weekEnd.getDate() + 6);
         document.getElementById('calendarMonth').textContent =
             `${monthNames[currentWeekStart.getMonth()]} ${currentWeekStart.getDate()} – ${weekEnd.getDate()}, ${currentWeekStart.getFullYear()}`;
 
-        // Fetch events for the month(s) that overlap this week
         const months = new Set();
         for (let i = 0; i < 7; i++) {
             const d = new Date(currentWeekStart);
@@ -588,7 +753,6 @@
         document.getElementById('weekGrid').innerHTML = html;
     }
 
-    // ── Navigation ────────────────────────────────────────────────
     function changeMonth(dir) {
         if (currentView === 'month') {
             currentDate.setMonth(currentDate.getMonth() + dir);
@@ -617,9 +781,7 @@
         }
     }
 
-    // ── Event panel ───────────────────────────────────────────────
     function showDayEvents(dateStr) {
-        // Find the events map entry for this date across cache
         for (const key in eventCache) {
             if (eventCache[key][dateStr] && eventCache[key][dateStr].length) {
                 openEventObj(eventCache[key][dateStr][0]);
@@ -643,12 +805,9 @@
         document.getElementById('panelContent').innerHTML = `
             <span class="event-date-panel">${formatPanelDate(ev)}</span>
             <span class="panel-type-badge" style="background:${typeColour};${type==='training'?'color:var(--charcoal)':''}">${typeLabel}</span>
-
             ${ev.description ? `<h3 style="margin-top:20px;">About This Event</h3><p>${ev.description.replace(/\n/g,'<br>')}</p>` : ''}
-
             ${ev.location ? `<h3>Location</h3><p>${ev.location}</p>` : ''}
-
-            ${ev.htmlLink ? `<a href="${ev.htmlLink}" target="_blank" class="panel-signup">View on Google Calendar →</a>` : ''}
+            ${ev.htmlLink ? `<a href="${ev.htmlLink}" target="_blank" class="panel-signup">View on Google Calendar &rarr;</a>` : ''}
         `;
 
         document.getElementById('eventPanel').classList.add('open');
@@ -660,7 +819,6 @@
         document.getElementById('panelOverlay').classList.remove('open');
     }
 
-    // ── Init ──────────────────────────────────────────────────────
     renderMonthView();
 
     document.addEventListener('DOMContentLoaded', () => {
