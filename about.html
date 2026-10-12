@@ -5,146 +5,165 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Recovery Alliance | About Us</title>
     <link rel="icon" type="image/png" href="imgs2/logo.JPG">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Lora:wght@400;500&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="optimized/imgs2/sophiefra.webp" fetchpriority="high">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Nunito:wght@400;500;600;700;800&family=Pacifico&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Nunito:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet"></noscript>
+    <script>
+        document.documentElement.classList.add('fonts-loading');
+        const showPage = () => document.documentElement.classList.add('fonts-ready');
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(showPage);
+        else showPage();
+        setTimeout(showPage, 1600);
+    </script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html.fonts-loading:not(.fonts-ready) body { visibility: hidden; }
 
         :root {
             --primary-green: #1E4D3B;
             --secondary-green: #4CAF6A;
-            --terracotta: #D96C48;
+            --terracotta: #F4C542;
             --golden: #F4C542;
             --charcoal: #2B2B2B;
             --cream: #FAF9F6;
         }
 
-        body { font-family: 'Lora', serif; font-size: 17px; line-height: 1.7; color: var(--charcoal); background-color: var(--cream); }
-        h1, h2, h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; }
-        h1 { font-size: 48px; line-height: 1.2; }
-        h2 { font-size: 36px; }
-        h3 { font-size: 24px; }
+        body { font-family: 'Nunito', sans-serif; font-size: 18px; line-height: 1.65; color: var(--charcoal); background-color: var(--cream); }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; font-weight: 800; }
+        h1 { font-size: 54px; line-height: 1.12; }
+        h2 { font-size: 42px; line-height: 1.12; }
+        h3 { font-size: 30px; line-height: 1.18; }
         .accent-text { font-family: 'Pacifico', cursive; color: var(--secondary-green); }
 
         .section-eyebrow {
             display: inline-block; font-family: 'Montserrat', sans-serif;
-            font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+            font-size: 19px; font-weight: 800; letter-spacing: 0; text-transform: none;
             color: var(--terracotta); margin-bottom: 16px;
         }
+        .section-eyebrow,
+        .hero-eyebrow { display: none !important; }
 
-        .btn { display: inline-block; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-weight: 700; transition: all 0.3s; border: none; cursor: pointer; font-size: 15px; font-family: 'Montserrat', sans-serif; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; width: 230px; min-height: 58px; padding: 15px 26px; border-radius: 10px; text-decoration: none; font-weight: 700; transition: all 0.3s; border: none; cursor: pointer; font-size: 17px; font-family: 'Montserrat', sans-serif; }
         .btn-primary { background: var(--primary-green); color: white; }
-        .btn-primary:hover { background: var(--secondary-green); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(30,77,59,0.3); }
+        .btn-primary:hover { background: var(--secondary-green); transform: translateY(-2px); }
         .btn-secondary { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.6); }
         .btn-secondary:hover { background: rgba(255,255,255,0.15); border-color: white; }
 
         /* ── HERO ── */
         .hero {
-            position: relative; min-height: 680px;
+            position: relative; min-height: 70vh;
             display: flex; align-items: center; justify-content: center; overflow: hidden;
         }
 
         .hero-bg {
             position: absolute; inset: 0;
-            background: url(imgs2/sophiefra.png) center / cover no-repeat;
+            background: url(optimized/imgs2/sophiefra.webp) center / cover no-repeat;
             transform: scale(1.05);
-            animation: heroZoom 14s ease-in-out infinite alternate;
-        }
-
-        @keyframes heroZoom {
-            from { transform: scale(1.05); }
-            to   { transform: scale(1.12); }
         }
 
         .hero-bg::before {
             content: ''; position: absolute; inset: 0;
             background: linear-gradient(160deg, rgba(10,40,25,0.82) 0%, rgba(30,77,59,0.65) 50%, rgba(0,0,0,0.72) 100%);
         }
+        .hero-bg::after { content: ''; position: absolute; inset: 0; opacity: 0; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.45' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.9'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E"); mix-blend-mode: overlay; }
+        .hero-grain-ready .hero-bg::after { opacity: 0.58; }
 
         .hero-content {
             position: relative; z-index: 2;
-            max-width: 760px; padding: 120px 32px 100px; margin: 0 auto;
-            text-align: center; animation: fadeUp 1s ease both;
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(28px); }
-            to   { opacity: 1; transform: translateY(0); }
+            max-width: 980px; padding: 70px 32px 58px; margin: 0 auto;
+            text-align: center;
         }
 
         .hero-eyebrow {
             display: inline-block; font-family: 'Montserrat', sans-serif;
-            font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
-            color: var(--golden); background: rgba(244,197,66,0.12);
-            border: 1px solid rgba(244,197,66,0.35); border-radius: 100px;
-            padding: 8px 20px; margin-bottom: 28px;
+            font-size: 19px; font-weight: 800; letter-spacing: 0; text-transform: none;
+            color: var(--golden); margin-bottom: 28px;
         }
 
-        .hero h1 { color: white; font-size: 54px; margin-bottom: 20px; letter-spacing: -1px; }
-        .hero-accent { font-family: 'Pacifico', cursive; color: var(--golden); }
-        .hero p { font-size: 18px; color: rgba(255,255,255,0.82); line-height: 1.85; margin-bottom: 40px; max-width: 520px; margin-left: auto; margin-right: auto; }
+        .hero h1 { color: white; font-size: 98px; line-height: 0.98; margin-bottom: 18px; letter-spacing: -1px; }
+        .hero-accent { display: block; font-family: 'Pacifico', cursive; font-weight: 400; color: var(--golden); font-size: 86px; line-height: 0.98; margin-top: 6px; margin-bottom: 12px; }
+        .hero p { font-size: 20px; color: white; line-height: 1.5; margin: 24px auto 24px; max-width: 720px; }
 
         .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 
         .btn-hero-primary {
-            display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px;
-            background: var(--terracotta); color: white; border-radius: 12px;
-            text-decoration: none; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px;
-            transition: all 0.3s; box-shadow: 0 8px 24px rgba(217,108,72,0.4);
+            display: inline-flex; align-items: center; justify-content: center; padding: 16px 24px;
+            background: var(--secondary-green); color: white; border-radius: 12px;
+            text-decoration: none; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 17px;
+            width: 230px; min-height: 58px;
         }
-        .btn-hero-primary:hover { background: #c55a3a; transform: translateY(-3px); }
+        .btn-hero-primary:hover { background: var(--secondary-green); }
 
         .btn-hero-secondary {
-            display: inline-flex; align-items: center; padding: 16px 32px;
-            background: transparent; color: white; border: 2px solid rgba(255,255,255,0.5);
+            display: inline-flex; align-items: center; justify-content: center; padding: 16px 24px;
+            background: rgba(255,255,255,0.15); color: white; border: 2px solid white;
             border-radius: 12px; text-decoration: none; font-family: 'Montserrat', sans-serif;
-            font-weight: 700; font-size: 15px; transition: all 0.3s; backdrop-filter: blur(4px);
+            font-weight: 700; font-size: 17px; width: 230px; min-height: 58px;
         }
-        .btn-hero-secondary:hover { background: rgba(255,255,255,0.15); border-color: white; transform: translateY(-3px); }
+        .btn-hero-secondary:hover, .btn-hero-secondary:focus, .btn-hero-secondary:active { background: rgba(255,255,255,0.15); border-color: white; color: white; }
 
         /* ── CONTAINER ── */
-        .container { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 34px 32px; }
 
         /* ── MISSION ── */
-        .mission-section { background: white; }
+        .mission-section { background: var(--cream); }
+        .mission-section,
+        .values-section,
+        .origin-section,
+        .image-grid-section { position: relative; overflow: hidden; }
+        .mission-section::before,
+        .values-section::before,
+        .origin-section::before,
+        .image-grid-section::before { content: ''; position: absolute; inset: 0; opacity: 0.2; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.55'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E"); mix-blend-mode: multiply; }
+        .mission-section .container,
+        .values-section .container,
+        .origin-section .container,
+        .image-grid-section .container { position: relative; z-index: 1; }
 
-        .mission-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 72px; align-items: center; }
+        .mission-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: start; }
 
-        .mission-text p { font-size: 19px; line-height: 1.9; color: #555; margin-bottom: 20px; }
+        .mission-text p { font-size: 20px; line-height: 1.58; color: #555; margin-bottom: 12px; }
 
         .stat-card-large {
-            background: linear-gradient(135deg, var(--terracotta) 0%, #c55a3a 100%);
-            padding: 56px 40px; border-radius: 20px; text-align: center; color: white;
-            box-shadow: 0 16px 48px rgba(217,108,72,0.3); position: relative; overflow: hidden;
-        }
-
-        .stat-card-large::before {
-            content: ''; position: absolute; top: -60px; right: -60px;
-            width: 220px; height: 220px; background: rgba(255,255,255,0.08); border-radius: 50%;
-        }
-
-        .stat-card-large::after {
-            content: ''; position: absolute; bottom: -40px; left: -40px;
-            width: 160px; height: 160px; background: rgba(255,255,255,0.05); border-radius: 50%;
+            background: var(--primary-green);
+            padding: 42px 34px; border-radius: 20px; text-align: center; color: white;
+            box-shadow: 0 10px 30px rgba(30,77,59,0.18); position: relative; overflow: visible;
         }
 
         .stat-number {
-            font-size: 80px; font-weight: 800; font-family: 'Montserrat', sans-serif;
-            margin-bottom: 12px; display: block; position: relative; z-index: 1; line-height: 1;
+            font-size: 92px; font-weight: 800; font-family: 'Montserrat', sans-serif;
+            margin-bottom: 6px; display: block; position: relative; z-index: 1; line-height: 1.08; color: var(--golden);
+        }
+
+        .stat-card-large.impact-burst .stat-number { animation: impactBurst 950ms cubic-bezier(0.18, 0.9, 0.22, 1.25) both; }
+        @keyframes impactBurst {
+            0% { transform: scale(0.45); opacity: 0.35; }
+            52% { transform: scale(1.72); opacity: 1; }
+            72% { transform: scale(0.92); }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .stat-text { font-size: 20px; font-weight: 600; position: relative; z-index: 1; line-height: 1.4; }
 
         /* ── VALUES ── */
-        .values-section { background: var(--cream); }
+        .values-section {
+            --values-bg-y: 72%;
+            background: url(optimized/imgs7/40.webp) center var(--values-bg-y) / cover no-repeat;
+            color: white;
+        }
+        .values-section::before { opacity: 1; background: linear-gradient(160deg, rgba(52,34,22,0.76) 0%, rgba(96,59,31,0.58) 52%, rgba(28,22,17,0.72) 100%); mix-blend-mode: multiply; }
+        .values-section::after { content: ''; position: absolute; inset: 0; z-index: 0; opacity: 0.42; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.45' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.9'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E"); mix-blend-mode: overlay; }
 
-        .values-header { text-align: center; margin-bottom: 64px; }
-        .values-header h2 { color: var(--primary-green); margin-bottom: 12px; }
-        .values-header p { color: #666; max-width: 500px; margin: 0 auto; }
+        .values-header { text-align: center; margin-bottom: 28px; }
+        .values-header h2 { color: white; margin-bottom: 12px; }
+        .values-header p { color: white; max-width: 620px; margin: 0 auto; font-size: 20px; }
 
         .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
 
         .value-card {
-            border-radius: 20px; overflow: hidden; min-height: 380px;
+            border-radius: 12px; overflow: hidden; min-height: 350px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.09); cursor: pointer;
             position: relative; transition: all 0.35s;
         }
@@ -153,7 +172,7 @@
 
         .value-card-front {
             position: absolute; inset: 0;
-            background: white; padding: 40px 32px;
+            background: var(--primary-green); padding: 30px 28px;
             display: flex; flex-direction: column; justify-content: center;
             transition: opacity 0.35s;
             border: 2px solid transparent;
@@ -161,10 +180,10 @@
 
         .value-card:hover .value-card-front { opacity: 0; }
 
-        .value-icon { font-size: 40px; margin-bottom: 20px; display: block; }
+        .value-icon { display: none; }
 
-        .value-card-front h3 { color: var(--primary-green); margin-bottom: 14px; font-size: 22px; }
-        .value-card-front p { color: #666; font-size: 15px; line-height: 1.75; }
+        .value-card-front h3 { color: white; margin-bottom: 12px; font-size: 25px; }
+        .value-card-front p { color: white; font-size: 18px; line-height: 1.58; }
 
         .value-card-image {
             position: absolute; inset: 0;
@@ -182,22 +201,17 @@
 
         .value-card-image-label {
             position: absolute; bottom: 24px; left: 24px;
-            color: white; font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700;
+            color: white; font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700;
         }
 
-        .value-card-color-bar { height: 5px; width: 100%; position: absolute; top: 0; left: 0; z-index: 2; }
-        .bar-collaboration { background: var(--secondary-green); }
-        .bar-youth { background: var(--golden); }
-        .bar-equity { background: var(--terracotta); }
-
         /* ── ORIGIN STORY ── */
-        .origin-section { background: white; }
+        .origin-section { background: var(--cream); }
 
         .origin-grid { display: block; }
 
         .origin-image-frame {
             float: left; width: 45%; margin: 0 48px 24px 0;
-            border-radius: 20px; overflow: hidden; position: relative;
+            border-radius: 12px; overflow: hidden; position: relative;
             box-shadow: 0 16px 48px rgba(0,0,0,0.14);
         }
 
@@ -208,68 +222,29 @@
 
         .origin-section .container::after { content: ''; display: table; clear: both; }
 
-        .origin-image-frame::after {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(30,77,59,0.35), transparent 60%);
-        }
-
-        .origin-image-caption {
-            position: absolute; bottom: 20px; left: 20px; z-index: 2;
-            color: white; font-size: 13px; font-style: italic; color: rgba(255,255,255,0.85);
-        }
-
-        .origin-content h2 { color: var(--primary-green); margin-bottom: 24px; }
+        .origin-content h2 { color: var(--primary-green); margin-bottom: 16px; }
 
         .origin-content p {
-            color: #555; line-height: 1.9; font-size: 17px; margin-bottom: 20px;
-        }
-
-        .origin-quote {
-            background: var(--cream); padding: 28px 32px;
-            border-left: 4px solid var(--golden); border-radius: 0 14px 14px 0;
-            margin: 32px 0; position: relative;
-        }
-
-        .origin-quote::before {
-            content: '"'; font-family: 'Pacifico', cursive; font-size: 52px;
-            color: rgba(244,197,66,0.3); position: absolute; top: 8px; left: 14px; line-height: 1;
-        }
-
-        .origin-quote p { font-style: italic; font-size: 17px; color: #555; line-height: 1.8; padding-left: 8px; }
-        .origin-quote .quote-attr { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; color: var(--primary-green); text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; padding-left: 8px; font-style: normal; }
-
-        /* ── QUOTE CALLOUT ── */
-        .quote-section {
-            position: relative; overflow: hidden;
-            background: var(--cream); text-align: center; padding: 100px 32px;
-        }
-
-        .quote-callout {
-            max-width: 860px; margin: 0 auto;
-            font-family: 'Pacifico', cursive; font-size: 30px;
-            color: var(--primary-green); line-height: 1.65;
-            position: relative; padding-bottom: 28px;
-        }
-
-        .quote-callout p { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; color: var(--terracotta); letter-spacing: 1px; text-transform: uppercase; margin-top: 20px; font-style: normal; }
-
-        .quote-callout::after {
-            content: ''; position: absolute; bottom: 0; left: 50%;
-            transform: translateX(-50%); width: 80px; height: 4px;
-            background: var(--terracotta); border-radius: 2px;
+            color: #555; line-height: 1.58; font-size: 19px; margin-bottom: 12px;
         }
 
         /* ── IMAGE GRID ── */
-        .image-grid-section { background: white; padding: 60px 0; }
+        .image-grid-section {
+            background:
+                linear-gradient(160deg, rgba(28, 22, 17, 0.76), rgba(30, 77, 59, 0.58)),
+                url(optimized/page-assets/garden-bg-rotated-grainy.webp) center / 420px auto repeat;
+            padding: 36px 0;
+        }
+        .image-grid-section::before { opacity: 0.68; mix-blend-mode: overlay; }
 
-        .image-grid-header { text-align: center; margin-bottom: 48px; }
-        .image-grid-header h2 { color: var(--primary-green); margin-bottom: 12px; }
-        .image-grid-header p { color: #666; }
+        .image-grid-header { text-align: center; margin-bottom: 24px; }
+        .image-grid-header h2 { color: white; margin-bottom: 12px; }
+        .image-grid-header p { color: white; font-size: 20px; }
 
         .image-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 
         .grid-image {
-            width: 100%; height: 300px; border-radius: 14px; overflow: hidden;
+            width: 100%; height: 240px; border-radius: 12px; overflow: hidden;
             box-shadow: 0 4px 16px rgba(0,0,0,0.09); transition: all 0.3s;
         }
 
@@ -299,16 +274,29 @@
             .mission-grid, .origin-grid { grid-template-columns: 1fr; gap: 48px; }
             .values-grid { grid-template-columns: 1fr; }
             .image-grid { grid-template-columns: 1fr 1fr; }
-            .hero-content { padding: 100px 32px 80px; }
+            .hero h1 { font-size: 64px; }
+            .hero-accent { font-size: 64px; }
+            .hero-content { padding: 72px 32px 58px; }
+            .origin-image-frame { float: none; width: 100%; margin: 0 0 24px; }
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 36px; } h2 { font-size: 28px; }
-            .container { padding: 60px 24px; }
+            body { font-size: 17px; }
+            h1 { font-size: 38px; } h2 { font-size: 32px; }
+            .hero h1 { font-size: 46px; }
+            .hero-accent { font-size: 46px; }
+            .hero p { font-size: 18px; }
+            .container { padding: 34px 24px; }
             .nav-links { display: none; }
-            .quote-callout { font-size: 22px; }
             .image-grid { grid-template-columns: 1fr; }
         }
+        .section-eyebrow,
+        .hero-eyebrow { display: none !important; }
+        section > .container h2,
+        .values-header h2,
+        .origin-content h2,
+        .image-grid-header h2,
+        .mission-text h2 { padding-top: 10px; }
     </style>
 </head>
 <body>
@@ -320,13 +308,11 @@
     <div class="hero-bg"></div>
     <div class="hero-content">
         <div class="hero-eyebrow">Who We Are</div>
-        <h1>Rescuing food.<br><span class="hero-accent">Empowering youth.</span></h1>
+        <h1>Rescuing food<br><span class="hero-accent">Empowering youth</span></h1>
         <p>We bridge the gap between surplus farm produce and communities in need — empowering young people to build a more equitable food system across British Columbia.</p>
         <div class="hero-buttons">
             <a href="get-involved.html" class="btn-hero-primary">
-                Get Involved
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+                Get Involved</a>
             <a href="#impact" class="btn-hero-secondary">View Our Impact</a>
         </div>
     </div>
@@ -338,7 +324,7 @@
         <div class="mission-grid">
             <div class="mission-text">
                 <span class="section-eyebrow">Our Mission</span>
-                <h2 style="color:var(--primary-green);margin-bottom:24px;">Turning waste<br><span class="accent-text">into nourishment.</span></h2>
+                <h2 style="color:var(--primary-green);margin-bottom:16px;">Turning waste<br><span class="accent-text">into nourishment.</span></h2>
                 <p>We bridge the gap between surplus farm produce and communities in need through combatting food waste by empowering farmers, and ensuring that fresh, healthy food reaches those who need it most.</p>
                 <p>Together, we are building stronger, hunger-free communities — one harvest at a time.</p>
             </div>
@@ -361,42 +347,39 @@
         <div class="values-grid">
 
             <div class="value-card">
-                <div class="value-card-color-bar bar-collaboration"></div>
                 <div class="value-card-front">
                     <span class="value-icon"></span>
                     <h3>Collaboration</h3>
                     <p>By building strong relationships with farmers, food banks, youth volunteers and local organizations, we create a united front against food waste and hunger.</p>
                 </div>
                 <div class="value-card-image">
-                    <img src="imgs/baking.png" alt="Collaboration">
+                    <img src="optimized/imgs/baking.webp" alt="Collaboration" loading="lazy">
                     <div class="value-card-image-overlay"></div>
                     <div class="value-card-image-label">Collaboration</div>
                 </div>
             </div>
 
             <div class="value-card">
-                <div class="value-card-color-bar bar-youth"></div>
                 <div class="value-card-front">
                     <span class="value-icon"></span>
                     <h3>Youth Leadership</h3>
                     <p>We give youth a voice and a mission. Whether gleaning food from local farms or organizing community events, young people are at the core of our movement.</p>
                 </div>
                 <div class="value-card-image">
-                    <img src="imgs/meeting.PNG" alt="Youth Leadership">
+                    <img src="optimized/imgs/meeting.webp" alt="Youth Leadership" loading="lazy">
                     <div class="value-card-image-overlay"></div>
                     <div class="value-card-image-label">Youth Leadership</div>
                 </div>
             </div>
 
             <div class="value-card">
-                <div class="value-card-color-bar bar-equity"></div>
                 <div class="value-card-front">
                     <span class="value-icon"></span>
                     <h3>Community Equity</h3>
                     <p>Everyone deserves access to fresh, nutritious food. We work to address the root causes of food insecurity and strengthen food equity across our communities.</p>
                 </div>
                 <div class="value-card-image">
-                    <img src="imgs/lettuce.jpg" alt="Community Equity">
+                    <img src="optimized/imgs/lettuce.webp" alt="Community Equity" loading="lazy">
                     <div class="value-card-image-overlay"></div>
                     <div class="value-card-image-label">Community Equity</div>
                 </div>
@@ -412,9 +395,7 @@
         <div class="origin-grid">
 
             <div class="origin-image-frame">
-                <!-- REPLACE src WITH YOUR ORIGIN STORY IMAGE -->
-                <img src="imgs/babyapollin.jpg" alt="Where it all began">
-                <div class="origin-image-caption">Summer 2024 — where it all started.</div>
+                <img src="optimized/imgs/babyapollin.webp" alt="Where it all began" loading="lazy">
             </div>
 
             <div class="origin-content">
@@ -429,23 +410,10 @@
 
                 <p>If farmers are already struggling to stay afloat, yet have surplus food, and there are people on the streets going hungry, why are we wasting it? We often hear that "farmers are the backbone of society," but it seemed to me that no one actually cared about them. This realization was the catalyst for founding the Food Recovery Alliance — to bridge the gap between surplus farm produce and communities in need, combat food waste by empowering farmers, and ensure that fresh, healthy food reaches those who need it most.</p>
 
-                <div class="origin-quote">
-                    <p>"We believe no food should go to waste, and every person deserves access to the nourishment needed to thrive. Together, we support sustainable farming and build stronger, hunger-free communities."</p>
-                    <p class="quote-attr">— Apollin Lu, Founder & Executive Director</p>
-                </div>
-
-                <a href="get-involved.html" class="btn btn-primary">Join the Movement →</a>
+                <a href="get-involved.html" class="btn btn-primary">Join the Movement</a>
             </div>
 
         </div>
-    </div>
-</section>
-
-<!-- ── QUOTE ── -->
-<section class="quote-section">
-    <div class="quote-callout">
-        "The Food Recovery Alliance isn't just about donating; it's a youth movement for change."
-        <p>— Apollin Lu, Founder & Executive Director</p>
     </div>
 </section>
 
@@ -459,106 +427,107 @@
         </div>
         <div class="image-grid">
             <!-- GALLERY:START -->
-            <div class="grid-image"><img src="imgs/IMG_6322.jpeg" alt="IMG 6322" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/IMG_6324.jpeg" alt="IMG 6324" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/IMG_6328.JPG" alt="IMG 6328" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/IMG_6329.jpeg" alt="IMG 6329" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/IMG_6330.jpeg" alt="IMG 6330" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/IMG_6331.jpeg" alt="IMG 6331" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/amazon.png" alt="amazon" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/apples.png" alt="apples" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/babyapollin.jpg" alt="babyapollin" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/baking.png" alt="baking" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/brenton.jpeg" alt="brenton" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/club.jpg" alt="club" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/crumble.png" alt="crumble" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/firsttomato.png" alt="firsttomato" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/garden.png" alt="garden" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/garlicbutter.JPG" alt="garlicbutter" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/getinvolved hero.jpeg" alt="getinvolved hero" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/gleaning.jpg" alt="gleaning" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/hastings.png" alt="hastings" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/home.png" alt="home" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/impact.JPG" alt="impact" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/incorporation.jpeg" alt="incorporation" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/lettuce.jpg" alt="lettuce" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/lola.jpg" alt="lola" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/makesoup.jpeg" alt="makesoup" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/meeting.PNG" alt="meeting" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/meeting2.PNG" alt="meeting2" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/oaklands.png" alt="oaklands" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/onion.JPG" alt="onion" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/partner.jpeg" alt="partner" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/planting.png" alt="planting" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/rapid.jpeg" alt="rapid" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/seeding.png" alt="seeding" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/soup.jpeg" alt="soup" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/van.png" alt="van" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/van2.png" alt="van2" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/van3.png" alt="van3" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/van4.png" alt="van4" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/van5.png" alt="van5" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/van7.png" alt="van7" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs/youth_outreach.JPG" alt="youth outreach" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs2/hastings2.png" alt="hastings2" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs2/ivan.JPG" alt="ivan" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs2/jane.jpg" alt="jane" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/IMG_6322.webp" alt="IMG 6322" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/IMG_6324.webp" alt="IMG 6324" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/IMG_6328.webp" alt="IMG 6328" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/IMG_6329.webp" alt="IMG 6329" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/IMG_6330.webp" alt="IMG 6330" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/IMG_6331.webp" alt="IMG 6331" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/amazon.webp" alt="amazon" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/apples.webp" alt="apples" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/babyapollin.webp" alt="babyapollin" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/baking.webp" alt="baking" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/brenton.webp" alt="brenton" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/club.webp" alt="club" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/crumble.webp" alt="crumble" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/firsttomato.webp" alt="firsttomato" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/garden.webp" alt="garden" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/garlicbutter.webp" alt="garlicbutter" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/getinvolved-hero.webp" alt="getinvolved hero" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/gleaning.webp" alt="gleaning" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/hastings.webp" alt="hastings" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/home.webp" alt="home" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/impact.webp" alt="impact" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/incorporation.webp" alt="incorporation" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/lettuce.webp" alt="lettuce" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/lola.webp" alt="lola" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/makesoup.webp" alt="makesoup" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/meeting.webp" alt="meeting" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/meeting2.webp" alt="meeting2" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/oaklands.webp" alt="oaklands" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/onion.webp" alt="onion" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/partner.webp" alt="partner" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/planting.webp" alt="planting" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/rapid.webp" alt="rapid" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/seeding.webp" alt="seeding" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/soup.webp" alt="soup" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/van.webp" alt="van" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/van2.webp" alt="van2" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/van3.webp" alt="van3" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/van4.webp" alt="van4" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/van5.webp" alt="van5" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/van7.webp" alt="van7" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs/youth_outreach.webp" alt="youth outreach" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs2/hastings2.webp" alt="hastings2" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs2/ivan.webp" alt="ivan" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs2/jane.webp" alt="jane" loading="lazy"></div>
             <div class="grid-image"><img src="imgs2/logo.JPG" alt="logo" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs2/sophiefra.png" alt="sophiefra" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs2/volunteers.png" alt="volunteers" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs3/1.png" alt="1" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs3/2.jpg" alt="2" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs3/3.jpg" alt="3" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs3/4.jpg" alt="4" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs3/5.png" alt="5" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs3/6.png" alt="6" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs3/7.jpg" alt="7" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs3/8.jpg" alt="8" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs4/16.png" alt="16" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs4/17.JPG" alt="17" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs4/18.png" alt="18" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs4/19.jpg" alt="19" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs4/20.png" alt="20" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs4/21.JPG" alt="21" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs4/22.jpeg" alt="22" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs4/23.jpeg" alt="23" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs5/24.png" alt="24" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs5/25.png" alt="25" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs5/26.jpg" alt="26" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs5/27.jpg" alt="27" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs5/28.jpg" alt="28" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs5/29.jpg" alt="29" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs5/30.png" alt="30" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs5/31.jpg" alt="31" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs6/10.png" alt="10" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs6/11.png" alt="11" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs6/12.jpg" alt="12" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs6/13.png" alt="13" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs6/14.JPG" alt="14" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs6/15.png" alt="15" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs6/32.JPG" alt="32" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs6/9.jpg" alt="9" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs7/35.JPG" alt="35" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs7/36.JPG" alt="36" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs7/37.JPG" alt="37" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs7/38.JPG" alt="38" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs7/40.JPG" alt="40" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs7/41.JPG" alt="41" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs7/42.JPG" alt="42" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs7/43.JPG" alt="43" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs7/44.JPG" alt="44" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs8/45.JPG" alt="45" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs8/46.JPG" alt="46" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs8/47.JPG" alt="47" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs8/48.JPG" alt="48" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs8/49.JPG" alt="49" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs8/50.JPG" alt="50" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs9/51.JPG" alt="51" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs9/52.JPG" alt="52" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs9/55.JPG" alt="55" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs9/56.JPG" alt="56" loading="lazy"></div>
-            <div class="grid-image"><img src="imgs9/57.png" alt="57" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs2/sophiefra.webp" alt="sophiefra" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs2/volunteers.webp" alt="volunteers" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs3/1.webp" alt="1" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs3/2.webp" alt="2" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs3/3.webp" alt="3" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs3/4.webp" alt="4" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs3/5.webp" alt="5" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs3/6.webp" alt="6" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs3/7.webp" alt="7" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs3/8.webp" alt="8" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs4/16.webp" alt="16" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs4/17.webp" alt="17" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs4/18.webp" alt="18" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs4/19.webp" alt="19" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs4/20.webp" alt="20" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs4/21.webp" alt="21" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs4/22.webp" alt="22" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs4/23.webp" alt="23" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs5/24.webp" alt="24" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs5/25.webp" alt="25" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs5/26.webp" alt="26" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs5/27.webp" alt="27" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs5/28.webp" alt="28" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs5/29.webp" alt="29" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs5/30.webp" alt="30" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs5/31.webp" alt="31" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs6/10.webp" alt="10" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs6/11.webp" alt="11" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs6/12.webp" alt="12" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs6/13.webp" alt="13" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs6/14.webp" alt="14" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs6/15.webp" alt="15" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs6/32.webp" alt="32" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs6/9.webp" alt="9" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs7/35.webp" alt="35" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs7/36.webp" alt="36" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs7/37.webp" alt="37" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs7/38.webp" alt="38" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs7/40.webp" alt="40" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs7/41.webp" alt="41" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs7/42.webp" alt="42" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs7/43.webp" alt="43" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs7/44.webp" alt="44" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs8/45.webp" alt="45" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs8/46.webp" alt="46" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs8/47.webp" alt="47" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs8/48.webp" alt="48" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs8/49.webp" alt="49" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs8/50.webp" alt="50" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs9/51.webp" alt="51" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs9/52.webp" alt="52" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs9/55.webp" alt="55" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs9/56.webp" alt="56" loading="lazy"></div>
+            <div class="grid-image"><img src="optimized/imgs9/57.webp" alt="57" loading="lazy"></div>
             <!-- GALLERY:END -->
+        </div>
     </div>
 </section>
 
@@ -567,6 +536,11 @@
 <script src="components.js"></script>
 
 <script>
+    const heroImage = new Image();
+    heroImage.onload = () => document.body.classList.add('hero-grain-ready');
+    heroImage.onerror = () => document.body.classList.add('hero-grain-ready');
+    heroImage.src = 'optimized/imgs2/sophiefra.webp';
+
     // Stat counter
     function animateCounter(el) {
         const target = parseInt(el.getAttribute('data-target'));
@@ -583,6 +557,7 @@
     const statObserver = new IntersectionObserver(entries => {
         entries.forEach(e => {
             if (e.isIntersecting && e.target.classList.contains('stat-number')) {
+                e.target.closest('.stat-card-large')?.classList.add('impact-burst');
                 animateCounter(e.target); statObserver.unobserve(e.target);
             }
         });

@@ -5,224 +5,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Recovery Alliance | Our Programs</title>
     <link rel="icon" type="image/png" href="imgs2/logo.JPG">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Lora:wght@400;500&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="optimized/imgs/hastings.webp" fetchpriority="high">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Nunito:wght@400;500;600;700;800&family=Pacifico&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Nunito:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet"></noscript>
+    <script>
+        document.documentElement.classList.add('fonts-loading');
+        const showPage = () => document.documentElement.classList.add('fonts-ready');
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(showPage);
+        else showPage();
+        setTimeout(showPage, 1600);
+    </script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html.fonts-loading:not(.fonts-ready) body { visibility: hidden; }
 
         :root {
             --primary-green: #1E4D3B;
             --secondary-green: #4CAF6A;
-            --terracotta: #D96C48;
+            --terracotta: #F4C542;
             --golden: #F4C542;
             --charcoal: #2B2B2B;
             --cream: #FAF9F6;
         }
 
-        body { font-family: 'Lora', serif; font-size: 17px; line-height: 1.7; color: var(--charcoal); background-color: var(--cream); }
-        h1, h2, h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; }
-        h1 { font-size: 48px; line-height: 1.2; }
-        h2 { font-size: 36px; }
-        h3 { font-size: 24px; }
+        body { font-family: 'Nunito', sans-serif; font-size: 18px; line-height: 1.65; color: var(--charcoal); background-color: var(--cream); }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; font-weight: 800; }
+        h1 { font-size: 54px; line-height: 1.12; }
+        h2 { font-size: 42px; line-height: 1.12; }
+        h3 { font-size: 30px; line-height: 1.18; }
         .accent-text { font-family: 'Pacifico', cursive; color: var(--secondary-green); }
 
         .section-eyebrow {
             display: inline-block; font-family: 'Montserrat', sans-serif;
-            font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+            font-size: 17px; font-weight: 800; letter-spacing: 0; text-transform: none;
             color: var(--terracotta); margin-bottom: 16px;
         }
+        .section-eyebrow,
+        .hero-eyebrow { display: none !important; }
 
         .hero {
-            position: relative; min-height: 680px;
+            position: relative; min-height: 420px;
             display: flex; align-items: center; justify-content: center;
             color: white; overflow: hidden; text-align: center;
         }
         .hero-bg {
             position: absolute; inset: 0;
-            background: url(imgs/hastings.png) center 70% / cover no-repeat;
+            background: url(optimized/imgs/hastings.webp) center 70% / cover no-repeat;
             transform: scale(1.05);
-            animation: heroZoom 14s ease-in-out infinite alternate;
+            animation: none;
         }
-        @keyframes heroZoom { from { transform: scale(1.05); } to { transform: scale(1.12); } }
         .hero-bg::before {
             content: ''; position: absolute; inset: 0;
             background: linear-gradient(160deg, rgba(10,40,25,0.82) 0%, rgba(30,77,59,0.65) 50%, rgba(0,0,0,0.72) 100%);
         }
-        .hero-content { position: relative; z-index: 2; max-width: 860px; padding: 120px 32px 80px; animation: fadeUp 1s ease both; }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-bg::after {
+            content: ''; position: absolute; inset: 0;
+            opacity: 0.5; pointer-events: none; mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.35' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.75'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 980px; padding: 42px 32px 34px; animation: none; }
         .hero-eyebrow {
             display: inline-block; font-family: 'Montserrat', sans-serif;
-            font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
-            color: var(--golden); background: rgba(244,197,66,0.12);
-            border: 1px solid rgba(244,197,66,0.35); border-radius: 100px;
-            padding: 8px 20px; margin-bottom: 28px;
+            font-size: 19px; font-weight: 800; letter-spacing: 0; text-transform: none;
+            color: var(--golden); margin-bottom: 14px;
         }
-        .hero h1 { font-size: 58px; margin-bottom: 20px; letter-spacing: -1px; }
-        .hero-accent { font-family: 'Pacifico', cursive; color: var(--golden); font-size: 52px; }
-        .hero p { font-size: 18px; color: rgba(255,255,255,0.82); line-height: 1.8; max-width: 600px; margin: 0 auto 48px; }
-        .hero-program-pills { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-        .hero-pill {
-            background: rgba(255,255,255,0.12); backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2); border-radius: 100px;
-            padding: 10px 24px; font-family: 'Montserrat', sans-serif;
-            font-size: 13px; font-weight: 700; color: white;
-            cursor: pointer; transition: all 0.3s; text-decoration: none;
-            min-width: 200px; text-align: center;
-        }
-        .hero-pill:hover { background: var(--secondary-green); border-color: var(--secondary-green); transform: translateY(-2px); }
+        .hero h1 { font-size: 96px; line-height: 0.96; margin-bottom: 14px; letter-spacing: -1px; }
+        .hero-accent { display: block; font-family: 'Pacifico', cursive; color: var(--golden); font-size: 76px; line-height: 1; margin-top: 6px; margin-bottom: 12px; }
+        .hero p { font-size: 20px; color: white; line-height: 1.45; max-width: 720px; margin: 22px auto 0; }
 
-        .program-nav {
-            background: white; position: sticky; top: 0; z-index: 100;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08); border-bottom: 1px solid #eee;
-        }
-        .program-nav-inner {
-            max-width: 1200px; margin: 0 auto; padding: 0 32px;
-            display: flex; gap: 0; overflow-x: auto; justify-content: center;
-        }
-        .program-nav-inner-wrap {
-            max-width: 1200px; margin: 0 auto; padding: 0 32px;
-            display: flex; align-items: center; justify-content: center; gap: 0;
-        }
-        .program-nav-context {
-            font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
-            letter-spacing: 2px; text-transform: uppercase;
-            color: var(--terracotta); padding: 0 20px 0 0;
-            border-right: 1px solid #eee; margin-right: 8px;
-            white-space: nowrap; display: block;
-        }
-        .program-nav-link {
-            padding: 18px 28px; font-family: 'Montserrat', sans-serif;
-            font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-            color: #888; text-decoration: none; border-bottom: 3px solid transparent;
-            transition: all 0.3s; white-space: nowrap; flex-shrink: 0;
-        }
-        .program-nav-link:hover { color: var(--primary-green); border-bottom-color: var(--secondary-green); }
-        .program-nav-link.active { color: var(--primary-green); border-bottom-color: var(--primary-green); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 28px 32px; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
-
-        .program-section { background: white; }
-        .program-block { padding: 60px 0 100px; border-bottom: 1px solid #eee; }
+        .program-section { background: var(--cream); position: relative; overflow: hidden; }
+        .program-section::before {
+            content: ''; position: absolute; inset: 0; opacity: 0.22; pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.55'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+            mix-blend-mode: multiply;
+        }
+        .program-section > * { position: relative; z-index: 1; }
+        .program-block { padding: 0 0 12px; border-bottom: 0; }
         .program-block:last-child { border-bottom: none; }
-        .program-block:nth-child(even) { background: var(--cream); }
-        .program-header { text-align: center; margin-bottom: 72px; min-height: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .program-number { font-family: 'Montserrat', sans-serif; font-size: 80px; font-weight: 800; color: rgba(30,77,59,0.06); line-height: 1; margin-bottom: -20px; display: block; }
-        .program-header h2 { color: var(--primary-green); margin-bottom: 16px; }
-        .program-summary { font-size: 18px; color: #666; max-width: 640px; margin: 0 auto; line-height: 1.8; }
-        .program-content { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
-        .program-text p { margin-bottom: 20px; line-height: 1.85; color: #555; }
+        .program-block:nth-child(even) { background: transparent; }
+        .program-header { text-align: center; margin-bottom: 14px; min-height: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .program-header h2 { color: var(--primary-green); margin-bottom: 10px; font-size: 46px; }
+        .program-summary { font-size: 20px; color: #666; max-width: 720px; margin: 0 auto; line-height: 1.5; }
+        .program-content { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; align-items: start; }
+        .program-content-reverse .program-text { order: 2; }
+        .program-content-reverse .program-visual { order: 1; }
+        .program-text p { margin-bottom: 14px; line-height: 1.65; color: #555; font-size: 19px; }
 
         .program-info-section { margin: 36px 0; }
 
-        .outcomes-strip {
-            background: var(--primary-green);
-            border-radius: 20px;
-            padding: 32px 28px;
-            margin-bottom: 16px;
-            position: relative;
-            overflow: hidden;
+        .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0 18px; align-items: stretch; }
+        .outcome-box { background: var(--primary-green); color: white; border-radius: 18px; min-height: 134px; padding: 18px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        .outcome-box:nth-child(2) { background: var(--secondary-green); }
+        .outcome-box:nth-child(3) { background: var(--golden); }
+        .outcome-box-large { grid-row: span 2; min-height: 280px; }
+        .outcome-box-wide { grid-column: span 2; }
+        .outcomes-grid-tilted, .outcomes-grid-stacked, .outcomes-grid-ribbon { grid-template-columns: 1.2fr 1fr; }
+        .outcome-num { font-family: 'Montserrat', sans-serif; font-size: clamp(44px, 5.5vw, 74px); font-weight: 800; color: white; line-height: 1.02; display: block; padding-bottom: 0.08em; }
+        .outcome-box-large .outcome-num { font-size: clamp(72px, 8vw, 116px); }
+        .outcome-unit { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 800; letter-spacing: 0; text-transform: none; color: white; display: block; line-height: 1.2; }
+        .outcomes-grid .outcome-num { color: white; font-size: clamp(44px, 5.5vw, 74px); letter-spacing: 0; padding-bottom: 0.08em; }
+        .outcomes-grid .outcome-box-large .outcome-num { font-size: clamp(72px, 8vw, 116px); }
+        .outcomes-grid .outcome-unit { color: white; font-size: 14px; letter-spacing: 0; text-transform: none; }
+        .outcomes-grid.impact-burst .outcome-num { animation: impactBurst 950ms cubic-bezier(0.18, 0.9, 0.22, 1.25) both; }
+        .outcomes-grid.impact-burst .outcome-box:nth-child(2) .outcome-num { animation-delay: 90ms; }
+        .outcomes-grid.impact-burst .outcome-box:nth-child(3) .outcome-num { animation-delay: 160ms; }
+        @keyframes impactBurst {
+            0% { transform: scale(0.45); opacity: 0.35; }
+            52% { transform: scale(1.7); opacity: 1; }
+            72% { transform: scale(0.92); }
+            100% { transform: scale(1); opacity: 1; }
         }
-        .outcomes-strip::before {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(ellipse at 80% 50%, rgba(76,175,106,0.2) 0%, transparent 60%);
-            pointer-events: none;
-        }
-        .outcomes-label {
-            font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
-            letter-spacing: 3px; text-transform: uppercase;
-            color: rgba(255,255,255,0.5); margin-bottom: 20px;
-        }
-        .outcomes-numbers { display: flex; flex-direction: row; align-items: stretch; gap: 0; }
-        .outcome-stat { text-align: center; padding: 8px 4px; flex: 1; }
-        .outcome-num {
-            font-family: 'Montserrat', sans-serif; font-size: 36px; font-weight: 800;
-            color: var(--golden); line-height: 1; display: block; transition: all 0.3s;
-        }
-        .outcome-unit {
-            font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
-            letter-spacing: 1.5px; text-transform: uppercase;
-            color: rgba(255,255,255,0.6); margin-top: 6px; display: block;
-        }
-        .outcome-divider { width: 1px; background: rgba(255,255,255,0.1); align-self: stretch; }
 
-        .who-where-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .who-card, .where-card { border-radius: 16px; padding: 24px; position: relative; overflow: hidden; }
-        .who-card { background: white; border: 1.5px solid rgba(76,175,106,0.2); }
-        .program-block:nth-child(even) .who-card { background: var(--cream); }
-        .where-card { background: white; border: 1.5px solid rgba(244,197,66,0.3); }
-        .where-chip {
-            background: rgba(244,197,66,0.1); border: 1px solid rgba(244,197,66,0.3);
-            border-radius: 100px; padding: 6px 14px;
-            font-size: 13px; color: var(--primary-green);
-            font-family: 'Montserrat', sans-serif; font-weight: 600; transition: all 0.2s;
-        }
-        .where-chip:hover { background: var(--golden); color: var(--primary-green); border-color: var(--golden); transform: translateY(-1px); }
-        .program-block:nth-child(even) .where-card { background: var(--cream); }
-        .info-card-header { margin-bottom: 16px; }
-        .info-card-title { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #999; }
-        .persona-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-        .persona-chip {
-            background: rgba(76,175,106,0.08); border: 1px solid rgba(76,175,106,0.2);
-            border-radius: 100px; padding: 6px 14px;
-            font-size: 13px; color: var(--primary-green);
-            font-family: 'Montserrat', sans-serif; font-weight: 600; transition: all 0.2s;
-        }
-        .persona-chip:hover { background: var(--secondary-green); color: white; border-color: var(--secondary-green); transform: translateY(-1px); }
-        .location-list { display: flex; flex-wrap: wrap; gap: 8px; }
-
-        .impact-panel { border-radius: 14px; overflow: hidden; margin: 28px 0; border: 1px solid rgba(0,0,0,0.07); }
-        .impact-toggle {
-            background: var(--primary-green); color: white; padding: 16px 24px; cursor: pointer;
-            display: flex; justify-content: space-between; align-items: center;
-            font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px;
-            letter-spacing: 1px; text-transform: uppercase; transition: background 0.3s;
-        }
-        .impact-toggle:hover { background: var(--secondary-green); }
-        .impact-toggle::after { content: '▼'; font-size: 10px; transition: transform 0.3s; }
-        .impact-panel.expanded .impact-toggle::after { transform: rotate(180deg); }
-        .impact-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; background: white; }
-        .impact-panel.expanded .impact-content { max-height: 500px; }
-        .impact-content-inner { padding: 28px; }
-        .progress-bar-container { margin-bottom: 20px; }
-        .progress-label { display: flex; justify-content: space-between; margin-bottom: 8px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13px; color: var(--primary-green); }
-        .progress-bar { width: 100%; height: 10px; background: #eee; border-radius: 100px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--secondary-green), var(--golden)); border-radius: 100px; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); width: 0; }
-        .impact-panel.expanded .progress-fill { width: var(--progress-width); }
-
-        .quote-callout {
-            background: var(--cream); padding: 28px 32px;
-            border-left: 4px solid var(--golden); border-radius: 0 12px 12px 0;
-            margin: 32px 0; font-style: italic; font-size: 16px; line-height: 1.8;
-            color: #555; position: relative;
-        }
-        .program-block:nth-child(even) .quote-callout { background: white; }
-        .quote-callout::before { content: '"'; font-family: 'Pacifico', cursive; font-size: 48px; color: rgba(244,197,66,0.3); position: absolute; top: 8px; left: 12px; line-height: 1; }
-        .quote-callout p { padding-left: 8px; }
-        .quote-author { margin-top: 12px; font-family: 'Montserrat', sans-serif; color: var(--primary-green); font-style: normal; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
-
-        .cta-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
-        .cta-card { padding: 32px 28px; border-radius: 16px; text-align: left; position: relative; overflow: hidden; transition: all 0.35s; cursor: pointer; }
-        .cta-card-volunteer { background: var(--primary-green); color: white; }
-        .cta-card-partner   { background: var(--terracotta); color: white; }
-        .cta-card::before { content: ''; position: absolute; top: -40px; right: -40px; width: 140px; height: 140px; border-radius: 50%; background: rgba(255,255,255,0.08); pointer-events: none; transition: transform 0.4s; }
-        .cta-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.18); }
-        .cta-card:hover::before { transform: scale(1.3); }
-        .cta-card-icon { font-size: 32px; margin-bottom: 14px; display: block; }
-        .cta-card h4 { color: white; margin-bottom: 8px; font-size: 18px; font-family: 'Montserrat', sans-serif; }
-        .cta-card p { color: rgba(255,255,255,0.8); font-size: 14px; margin-bottom: 20px; line-height: 1.6; }
-        .cta-card .btn-white { display: inline-flex; align-items: center; gap: 8px; background: white; border-radius: 100px; padding: 10px 20px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.3s; border: none; cursor: pointer; }
-        .cta-card-volunteer .btn-white { color: var(--primary-green); }
-        .cta-card-partner .btn-white   { color: var(--terracotta); }
-        .cta-card .btn-white:hover { transform: translateX(4px); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
-
-        .program-visual { position: sticky; top: 120px; }
+        .program-visual { position: sticky; top: 112px; align-self: start; }
         .program-image-frame { border-radius: 20px; overflow: hidden; position: relative; box-shadow: 0 16px 48px rgba(0,0,0,0.15); height: 420px; }
         .program-image-frame img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
         .program-image-frame:hover img { transform: scale(1.04); }
-        .program-image-frame::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 50%); }
-        .stat-overlay { position: absolute; bottom: 24px; right: 24px; z-index: 2; background: white; border-radius: 14px; padding: 16px 20px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.2); min-width: 120px; }
-        .stat-overlay-number { font-size: 28px; font-weight: 800; color: var(--terracotta); font-family: 'Montserrat', sans-serif; line-height: 1; margin-bottom: 4px; }
-        .stat-overlay-label { font-size: 11px; color: #777; font-family: 'Montserrat', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-        .program-image-caption { position: absolute; bottom: 24px; left: 24px; z-index: 2; color: rgba(255,255,255,0.85); font-size: 13px; font-style: italic; max-width: 55%; }
+        .program-image-frame::after { display: none; }
+        .program-image-caption { display: none; }
         .image-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
         .image-strip-item { border-radius: 12px; overflow: hidden; height: 120px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         .image-strip-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
@@ -237,22 +140,29 @@
         .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
 
         @media (max-width: 968px) {
-            .program-content { grid-template-columns: 1fr; gap: 48px; }
+            .program-content, .program-content-reverse { grid-template-columns: 1fr; gap: 28px; }
+            .program-content-reverse .program-text, .program-content-reverse .program-visual { order: initial; }
             .program-visual { position: static; }
-            .hero h1 { font-size: 38px; }
-            .hero-accent { font-size: 34px; }
-            .who-where-grid { grid-template-columns: 1fr; }
-            .outcomes-numbers { grid-template-columns: 1fr 1fr; }
+            .hero h1 { font-size: 56px; }
+            .hero-accent { font-size: 46px; }
+            .outcomes-grid, .outcomes-grid-tilted, .outcomes-grid-stacked, .outcomes-grid-ribbon { grid-template-columns: 1fr 1fr; }
+            .outcome-box-large, .outcome-box-wide { grid-column: span 2; grid-row: span 1; min-height: 170px; }
         }
         @media (max-width: 768px) {
-            h1 { font-size: 32px; } h2 { font-size: 28px; }
-            .container { padding: 60px 24px; }
+            h1 { font-size: 38px; } h2 { font-size: 32px; }
+            .container { padding: 26px 24px; }
             .nav-links { display: none; }
-            .cta-cards { grid-template-columns: 1fr; }
-            .program-block { padding: 60px 0; }
-            .outcomes-numbers { grid-template-columns: 1fr; }
-            .outcome-divider { display: none; }
+            .program-block { padding: 0 0 10px; }
+            .hero { min-height: 380px; }
+            .hero h1 { font-size: 42px; }
+            .hero-accent { font-size: 36px; }
+            .outcomes-grid, .outcomes-grid-tilted, .outcomes-grid-stacked, .outcomes-grid-ribbon { grid-template-columns: 1fr; }
+            .outcome-box-large, .outcome-box-wide { grid-column: auto; min-height: 138px; }
         }
+        .section-eyebrow,
+        .hero-eyebrow { display: none !important; }
+        section > .container h2,
+        .program-header h2 { padding-top: 10px; }
     </style>
 </head>
 <body>
@@ -263,378 +173,101 @@
     <div class="hero-bg"></div>
     <div class="hero-content">
         <div class="hero-eyebrow">What We Do</div>
-        <h1>Turning surplus<br><span class="hero-accent">into solutions.</span></h1>
+        <h1>Turning surplus<br><span class="hero-accent">into solutions</span></h1>
         <p>Youth-led programs that recover food, empower communities, and create lasting change in our food systems.</p>
-        <div class="hero-program-pills">
-            <a href="#gleaning" class="hero-pill">Gleaning</a>
-            <a href="#outreach" class="hero-pill">Community Outreach</a>
-            <a href="#education" class="hero-pill">Youth Education</a>
-        </div>
     </div>
 </section>
 
-<nav class="program-nav">
-    <div class="program-nav-inner-wrap">
-        <span class="program-nav-context" id="navContext">Our Programs</span>
-        <div class="program-nav-inner" style="justify-content:center;">
-            <a href="#gleaning" class="program-nav-link active">Gleaning</a>
-            <a href="#outreach" class="program-nav-link">Community Outreach</a>
-            <a href="#education" class="program-nav-link">Youth Education</a>
-        </div>
-    </div>
-</nav>
-
 <section class="program-section">
-
-    <!-- Program 1: Gleaning -->
-    <div class="program-block" id="gleaning">
+    <div class="program-block program-block-feature" id="gleaning">
         <div class="container">
             <div class="program-header">
-                <span class="program-number">01</span>
                 <span class="section-eyebrow">Farm to Community</span>
                 <h2>Gleaning <span class="accent-text">Program</span></h2>
                 <p class="program-summary">Rescuing surplus food from farms and businesses before it goes to waste.</p>
             </div>
             <div class="program-content">
                 <div class="program-text">
-                    <p>Our gleaning program works directly with farms, grocery stores, restaurants, and food distributors to rescue perfectly good food that would otherwise be wasted. Youth volunteers coordinate pickups, sort and prepare food for distribution, and ensure it reaches families in need.</p>
-                    <p>We've built strong relationships with over 20 partner farms and organizations, creating a reliable network that diverts thousands of pounds of food from landfills every month. Each recovery operation is an opportunity for youth to learn about food systems, develop logistics skills, and see the direct impact of their work.</p>
-                    <p>Through this program, we're not just addressing food waste — we're teaching young people about sustainable agriculture, food supply chains, and the importance of resource conservation.</p>
-
-                    <div class="program-info-section">
-                        <div class="outcomes-strip">
-                            <div class="outcomes-label">Measurable Outcomes</div>
-                            <div class="outcomes-numbers">
-                                <div class="outcome-stat">
-                                    <span class="outcome-num" data-stat="pounds">—</span>
-                                    <span class="outcome-unit">Lbs Recovered</span>
-                                </div>
-                                <div class="outcome-divider"></div>
-                                <div class="outcome-stat">
-                                    <span class="outcome-num" data-stat="volunteers">—</span>
-                                    <span class="outcome-unit">Youth Volunteers</span>
-                                </div>
-                                <div class="outcome-divider"></div>
-                                <div class="outcome-stat">
-                                    <span class="outcome-num" data-stat="organizations">—</span>
-                                    <span class="outcome-unit">Orgs Reached</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="who-where-grid">
-                            <div class="who-card">
-                                <div class="info-card-header"><span class="info-card-title">Who It Serves</span></div>
-                                <div class="persona-chips">
-                                    <span class="persona-chip">Food Banks</span>
-                                    <span class="persona-chip">Community Centers</span>
-                                    <span class="persona-chip">Families in Need</span>
-                                    <span class="persona-chip">Transitional Housing</span>
-                                    <span class="persona-chip">Local Farms</span>
-                                </div>
-                            </div>
-                            <div class="where-card">
-                                <div class="info-card-header"><span class="info-card-title">Where It Operates</span></div>
-                                <div class="location-list">
-                                    <span class="where-chip">Partner Farms — Victoria &amp; Vancouver</span>
-                                    <span class="where-chip">Farmer's Markets</span>
-                                    <span class="where-chip">Distribution Centers</span>
-                                    <span class="where-chip">Local Food Banks</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="impact-panel" id="impact1">
-                        <div class="impact-toggle" onclick="toggleImpact('impact1')">Program Impact Details</div>
-                        <div class="impact-content">
-                            <div class="impact-content-inner">
-                                <div class="progress-bar-container">
-                                    <div class="progress-label"><span>Pounds Recovered</span><span><span data-stat="pounds"></span> / 1,000,000</span></div>
-                                    <div class="progress-bar"><div class="progress-fill" style="--progress-width: 1%;"></div></div>
-                                </div>
-                                <div class="progress-bar-container">
-                                    <div class="progress-label"><span>Youth Trained</span><span><span data-stat="leaders"></span> / 200</span></div>
-                                    <div class="progress-bar"><div class="progress-fill" style="--progress-width: 75%;"></div></div>
-                                </div>
-                                <div class="progress-bar-container">
-                                    <div class="progress-label"><span>Communities Reached</span><span><span data-stat="schools"></span> / 15</span></div>
-                                    <div class="progress-bar"><div class="progress-fill" style="--progress-width: 80%;"></div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="quote-callout">
-                        <p>"This program taught me that leadership starts with service. Every pound of food we recover represents a meal for someone in need."</p>
-                        <p class="quote-author">— Alex, Youth Volunteer</p>
-                    </div>
-
-                    <div class="cta-cards">
-                        <div class="cta-card cta-card-volunteer">
-                            <span class="cta-card-icon"></span>
-                            <h4>Join the Team</h4>
-                            <p>Show up, get your hands dirty, and see food recovery in action. No experience needed.</p>
-                            <a href="get-involved.html" class="btn-white">Volunteer Now →</a>
-                        </div>
-                        <div class="cta-card cta-card-partner">
-                            <span class="cta-card-icon"></span>
-                            <h4>Become a Partner</h4>
-                            <p>Got surplus produce or land? Let's put it to work. Connect your farm with our network.</p>
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfW6gWTrfEJerXS1G4uZp8zLoGgtiGeRC4kONVZJLfBFnhkqw/viewform?usp=publish-editor" class="btn-white">Partner With Us →</a>
-                        </div>
+                    <p>Our gleaning program works directly with farms, grocery stores, restaurants, and food distributors to rescue perfectly good food that would otherwise be wasted. Youth volunteers coordinate pickups, sort food for distribution, and make sure it reaches families in need.</p>
+                    <p>Each recovery operation is an opportunity for young people to learn logistics, understand food systems, and see how practical action can turn surplus into community support.</p>
+                    <div class="outcomes-grid outcomes-grid-tilted" aria-label="Gleaning measurable outcomes">
+                        <div class="outcome-box outcome-box-large"><span class="outcome-num" data-stat="pounds">—</span><span class="outcome-unit">Lbs Recovered</span></div>
+                        <div class="outcome-box"><span class="outcome-num" data-stat="volunteers">—</span><span class="outcome-unit">Youth Volunteers</span></div>
+                        <div class="outcome-box"><span class="outcome-num" data-stat="organizations">—</span><span class="outcome-unit">Organizations Reached</span></div>
                     </div>
                 </div>
-
                 <div class="program-visual">
                     <div class="program-image-frame">
-                        <img src="imgs/rapid.jpeg" alt="Gleaning Program">
-                        <div class="stat-overlay">
-                            <div class="stat-overlay-number"><span data-stat="pounds"></span></div>
-                            <div class="stat-overlay-label">Lbs Recovered</div>
-                        </div>
-                        <div class="program-image-caption">Volunteers gleaning surplus produce at a partner farm</div>
+                        <img src="optimized/imgs/rapid.webp" alt="Gleaning Program" loading="lazy">
                     </div>
                     <div class="image-strip">
-                        <div class="image-strip-item"><img src="imgs/onion.JPG" alt="Harvesting"></div>
-                        <div class="image-strip-item"><img src="imgs/gleaning.jpg" alt="Gleaning"></div>
+                        <div class="image-strip-item"><img src="optimized/imgs/onion.webp" alt="Harvesting" loading="lazy"></div>
+                        <div class="image-strip-item"><img src="optimized/imgs/gleaning.webp" alt="Gleaning" loading="lazy"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Program 2: Community Outreach -->
     <div class="program-block" id="outreach">
         <div class="container">
             <div class="program-header">
-                <span class="program-number">02</span>
                 <span class="section-eyebrow">Hands-On Impact</span>
                 <h2>Community Food Outreach <span class="accent-text">Program</span></h2>
                 <p class="program-summary">Bringing fresh, nutritious food directly to those who need it most.</p>
             </div>
-            <div class="program-content">
+            <div class="program-content program-content-reverse">
                 <div class="program-text">
-                    <p>In our community food outreach program, volunteers collaborate with local farms and organizations to rescue surplus produce and transform it into meaningful community impact. From organizing harvesting and weeding days at partner farms to safely preparing nutritious processed foods for local food shelters, volunteers play an active role in every stage of food recovery.</p>
-                    <p>This program not only reduces food waste, but also empowers young people with leadership, teamwork, and real-world skills while supporting food security in their communities.</p>
-
-                    <div class="program-info-section">
-                        <div class="outcomes-strip">
-                            <div class="outcomes-label">Measurable Outcomes</div>
-                            <div class="outcomes-numbers">
-                                <div class="outcome-stat">
-                                    <span class="outcome-num">200</span>
-                                    <span class="outcome-unit">Meals Delivered</span>
-                                </div>
-                                <div class="outcome-divider"></div>
-                                <div class="outcome-stat">
-                                    <span class="outcome-num" data-stat="volunteers">—</span>
-                                    <span class="outcome-unit">Youth Volunteers</span>
-                                </div>
-                                <div class="outcome-divider"></div>
-                                <div class="outcome-stat">
-                                    <span class="outcome-num" data-stat="events">—</span>
-                                    <span class="outcome-unit">Events Hosted</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="who-where-grid">
-                            <div class="who-card">
-                                <div class="info-card-header"><span class="info-card-title">Who It Serves</span></div>
-                                <div class="persona-chips">
-                                    <span class="persona-chip">Families with Kids</span>
-                                    <span class="persona-chip">Farm Owners</span>
-                                    <span class="persona-chip">Transitional Housing</span>
-                                    <span class="persona-chip">Food-Insecure Communities</span>
-                                </div>
-                            </div>
-                            <div class="where-card">
-                                <div class="info-card-header"><span class="info-card-title">Where It Operates</span></div>
-                                <div class="location-list">
-                                    <span class="where-chip">Farms — Victoria &amp; Vancouver</span>
-                                    <span class="where-chip">Community Centers &amp; Markets</span>
-                                    <span class="where-chip">FRA Community Garden</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="impact-panel" id="impact2">
-                        <div class="impact-toggle" onclick="toggleImpact('impact2')">Program Impact Details</div>
-                        <div class="impact-content">
-                            <div class="impact-content-inner">
-                                <div class="progress-bar-container">
-                                    <div class="progress-label"><span>Meals Delivered</span><span>200 / 1,000</span></div>
-                                    <div class="progress-bar"><div class="progress-fill" style="--progress-width: 20%;"></div></div>
-                                </div>
-                                <div class="progress-bar-container">
-                                    <div class="progress-label"><span>Youth Trained</span><span><span data-stat="leaders"></span> / 100</span></div>
-                                    <div class="progress-bar"><div class="progress-fill" style="--progress-width: 15%;"></div></div>
-                                </div>
-                                <div class="progress-bar-container">
-                                    <div class="progress-label"><span>Communities Reached</span><span><span data-stat="schools"></span> / 20</span></div>
-                                    <div class="progress-bar"><div class="progress-fill" style="--progress-width: 20%;"></div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="quote-callout">
-                        <p>"Delivering food isn't just about logistics — it's about seeing the smile on someone's face when you bring them fresh produce. That connection is everything."</p>
-                        <p class="quote-author">— Maria, Delivery Coordinator</p>
-                    </div>
-
-                    <div class="cta-cards">
-                        <div class="cta-card cta-card-volunteer">
-                            <span class="cta-card-icon"></span>
-                            <h4>Get Involved</h4>
-                            <p>Help us harvest, deliver, and distribute fresh food to families across the community.</p>
-                            <a href="get-involved.html" class="btn-white">Volunteer Now →</a>
-                        </div>
-                        <div class="cta-card cta-card-partner">
-                            <span class="cta-card-icon"></span>
-                            <h4>Host a Distribution Site</h4>
-                            <p>Have a space or organization that can help get food where it's needed? Let's talk.</p>
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfW6gWTrfEJerXS1G4uZp8zLoGgtiGeRC4kONVZJLfBFnhkqw/viewform?usp=publish-editor" class="btn-white">Partner With Us →</a>
-                        </div>
+                    <p>Volunteers collaborate with farms and organizations to rescue surplus produce and transform it into meaningful community impact. From harvesting days to preparing nutritious foods for local shelters, volunteers play an active role in every stage of food recovery.</p>
+                    <p>This program reduces waste while helping young people build leadership, teamwork, and real-world service skills.</p>
+                    <div class="outcomes-grid outcomes-grid-stacked" aria-label="Community outreach measurable outcomes">
+                        <div class="outcome-box outcome-box-large"><span class="outcome-num">200</span><span class="outcome-unit">Meals Delivered</span></div>
+                        <div class="outcome-box"><span class="outcome-num" data-stat="volunteers">—</span><span class="outcome-unit">Youth Volunteers</span></div>
+                        <div class="outcome-box"><span class="outcome-num" data-stat="events">—</span><span class="outcome-unit">Events Hosted</span></div>
                     </div>
                 </div>
-
                 <div class="program-visual">
                     <div class="program-image-frame">
-                        <img src="imgs/crumble.png" alt="Community Outreach">
-                        <div class="stat-overlay">
-                            <div class="stat-overlay-number">200</div>
-                            <div class="stat-overlay-label">Meals Delivered</div>
-                        </div>
-                        <div class="program-image-caption">Youth volunteers preparing food for community shelters</div>
+                        <img src="optimized/imgs/crumble.webp" alt="Community Outreach" loading="lazy">
                     </div>
                     <div class="image-strip">
-                        <div class="image-strip-item"><img src="imgs/makesoup.jpeg" alt="Making soup"></div>
-                        <div class="image-strip-item"><img src="imgs/soup.jpeg" alt="Soup kitchen"></div>
+                        <div class="image-strip-item"><img src="optimized/imgs/makesoup.webp" alt="Making soup" loading="lazy"></div>
+                        <div class="image-strip-item"><img src="optimized/imgs/soup.webp" alt="Soup kitchen" loading="lazy"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Program 3: Youth Education -->
     <div class="program-block" id="education">
         <div class="container">
             <div class="program-header">
-                <span class="program-number">03</span>
                 <span class="section-eyebrow">Knowledge is Power</span>
                 <h2>Youth Education <span class="accent-text">Program</span></h2>
                 <p class="program-summary">Teaching youth about food systems and empowering them to advocate for change.</p>
             </div>
             <div class="program-content">
                 <div class="program-text">
-                    <p>Our Youth Education Program brings food systems education into schools and community spaces, teaching young people about the connections between food waste, food insecurity, and social justice. We train youth to become advocates for systemic change in their communities.</p>
-                    <p>Through interactive workshops, school presentations, and community events, we help students understand where their food comes from, why food waste matters, and how they can take action. Our curriculum covers topics from sustainable agriculture and nutrition to food policy and environmental justice.</p>
-                    <p>Beyond education, we support youth in developing advocacy campaigns, meeting with local officials, and organizing community events — creating a pipeline of informed, engaged young leaders.</p>
-
-                    <div class="program-info-section">
-                        <div class="outcomes-strip">
-                            <div class="outcomes-label">Measurable Outcomes</div>
-                            <div class="outcomes-numbers">
-                                <div class="outcome-stat">
-                                    <span class="outcome-num" data-stat="volunteers">—</span>
-                                    <span class="outcome-unit">Students Reached</span>
-                                </div>
-                                <div class="outcome-divider"></div>
-                                <div class="outcome-stat">
-                                    <span class="outcome-num" data-stat="leaders">—</span>
-                                    <span class="outcome-unit">Leaders Trained</span>
-                                </div>
-                                <div class="outcome-divider"></div>
-                                <div class="outcome-stat">
-                                    <span class="outcome-num" data-stat="schools">—</span>
-                                    <span class="outcome-unit">Schools Engaged</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="who-where-grid">
-                            <div class="who-card">
-                                <div class="info-card-header"><span class="info-card-title">Who It Serves</span></div>
-                                <div class="persona-chips">
-                                    <span class="persona-chip">Middle & High Schoolers</span>
-                                    <span class="persona-chip">Youth Leaders</span>
-                                    <span class="persona-chip">Community Orgs</span>
-                                    <span class="persona-chip">Educators</span>
-                                </div>
-                            </div>
-                            <div class="where-card">
-                                <div class="info-card-header"><span class="info-card-title">Where It Operates</span></div>
-                                <div class="location-list">
-                                    <span class="where-chip">Local Schools — Victoria</span>
-                                    <span class="where-chip">Summer Programs &amp; Workshops</span>
-                                    <span class="where-chip">Community Youth Centers</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="impact-panel" id="impact3">
-                        <div class="impact-toggle" onclick="toggleImpact('impact3')">Program Impact Details</div>
-                        <div class="impact-content">
-                            <div class="impact-content-inner">
-                                <div class="progress-bar-container">
-                                    <div class="progress-label"><span>Students Reached</span><span><span data-stat="volunteers"></span> / 1,000</span></div>
-                                    <div class="progress-bar"><div class="progress-fill" style="--progress-width: 25%;"></div></div>
-                                </div>
-                                <div class="progress-bar-container">
-                                    <div class="progress-label"><span>Youth Leaders Trained</span><span><span data-stat="leaders"></span> / 50</span></div>
-                                    <div class="progress-bar"><div class="progress-fill" style="--progress-width: 30%;"></div></div>
-                                </div>
-                                <div class="progress-bar-container">
-                                    <div class="progress-label"><span>Schools Engaged</span><span><span data-stat="schools"></span> / 5</span></div>
-                                    <div class="progress-bar"><div class="progress-fill" style="--progress-width: 60%;"></div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="quote-callout">
-                        <p>"Learning about food systems opened my eyes to how everything is connected. Now I'm not just volunteering — I'm advocating for real policy changes in my city."</p>
-                        <p class="quote-author">— Jordan, Youth Advocate</p>
-                    </div>
-
-                    <div class="cta-cards">
-                        <div class="cta-card cta-card-volunteer">
-                            <span class="cta-card-icon"></span>
-                            <h4>Become an Educator</h4>
-                            <p>Lead workshops, speak at schools, and help young people understand food justice.</p>
-                            <a href="get-involved.html" class="btn-white">Volunteer Now →</a>
-                        </div>
-                        <div class="cta-card cta-card-partner">
-                            <span class="cta-card-icon"></span>
-                            <h4>Bring Us to Your School</h4>
-                            <p>We'll run workshops, set up clubs, and train student leaders at your institution.</p>
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfW6gWTrfEJerXS1G4uZp8zLoGgtiGeRC4kONVZJLfBFnhkqw/viewform?usp=publish-editor" class="btn-white">Partner With Us →</a>
-                        </div>
+                    <p>Our Youth Education Program brings food systems education into schools and community spaces, teaching young people about the connections between food waste, food insecurity, and social justice.</p>
+                    <p>Through workshops, presentations, and community events, students learn where food comes from, why waste matters, and how they can take action.</p>
+                    <div class="outcomes-grid outcomes-grid-ribbon" aria-label="Youth education measurable outcomes">
+                        <div class="outcome-box outcome-box-large"><span class="outcome-num" data-stat="volunteers">—</span><span class="outcome-unit">Students Reached</span></div>
+                        <div class="outcome-box"><span class="outcome-num" data-stat="leaders">—</span><span class="outcome-unit">Leaders Trained</span></div>
+                        <div class="outcome-box"><span class="outcome-num" data-stat="schools">—</span><span class="outcome-unit">Schools Engaged</span></div>
                     </div>
                 </div>
-
                 <div class="program-visual">
                     <div class="program-image-frame">
-                        <img src="imgs/youth_outreach.JPG" alt="Youth Education">
-                        <div class="stat-overlay">
-                            <div class="stat-overlay-number"><span data-stat="volunteers"></span></div>
-                            <div class="stat-overlay-label">Students Reached</div>
-                        </div>
-                        <div class="program-image-caption">Youth workshop on food systems and sustainability</div>
+                        <img src="optimized/imgs/youth_outreach.webp" alt="Youth Education" loading="lazy">
                     </div>
                     <div class="image-strip">
-                        <div class="image-strip-item"><img src="imgs/meeting.PNG" alt="Meeting"></div>
-                        <div class="image-strip-item"><img src="imgs/club.jpg" alt="Club"></div>
+                        <div class="image-strip-item"><img src="optimized/imgs/meeting.webp" alt="Meeting" loading="lazy"></div>
+                        <div class="image-strip-item"><img src="optimized/imgs/club.webp" alt="Club" loading="lazy"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </section>
 
 <footer id="footer-placeholder"></footer>
@@ -642,57 +275,15 @@
 <script src="components.js"></script>
 
 <script>
-    function toggleImpact(id) {
-        document.getElementById(id).classList.toggle('expanded');
-    }
-
     const outcomeObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (!entry.isIntersecting) return;
-            entry.target.querySelectorAll('.outcome-num').forEach(el => {
-                el.style.transform = 'scale(1.15)';
-                setTimeout(() => { el.style.transform = 'scale(1)'; }, 400);
-            });
+            entry.target.classList.add('impact-burst');
             outcomeObserver.unobserve(entry.target);
         });
     }, { threshold: 0.4 });
 
-    document.querySelectorAll('.outcomes-strip').forEach(el => outcomeObserver.observe(el));
-
-    const sections = ['gleaning', 'outreach', 'education'];
-    const sectionLabels = { gleaning: 'Farm to Community', outreach: 'Hands-On Impact', education: 'Knowledge is Power' };
-    const navLinks = document.querySelectorAll('.program-nav-link');
-    const navContext = document.getElementById('navContext');
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(id => {
-            const el = document.getElementById(id);
-            if (el && window.scrollY >= el.offsetTop - 200) current = id;
-        });
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === '#' + current) link.classList.add('active');
-        });
-        if (navContext) {
-            navContext.textContent = current ? (sectionLabels[current] || 'Our Programs') : 'Our Programs';
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', e => {
-            e.preventDefault();
-            const target = document.querySelector(link.getAttribute('href'));
-            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-    });
-
-    document.querySelectorAll('.hero-pill').forEach(pill => {
-        pill.addEventListener('click', e => {
-            e.preventDefault();
-            const target = document.querySelector(pill.getAttribute('href'));
-            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-    });
+    document.querySelectorAll('.outcomes-grid').forEach(el => outcomeObserver.observe(el));
 
     document.addEventListener('DOMContentLoaded', () => {
         const form = document.getElementById('newsletter-form');
