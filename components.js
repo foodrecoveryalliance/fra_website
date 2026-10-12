@@ -1,7 +1,7 @@
 const nav = `
 <div class="nav-container">
     <a href="index.html" class="logo-group">
-        <img src="imgs2/logo.JPG" alt="Food Recovery Alliance Logo" class="brand-logo">
+        <img src="page-assets/logo.JPG" alt="Food Recovery Alliance Logo" class="brand-logo">
         <span class="brand-name">Food Recovery Alliance</span>
     </a>
     <ul class="nav-links">
