@@ -41,9 +41,9 @@ const footer = `
     </div>
     <div class="footer-section">
         <h3>Contact Us</h3>
-        <p>foodrecoveryalliance@gmail.com</p>
+        <p>info@foodrecoveryalliance.org</p>
         <p>+1 (604) 861-9688</p>
-        <p>2901 Seapoint Drive<br>Victoria, BC</p>
+        <p>Victoria, BC</p>
     </div>
     <div class="footer-section">
         <h3>Stay Connected</h3>
@@ -55,7 +55,7 @@ const footer = `
     </div>
 </div>
 <div class="footer-bottom">
-    <p>&copy; 2024 Food Recovery Alliance. All rights reserved.</p>
+    <p>&copy; 2026 Food Recovery Alliance. All rights reserved.</p>
 </div>`;
 
 const sharedCSS = `
