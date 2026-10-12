@@ -7,7 +7,7 @@ const FRA_STATS = {
     schools:    { display: '3',     count: 3    },
     events:    { display: '20',     count: 20  },
     reached:    { display: '75', count: 75  },
-    partners:    { display: '23', count: 75  },
+    partners:    { display: '23', count: 23  },
     percent:    { display: '15', count: 15  },
     goal:    { display: '80,000', count: 80000  }
 };
