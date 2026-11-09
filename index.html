@@ -59,12 +59,15 @@
         .press-section::after { right: 0; background: linear-gradient(to left, rgba(27, 82, 61, 0.45) 0%, transparent 100%); }
         .press-header, .press-eyebrow, .press-sep, .press-card-outlet, .press-logo-wrap { display: none; }
         .press-marquee-wrapper { overflow: hidden; position: relative; z-index: 3; }
-        .press-track { display: flex; align-items: center; gap: 0; width: max-content; animation: marqueeScroll 24s linear infinite; }
+        .press-track { display: flex; align-items: center; gap: 0; width: max-content; animation: marqueeScroll 38s linear infinite; }
         .press-track:hover { animation-play-state: paused; }
         @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .press-card { display: flex; align-items: center; padding: 8px 54px; margin: 0 10px; border-radius: 0; background: transparent; border: 0; cursor: default; transition: opacity 0.3s ease; white-space: nowrap; text-decoration: none; flex-shrink: 0; min-width: 300px; justify-content: center; }
         .press-card:hover { opacity: 0.82; transform: none; box-shadow: none; background: transparent; border: 0; }
-        .press-logo { width: auto; height: 82px; max-width: 240px; object-fit: contain; display: block; flex-shrink: 0; filter: drop-shadow(0 3px 10px rgba(0,0,0,0.24)); }
+        .press-logo { width: auto; height: 82px; max-width: 240px; object-fit: contain; display: block; flex-shrink: 0; filter: var(--press-logo-tint, brightness(1)) drop-shadow(0 3px 10px rgba(0,0,0,0.24)); }
+        .press-logo-gold { --press-logo-tint: url(#press-gold); }
+        .press-logo-ink { --press-logo-tint: url(#press-gold-ink); }
+        .press-logo-square { width: 240px; object-fit: cover; }
         .impact-stats .press-section { position: relative; margin: 18px -32px -28px; padding: 12px 0 16px; }
 
         .section-eyebrow,
@@ -89,7 +92,7 @@
         .featured-image1, .featured-image2, .featured-image3 { position: relative; }
         .card-tag { display: none; }
         .featured-content { padding: 20px 24px 22px; text-align: left; flex: 1; display: flex; flex-direction: column; }
-        .featured-content h3 { color: var(--primary-green); margin-bottom: 8px; font-size: 25px; line-height: 1.18; }
+        .featured-content h3 { color: var(--primary-green); margin-bottom: 8px; font-size: 25px; line-height: 1.18; min-height: 2lh; text-wrap: balance; }
         .featured-content p { color: #555; margin-bottom: 14px; line-height: 1.55; flex: 1; font-size: 19px; }
         .card-link { display: inline-flex; align-items: center; gap: 8px; color: var(--primary-green); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; text-decoration: none; border: 0; padding-bottom: 0; transition: all 0.3s; width: fit-content; }
         .card-link:hover { color: var(--secondary-green); gap: 8px; }
@@ -145,6 +148,10 @@
         .timeline-content h3 { color: var(--primary-green); font-size: 22px; margin-bottom: 8px; }
         .timeline-content p { color: #555; font-size: 18px; line-height: 1.5; margin-bottom: 0; flex: 1; }
         .timeline-img { width: 100%; height: 156px; object-fit: cover; border-radius: 10px; margin-top: 10px; display: block; }
+        .timeline-img-full { height: 190px; }
+        .timeline-img[src$="local-media.jpg"],
+        .timeline-img[src$="agraya-summit.jpg"] { object-position: center 75%; }
+        .timeline-img[src$="riseup-retreat.jpg"] { object-position: center 22%; }
 
         .origin-section { background: var(--primary-green); padding: 44px 32px; position: relative; overflow: hidden; }
         .origin-section::before, .origin-section::after, .origin-divider, .origin-flourish { display: none; }
@@ -207,6 +214,7 @@
             .container { padding: 34px 24px; }
             .nav-links { display: none; }
             .featured-grid { grid-template-columns: 1fr; }
+            .featured-content h3 { min-height: 0; }
             .cta-section h2 { font-size: 32px; }
             .footer-content { grid-template-columns: 1fr; gap: 36px; }
             .press-section::before, .press-section::after { width: 48px; }
@@ -231,8 +239,9 @@
 <section class="hero">
     <div class="hero-background"></div>
     <div class="hero-content">
-        <h1>Fighting Food Waste<br><span class="hero-accent">Feeding Communities</span></h1>
-        <p class="hero-sub">Youth movement donating one pound for every food insecure person in British Columbia.</p>
+        <h1>Bridging surplus<br><span class="hero-accent">and need</span></h1>
+        <p class="hero-sub">Youth centered initiative dedicated to recovering one pound of food for each food insecure
+person in BC.</p>
         <div class="hero-buttons">
             <a href="get-involved.html" class="btn btn-hero-primary">
                 <span>Get Involved Today</span>
@@ -246,13 +255,13 @@
     <div class="container">
         <span class="section-eyebrow">What We Do</span>
         <h2>How We <span class="accent-text">Make a Difference</span></h2>
-        <p class="featured-subtitle">Through collaboration, innovation, and youth leadership, we're transforming the way communities approach food waste and hunger.</p>
+        <p class="featured-subtitle">Explore our 3 Programs</p>
         <div class="featured-grid">
             <div class="featured-card">
                 <div class="featured-image1"></div>
                 <div class="featured-content">
                     <h3>Gleaning</h3>
-                    <p>Partnering with local farms to rescue surplus food that would otherwise go to waste, getting it directly to those who need it.</p>
+                    <p>Working with local farms, we rescue surplus food and distribute it to local shelters.</p>
                     <a href="programs.html" class="card-link">Learn More</a>
                 </div>
             </div>
@@ -260,7 +269,7 @@
                 <div class="featured-image2"></div>
                 <div class="featured-content">
                     <h3>Community Food Outreach</h3>
-                    <p>Youth volunteers coordinate harvesting activities at local farms or prepare nutritious foods for local food shelters.</p>
+                    <p>In response to a shortage in prepared food, we coordinate students in processing b-grade food into nutritious meals.</p>
                     <a href="programs.html" class="card-link">Learn More</a>
                 </div>
             </div>
@@ -268,7 +277,7 @@
                 <div class="featured-image3"></div>
                 <div class="featured-content">
                     <h3>Youth Education</h3>
-                    <p>Teaching young people about food systems, sustainability, and how they can make a difference in their communities.</p>
+                    <p>Noticing a disconnect in youth to their food, we host planting and farm education workshops.</p>
                     <a href="programs.html" class="card-link">Learn More</a>
                 </div>
             </div>
@@ -280,7 +289,7 @@
     <div class="container">
         <span class="section-eyebrow" style="color: var(--golden); display: block; text-align: center;">Our Impact</span>
         <h2>By The <span class="accent-text">Numbers</span></h2>
-        <p class="impact-subtitle">Every pound counts. Here's what we've accomplished together so far.</p>
+        <p class="impact-subtitle">Every Pound Counts</p>
         <div class="stats-grid">
             <div class="stat-card stat-card-large stat-primary"><span class="stat-number" data-stat="pounds">0</span><div class="stat-label">Pounds of Food Recovered</div></div>
             <div class="stat-card stat-card-wide stat-secondary"><span class="stat-number" data-stat="dollars">0</span><div class="stat-label">Dollars Worth Donated</div></div>
@@ -289,6 +298,23 @@
             <div class="stat-card stat-card-wide stat-supporting"><span class="stat-number" data-stat="partners">0</span><div class="stat-label">Partner Organizations</div></div>
         </div>
         <section class="press-section" aria-label="Partner and press logos">
+            <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+                <defs>
+                    <filter id="press-gold" color-interpolation-filters="sRGB">
+                        <feFlood flood-color="#F4C542" result="gold"/>
+                        <feComposite in="gold" in2="SourceAlpha" operator="in"/>
+                    </filter>
+                    <filter id="press-gold-ink" color-interpolation-filters="sRGB">
+                        <!-- Use the dark lettering as the mask for the white-backed wordmark. -->
+                        <feColorMatrix type="matrix" values="0 0 0 0 0
+                            0 0 0 0 0
+                            0 0 0 0 0
+                            -1 0 0 1 0" result="ink"/>
+                        <feFlood flood-color="#F4C542" result="gold"/>
+                        <feComposite in="gold" in2="ink" operator="in"/>
+                    </filter>
+                </defs>
+            </svg>
             <div class="press-marquee-wrapper">
                 <div class="press-track">
                     <div class="press-card"><img class="press-logo" src="home-logos-yellow/amazon.png" alt="Amazon" loading="lazy"></div>
@@ -298,6 +324,10 @@
                     <div class="press-card"><img class="press-logo" src="home-logos-yellow/Sysco600x314.png" alt="Sysco" loading="lazy"></div>
                     <div class="press-card"><img class="press-logo" src="home-logos-yellow/OakBayNews_Square_logo.png" alt="Oak Bay News" loading="lazy"></div>
                     <div class="press-card"><img class="press-logo" src="home-logos-yellow/agraya.png" alt="Agraya Changemakers" loading="lazy"></div>
+                    <div class="press-card"><img class="press-logo press-logo-gold" src="home-logos-yellow/beyondish.webp" alt="Beyondish"></div>
+                    <div class="press-card"><img class="press-logo press-logo-ink" src="home-logos-yellow/times-colonist.png" alt="Times Colonist"></div>
+                    <div class="press-card"><img class="press-logo press-logo-gold press-logo-square" src="home-logos-yellow/peninsula-news-review.webp" alt="Peninsula News Review"></div>
+                    <div class="press-card"><img class="press-logo press-logo-gold" src="home-logos-yellow/victoria-foundation.png" alt="Victoria Foundation"></div>
                     <div class="press-card"><img class="press-logo" src="home-logos-yellow/amazon.png" alt="Amazon" loading="lazy"></div>
                     <div class="press-card"><img class="press-logo" src="home-logos-yellow/The_Times_of_India_Red_Logo.png" alt="The Times of India" loading="lazy"></div>
                     <div class="press-card"><img class="press-logo" src="home-logos-yellow/cbc.png" alt="CBC Radio Canada" loading="lazy"></div>
@@ -305,6 +335,10 @@
                     <div class="press-card"><img class="press-logo" src="home-logos-yellow/Sysco600x314.png" alt="Sysco" loading="lazy"></div>
                     <div class="press-card"><img class="press-logo" src="home-logos-yellow/OakBayNews_Square_logo.png" alt="Oak Bay News" loading="lazy"></div>
                     <div class="press-card"><img class="press-logo" src="home-logos-yellow/agraya.png" alt="Agraya Changemakers" loading="lazy"></div>
+                    <div class="press-card"><img class="press-logo press-logo-gold" src="home-logos-yellow/beyondish.webp" alt="Beyondish"></div>
+                    <div class="press-card"><img class="press-logo press-logo-ink" src="home-logos-yellow/times-colonist.png" alt="Times Colonist"></div>
+                    <div class="press-card"><img class="press-logo press-logo-gold press-logo-square" src="home-logos-yellow/peninsula-news-review.webp" alt="Peninsula News Review"></div>
+                    <div class="press-card"><img class="press-logo press-logo-gold" src="home-logos-yellow/victoria-foundation.png" alt="Victoria Foundation"></div>
                 </div>
             </div>
         </section>
@@ -315,22 +349,23 @@
     <div class="container">
         <div class="journey-header">
             <span class="section-eyebrow">Our Journey</span>
-            <h2>From <span class="accent-text">One Harvest</span> to a Movement</h2>
-            <p>Less than two years ago, this started with three students and a car. Here's how we got here.</p>
+            <h2>Our <span class="accent-text">Story</span></h2>
+            <p>A Timeline of Our Milestones</p>
         </div>
         <div class="timeline">
             <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="timeline-year">July 2024</div>
                     <h3>The Beginning</h3>
-                    <p>Started by our founder and two other high school students with a passion for reducing food waste. First partnership with City's Edge Farm rescued 20 lbs of produce.</p>
+                    <p>Stemming from a desire to reduce food waste, Apollin, Yashita and Sophie reached out to
+farms across Victoria, before rescuing our first 20lbs from City’s Edge Farm.</p>
                     <img src="optimized/imgs/babyapollin.webp" alt="The Beginning" class="timeline-img" loading="lazy">
                 </div>
                 <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
                 <div class="timeline-content">
                     <div class="timeline-year">August 2024</div>
                     <h3>Volunteer Outreach</h3>
-                    <p>Developed our community outreach program volunteering at some of our first partner farms — Camas Farms, City's Edge Farm, and Black Dirt Farm.</p>
+                    <p>Developed our community outreach program volunteering at some of our first partner farms: Camas Farms, City's Edge Farm, and Black Dirt Farm.</p>
                     <img src="optimized/imgs/onion.webp" alt="Volunteer Outreach" class="timeline-img" loading="lazy">
                 </div>
             </div>
@@ -338,7 +373,7 @@
                 <div class="timeline-content">
                     <div class="timeline-year">September 2024</div>
                     <h3>Our First Fundraiser</h3>
-                    <p>Sold $1,000+ of garlic butter at the Saanich Fair — our first fundraising event and proof of concept.</p>
+                    <p>Sold $1,000+ of garlic butter at the Saanich Fair, our first fundraising event.</p>
                     <img src="optimized/imgs/garlicbutter.webp" alt="First Fundraiser" class="timeline-img" loading="lazy">
                 </div>
                 <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
@@ -351,32 +386,62 @@
             </div>
             <div class="timeline-item">
                 <div class="timeline-content">
-                    <div class="timeline-year">March 2025</div>
-                    <h3>Community Garden & Youth Education</h3>
-                    <p>Built a youth-run community garden to promote sustainable agriculture and provide fresh produce to local food banks.</p>
-                    <img src="optimized/imgs/garden.webp" alt="Community Garden" class="timeline-img" loading="lazy">
+                    <div class="timeline-year">February 2025</div>
+                    <h3>First Sunday Soup in Victoria</h3>
+                    <p>We launched Sunday Soup in Victoria, working with youth volunteers to share prepared meals with a local transition house.</p>
+                    <img src="page-assets/timeline/sunday-soup.jpg" alt="Food Recovery Alliance’s first Sunday Soup in Victoria" class="timeline-img timeline-img-full" loading="lazy">
                 </div>
                 <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">March 2025</div>
+                    <h3>Salty Roots Community Garden</h3>
+                    <p>Food Recovery Alliance started the Salty Roots Community Garden in partnership with Camas Farms in Victoria.</p>
+                    <img src="page-assets/timeline/salty-roots.jpg" alt="Salty Roots Community Garden" class="timeline-img timeline-img-full" loading="lazy">
+                </div>
+            </div>
+            <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="timeline-year">April 2025</div>
                     <h3>Opened Our Vancouver Chapter</h3>
                     <p>Expanded into Vancouver, establishing partnerships with Kind Hearted Farm, Project Hastings, and Amazon volunteers.</p>
                     <img src="optimized/imgs/amazon.webp" alt="Vancouver Chapter" class="timeline-img" loading="lazy">
                 </div>
+                <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">March 2026</div>
+                    <h3>Local Media Recognition</h3>
+                    <p>FRA received coverage from more than 10 local media outlets in Victoria, including a CHEK News Vital People segment featuring founder Apollin Lu.</p>
+                    <img src="page-assets/timeline/local-media.jpg" alt="Local news coverage of Apollin Lu and Food Recovery Alliance" class="timeline-img timeline-img-full" loading="lazy">
+                </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-content">
-                    <div class="timeline-year">July 2025</div>
-                    <h3>Rapid Growth</h3>
-                    <p>Connected with 10+ local farms and organizations across Victoria and Vancouver.</p>
-                    <img src="optimized/imgs/rapid.webp" alt="Rapid Growth" class="timeline-img" loading="lazy">
+                    <div class="timeline-year">March 2026</div>
+                    <h3>RiseUp! Retreat</h3>
+                    <p>Founder Apollin Lu and co-founder Yashita Kaku represented FRA as a host organization at the RiseUp! retreat, sponsored by the Public Health Association of BC.</p>
+                    <img src="page-assets/timeline/riseup-retreat.jpg" alt="Apollin Lu and Yashita Kaku at the RiseUp! retreat" class="timeline-img timeline-img-full" loading="lazy">
                 </div>
                 <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
                 <div class="timeline-content">
-                    <div class="timeline-year">Today</div>
-                    <h3>September 2025</h3>
-                    <p>70+ active volunteers, 15+ partner organizations, and over 7000 pounds of food recovered — and counting.</p>
-                    <img src="optimized/imgs/planting.webp" alt="Today" class="timeline-img" loading="lazy">
+                    <div class="timeline-year">September 2026</div>
+                    <h3>National Recognition on CBC Radio</h3>
+                    <p>FRA received national recognition through CBC Radio.</p>
+                    <img src="optimized/imgs/youth_outreach.webp" alt="Food Recovery Alliance youth volunteers" class="timeline-img" loading="lazy">
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">October 2026</div>
+                    <h3>Agraya Changemaker Award Finalist</h3>
+                    <p>FRA and founder Apollin Lu were recognized as finalists for the Agraya Changemaker Award.</p>
+                    <img src="page-assets/timeline/agraya-finalist.jpg" alt="Food Recovery Alliance featured in the Agraya Changemaker Awards finalist announcement" class="timeline-img timeline-img-full" loading="lazy">
+                </div>
+                <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">October 2026</div>
+                    <h3>Agraya Summit in Bologna</h3>
+                    <p>Founder Apollin Lu delivered a closing speech at the Agraya summit in Bologna, which brought together more than 300 attendees from over 45 countries.</p>
+                    <img src="page-assets/timeline/agraya-summit.jpg" alt="Changemaker Awards participants onstage at the Agraya summit in Bologna" class="timeline-img timeline-img-full" loading="lazy">
                 </div>
             </div>
         </div>

@@ -41,9 +41,9 @@ const footer = `
     </div>
     <div class="footer-section">
         <h3>Contact Us</h3>
-        <p>info@foodrecoveryalliance.org</p>
+        <p>foodrecoveryalliance@gmail.com</p>
         <p>+1 (604) 861-9688</p>
-        <p>Victoria, BC</p>
+        <p>2901 Seapoint Drive<br>Victoria, BC</p>
     </div>
     <div class="footer-section">
         <h3>Stay Connected</h3>
@@ -54,8 +54,12 @@ const footer = `
         </form>
     </div>
 </div>
+<section class="footer-section footer-acknowledgment" aria-labelledby="footer-acknowledgment-title">
+    <h3 id="footer-acknowledgment-title">Territory Acknowledgment</h3>
+    <p>Food Recovery Alliance sits on the traditional and unceded territories of the lək̓ʷəŋən peoples (the Songhees and Esquimalt Nations) and the W̱SÁNEĆ peoples. As a youth-led organization, we know that our generation must acknowledge the colonial history that has shaped the agricultural land we work on. We're committed to learning from Indigenous knowledge as we build stronger food systems.</p>
+</section>
 <div class="footer-bottom">
-    <p>&copy; 2026 Food Recovery Alliance. All rights reserved.</p>
+    <p>&copy; 2024 Food Recovery Alliance. All rights reserved.</p>
 </div>`;
 
 const sharedCSS = `
@@ -87,7 +91,18 @@ const sharedCSS = `
     .btn-donate:hover { background: #4CAF6A; transform: translateY(-2px); }
 
     footer { background: #2B2B2B; color: #FAF9F6; padding: 60px 32px 24px; }
-    .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+    .footer-content,
+    .footer-acknowledgment {
+        max-width: 1250px;
+        margin-left: max(0px, calc((100% - 1200px) / 2));
+        margin-right: 0;
+    }
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 320px);
+        gap: 40px;
+        margin-bottom: 28px;
+    }
     .footer-section h3 { color: #4CAF6A; margin-bottom: 20px; font-size: 20px; font-family: 'Montserrat', sans-serif; font-weight: 800; }
     .footer-section p { line-height: 1.8; color: rgba(255,255,255,0.8); font-size: 15px; }
     .footer-section a { color: rgba(255,255,255,0.8); text-decoration: none; display: block; margin-bottom: 10px; transition: color 0.3s; font-size: 15px; }
@@ -96,12 +111,20 @@ const sharedCSS = `
     .social-links a { width: 44px; height: 44px; background: rgba(76,175,106,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s; font-size: 18px; }
     .social-links a:hover { background: #4CAF6A; transform: translateY(-3px); }
     .newsletter-form { display: flex; gap: 8px; margin-top: 16px; }
-    .newsletter-form input { flex: 1; padding: 14px; border-radius: 8px; border: 1px solid #4CAF6A; background: white; font-size: 15px; }
+    .newsletter-form input { flex: 1; min-width: 0; padding: 14px; border-radius: 8px; border: 1px solid #4CAF6A; background: white; font-size: 15px; }
     .newsletter-form button { padding: 14px 28px; background: #4CAF6A; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; transition: background 0.3s; font-family: 'Montserrat', sans-serif; }
     .newsletter-form button:hover { background: #1E4D3B; }
+    .footer-acknowledgment { margin-bottom: 30px; }
+    .footer-acknowledgment h3 { margin-bottom: 8px; }
     .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); font-size: 14px; }
 
-    @media (max-width: 768px) { .nav-links { display: none; } }
+    @media (max-width: 1120px) {
+        .footer-content { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 768px) {
+        .nav-links { display: none; }
+        .footer-content { grid-template-columns: minmax(0, 1fr); }
+    }
 </style>`;
 
 // Inject CSS

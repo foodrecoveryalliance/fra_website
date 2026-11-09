@@ -137,12 +137,11 @@
             gap: 18px;
             max-width: 1200px;
             margin: 0 auto;
-            align-items: start;
         }
 
         .team-card {
             perspective: 1000px;
-            height: 480px;
+            display: grid;
             cursor: pointer;
             width: 100%;
             opacity: 1;
@@ -153,7 +152,7 @@
         .team-card.visible { opacity: 1; transform: translateY(0); }
 
         .team-card-inner {
-            position: relative; width: 100%; height: 100%;
+            display: grid;
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             transform-style: preserve-3d;
         }
@@ -161,7 +160,8 @@
         .team-card:hover .team-card-inner { transform: rotateY(180deg); }
 
         .team-card-front, .team-card-back {
-            position: absolute; width: 100%; height: 100%;
+            grid-area: 1 / 1;
+            min-width: 0;
             backface-visibility: hidden; border-radius: 20px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.09);
         }
@@ -176,17 +176,24 @@
         .team-card:hover .team-card-front { box-shadow: 0 16px 48px rgba(0,0,0,0.14); }
 
         .team-photo {
-            width: 100%; height: 270px;
+            flex: 1;
+            min-height: 270px;
             border-radius: 20px 20px 0 0;
             position: relative; overflow: hidden;
             background: var(--primary-green);
         }
 
         .team-photo img {
+            position: absolute; inset: 0;
             width: 100%; height: 100%;
             object-fit: cover; object-position: center 40%;
             display: block;
             transition: transform 0.5s ease;
+        }
+
+        .team-photo .team-photo-angelina {
+            object-view-box: inset(12% 31% 50% 15%);
+            object-position: center 12%;
         }
 
         .team-card:hover .team-photo img { transform: scale(1.04); }
@@ -199,26 +206,14 @@
 
         .team-card:hover .team-photo-overlay { opacity: 1; }
 
-        .flip-hint {
-            position: absolute; bottom: 12px; right: 12px;
-            background: rgba(255,255,255,0.9); border-radius: 100px;
-            font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
-            letter-spacing: 0; text-transform: none; color: var(--primary-green);
-            padding: 4px 10px; opacity: 0; transition: opacity 0.3s;
-        }
-
-        .team-card:hover .flip-hint { opacity: 1; }
-
-        .team-info { padding: 20px 24px 24px; text-align: center; }
+        .team-info { padding: 16px 24px 18px; text-align: center; }
 
         .team-info h3 { color: var(--primary-green); margin-bottom: 6px; font-size: 25px; }
 
         .team-role {
-            color: var(--terracotta); font-weight: 800; margin-bottom: 10px; font-size: 17px;
+            color: var(--terracotta); font-weight: 800; font-size: 17px;
             text-transform: none; letter-spacing: 0; font-family: 'Montserrat', sans-serif;
         }
-
-        .team-quote { font-style: italic; color: #666; font-size: 16px; min-height: 4.2em; line-height: 1.45; }
 
         .team-card-back {
             background: var(--primary-green);
@@ -432,12 +427,10 @@
                         <div class="team-photo">
                             <img src="optimized/headshots/apollin.webp" alt="Apollin Lu" loading="lazy">
                             <div class="team-photo-overlay"></div>
-                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Apollin Lu</h3>
                             <p class="team-role">Founder & Executive Director</p>
-                            <p class="team-quote">"Food is the foundation of survival."</p>
                         </div>
                     </div>
                     <div class="team-card-back">
@@ -456,12 +449,10 @@
                         <div class="team-photo">
                             <img src="optimized/headshots/me.webp" alt="Yashita Kaku" loading="lazy">
                             <div class="team-photo-overlay"></div>
-                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Yashita Kaku</h3>
                             <p class="team-role">Cofounder</p>
-                            <p class="team-quote">"Believe you can, and you're halfway there."</p>
                         </div>
                     </div>
                     <div class="team-card-back">
@@ -480,12 +471,10 @@
                         <div class="team-photo">
                             <img src="optimized/headshots/sophie.webp" alt="Sophie Buckley" loading="lazy">
                             <div class="team-photo-overlay"></div>
-                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Sophie Buckley</h3>
                             <p class="team-role">Communications Director</p>
-                            <p class="team-quote">"Not everything that is faced can be changed, but nothing can be changed until it is faced."</p>
                         </div>
                     </div>
                     <div class="team-card-back">
@@ -504,12 +493,10 @@
                         <div class="team-photo">
                             <img src="optimized/headshots/brenton.webp" alt="Brenton Hsu" loading="lazy">
                             <div class="team-photo-overlay"></div>
-                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Brenton Hsu</h3>
                             <p class="team-role">Outreach Director</p>
-                            <p class="team-quote">"How are you going to spend your life? I'm not sure, but I do know I'm gonna live every minute of it."</p>
                         </div>
                     </div>
                     <div class="team-card-back">
@@ -528,12 +515,10 @@
                         <div class="team-photo">
                             <img src="optimized/headshots/jehiel.webp" alt="Jehiel McCoy" loading="lazy">
                             <div class="team-photo-overlay"></div>
-                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Jehiel McCoy</h3>
                             <p class="team-role">Volunteer Director</p>
-                            <p class="team-quote"></p>
                         </div>
                     </div>
                     <div class="team-card-back">
@@ -550,14 +535,12 @@
                 <div class="team-card-inner">
                     <div class="team-card-front">
                         <div class="team-photo">
-                            <img src="optimized/headshots/angelina.webp" alt="Angelina Guo" loading="lazy">
+                            <img class="team-photo-angelina" src="optimized/headshots/angelina.webp" alt="Angelina Guo" loading="lazy">
                             <div class="team-photo-overlay"></div>
-                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Angelina Guo</h3>
                             <p class="team-role">Vancouver Chapter Head</p>
-                            <p class="team-quote">"Fake it till you make it."</p>
                         </div>
                     </div>
                     <div class="team-card-back">
@@ -576,12 +559,10 @@
                         <div class="team-photo">
                             <img src="optimized/headshots/calvinli.webp" object-position="center 80%" alt="Calvin Li" loading="lazy">
                             <div class="team-photo-overlay"></div>
-                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Calvin Li</h3>
                             <p class="team-role">Food Donation Director</p>
-                            <p class="team-quote">"Sometimes, you need the darkness to see the light."</p>
                         </div>
                     </div>
                     <div class="team-card-back">
@@ -600,12 +581,10 @@
                         <div class="team-photo">
                             <img src="optimized/headshots/harrissyed.webp" alt="Harris Syed" loading="lazy">
                             <div class="team-photo-overlay"></div>
-                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Harris Syed</h3>
                             <p class="team-role">Vancouver Outreach Director</p>
-                            <p class="team-quote">"To love, is to trust. To trust is to believe."</p>
                         </div>
                     </div>
                     <div class="team-card-back">
@@ -624,12 +603,10 @@
                         <div class="team-photo">
                             <img src="optimized/headshots/ivanli.webp" alt="Ivan Leung" loading="lazy">
                             <div class="team-photo-overlay"></div>
-                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Ivan Leung</h3>
                             <p class="team-role">Finance Director</p>
-                            <p class="team-quote"></p>
                         </div>
                     </div>
                     <div class="team-card-back">
@@ -648,12 +625,10 @@
                         <div class="team-photo">
                             <img src="imgs2/logo.JPG" alt="Semeion Francisco">
                             <div class="team-photo-overlay"></div>
-                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Semeion Francisco</h3>
                             <p class="team-role">Deputy Vancouver Outreach Director</p>
-                            <p class="team-quote">"The more people that you let into your life, the more they can just walk right out."</p>
                         </div>
                     </div>
                     <div class="team-card-back">
@@ -672,12 +647,10 @@
                         <div class="team-photo">
                             <img src="optimized/headshots/lilian.webp" alt="Lilian Yu" loading="lazy">
                             <div class="team-photo-overlay"></div>
-                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Lilian Yu</h3>
                             <p class="team-role">Distribution Manager</p>
-                            <p class="team-quote">"Volatility is negated when you focus on the long term vision."</p>
                         </div>
                     </div>
                     <div class="team-card-back">
@@ -696,12 +669,10 @@
                         <div class="team-photo">
                             <img src="optimized/headshots/haley.webp" alt="Haley Paetkau" loading="lazy">
                             <div class="team-photo-overlay"></div>
-                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Haley Paetkau</h3>
                             <p class="team-role">Food Literacy Lead</p>
-                            <p class="team-quote">"Every choice that we make would create countless other possibilities."</p>
                         </div>
                     </div>
                     <div class="team-card-back">
@@ -720,12 +691,10 @@
                         <div class="team-photo">
                             <img src="optimized/headshots/levi.webp" alt="Levi Tolentino" loading="lazy">
                             <div class="team-photo-overlay"></div>
-                            <span class="flip-hint">Flip ↩</span>
                         </div>
                         <div class="team-info">
                             <h3>Levi Tolentino</h3>
                             <p class="team-role">Deputy Finance Director</p>
-                            <p class="team-quote"></p>
                         </div>
                     </div>
                     <div class="team-card-back">
