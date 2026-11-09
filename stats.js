@@ -9,6 +9,7 @@ const FRA_STATS = {
     reached:    { display: '75', count: 75  },
     partners:    { display: '23', count: 23  },
     percent:    { display: '15', count: 15  },
+    meals:    { display: '480', count: 480  },
     goal:    { display: '80,000', count: 80000  }
 };
 
