@@ -25,10 +25,6 @@ const footer = `
     <div class="footer-section">
         <h3>Food Recovery Alliance</h3>
         <p>A youth-led organization fighting food waste and food insecurity through community action.</p>
-        <div class="social-links">
-            <a href="http://instagram.com/foodrecoveryalliance/" aria-label="Instagram">📷</a>
-            <a href="https://www.linkedin.com/company/food-recoveriy-alliance/about/" aria-label="LinkedIn">in</a>
-        </div>
     </div>
     <div class="footer-section">
         <h3>Quick Links</h3>
@@ -41,9 +37,9 @@ const footer = `
     </div>
     <div class="footer-section">
         <h3>Contact Us</h3>
-        <p>foodrecoveryalliance@gmail.com</p>
+        <p>info@foodrecoveryalliance.org</p>
         <p>+1 (604) 861-9688</p>
-        <p>2901 Seapoint Drive<br>Victoria, BC</p>
+        <p>Victoria, BC</p>
     </div>
     <div class="footer-section">
         <h3>Stay Connected</h3>
@@ -59,7 +55,7 @@ const footer = `
     <p>Food Recovery Alliance sits on the traditional and unceded territories of the lək̓ʷəŋən peoples (the Songhees and Esquimalt Nations) and the W̱SÁNEĆ peoples. As a youth-led organization, we know that our generation must acknowledge the colonial history that has shaped the agricultural land we work on. We're committed to learning from Indigenous knowledge as we build stronger food systems.</p>
 </section>
 <div class="footer-bottom">
-    <p>&copy; 2024 Food Recovery Alliance. All rights reserved.</p>
+    <p>&copy; 2026 Food Recovery Alliance. All rights reserved.</p>
 </div>`;
 
 const sharedCSS = `
