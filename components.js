@@ -1,13 +1,17 @@
 const nav = `
 <div class="nav-container">
     <a href="index.html" class="logo-group">
-        <img src="page-assets/logo.JPG" alt="Food Recovery Alliance Logo" class="brand-logo">
+        <img src="imgs2/logo.JPG" alt="Food Recovery Alliance Logo" class="brand-logo">
         <span class="brand-name">Food Recovery Alliance</span>
     </a>
-    <ul class="nav-links">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+        <span class="menu-toggle-icon" aria-hidden="true"></span>
+        <span class="menu-toggle-label">Menu</span>
+    </button>
+    <ul class="nav-links" id="primary-navigation">
         <li><a href="index.html">Home</a></li>
         <li class="dropdown">
-            <span class="dropdown-toggle">Who We Are</span>
+            <button class="dropdown-toggle" type="button" aria-expanded="false">Who We Are <span aria-hidden="true">⌄</span></button>
             <div class="dropdown-menu">
                 <a href="about.html">About Us</a>
                 <a href="team.html">Our Team</a>
@@ -25,6 +29,10 @@ const footer = `
     <div class="footer-section">
         <h3>Food Recovery Alliance</h3>
         <p>A youth-led organization fighting food waste and food insecurity through community action.</p>
+        <div class="social-links">
+            <a href="http://instagram.com/foodrecoveryalliance/" aria-label="Instagram">📷</a>
+            <a href="https://www.linkedin.com/company/food-recoveriy-alliance/about/" aria-label="LinkedIn">in</a>
+        </div>
     </div>
     <div class="footer-section">
         <h3>Quick Links</h3>
@@ -33,6 +41,7 @@ const footer = `
         <a href="team.html">Our Team</a>
         <a href="get-involved.html">Get Involved</a>
         <a href="gallery.html">Gallery</a>
+        <a href="https://drive.google.com/file/d/1cosF-v-jMWw_WofPlom8_H5Xtf1inVWz/view?usp=drive_link">Bylaws</a>
         <a href="https://gofund.me/22910633a">Donate</a>
     </div>
     <div class="footer-section">
@@ -77,7 +86,7 @@ const sharedCSS = `
     .nav-links a:hover { color: #4CAF6A; }
     .nav-links .active { color: #F4C542; }
     .dropdown { position: relative; }
-    .dropdown-toggle { color: white; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 800; font-family: 'Montserrat', sans-serif; }
+    .dropdown-toggle { color: white; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 800; font-family: 'Montserrat', sans-serif; border: 0; background: transparent; padding: 8px 0; }
     .dropdown-menu { position: absolute; top: 100%; left: 0; background: white; min-width: 220px; border-radius: 8px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s; margin-top: 8px; }
     .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
     .dropdown-menu a { color: #1E4D3B; padding: 12px 20px; border-bottom: 1px solid #eee; font-size: 15px; display: block; font-weight: 700; font-family: 'Montserrat', sans-serif; }
@@ -85,6 +94,12 @@ const sharedCSS = `
     .dropdown-menu a:hover { background: #FAF9F6; }
     .btn-donate { display: inline-block; padding: 14px 40px; min-width: 120px; border-radius: 10px; background: #4CAF6A; color: white; text-decoration: none; text-align: center; font-weight: 700; transition: all 0.3s; font-size: 15px; font-family: 'Montserrat', sans-serif; }
     .btn-donate:hover { background: #4CAF6A; transform: translateY(-2px); }
+    .menu-toggle { display: none; color: white; border: 1px solid rgba(255,255,255,0.55); border-radius: 8px; background: transparent; min-height: 44px; padding: 8px 11px; align-items: center; gap: 8px; cursor: pointer; font: 800 14px/1 'Montserrat', sans-serif; }
+    .menu-toggle-icon, .menu-toggle-icon::before, .menu-toggle-icon::after { display: block; width: 19px; height: 2px; background: currentColor; border-radius: 2px; transition: transform .2s ease, opacity .2s ease; }
+    .menu-toggle-icon { position: relative; }
+    .menu-toggle-icon::before, .menu-toggle-icon::after { content: ''; position: absolute; left: 0; }
+    .menu-toggle-icon::before { top: -6px; }
+    .menu-toggle-icon::after { top: 6px; }
 
     footer { background: #2B2B2B; color: #FAF9F6; padding: 60px 32px 24px; }
     .footer-content,
@@ -118,7 +133,24 @@ const sharedCSS = `
         .footer-content { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 768px) {
-        .nav-links { display: none; }
+        nav { padding: 10px 0; }
+        .nav-container { position: relative; padding: 0 20px; min-height: 48px; }
+        .brand-logo { width: 42px; height: 42px; }
+        .brand-name { font-size: clamp(1.05rem, 5vw, 1.35rem); }
+        .menu-toggle { display: inline-flex; }
+        .nav-links { display: none; position: absolute; top: calc(100% + 10px); left: 12px; right: 12px; z-index: 1001; flex-direction: column; align-items: stretch; gap: 0; padding: 8px; border-radius: 12px; background: #1E4D3B; box-shadow: 0 14px 28px rgba(0,0,0,.25); }
+        .nav-links.is-open { display: flex; }
+        .nav-links > li { width: 100%; }
+        .nav-links a, .dropdown-toggle { width: 100%; min-height: 44px; padding: 12px; font-size: 16px; text-align: left; }
+        .dropdown-toggle { justify-content: space-between; }
+        .dropdown-menu { position: static; display: none; min-width: 0; margin: 0 4px 6px; border-radius: 8px; opacity: 1; visibility: visible; transform: none; box-shadow: none; }
+        .dropdown.is-open .dropdown-menu { display: block; }
+        .dropdown-menu a { color: #1E4D3B; padding: 12px 16px; }
+        .btn-donate { margin: 4px; padding: 12px; text-align: center !important; }
+        .newsletter-form { flex-direction: column; }
+        .newsletter-form button { width: 100%; }
+        footer { padding: 44px 24px 24px; }
+        .footer-content, .footer-acknowledgment { margin-left: 0; margin-right: 0; }
         .footer-content { grid-template-columns: minmax(0, 1fr); }
     }
 </style>`;
@@ -139,4 +171,36 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     if (link.getAttribute('href') === currentPage) {
         link.classList.add('active');
     }
+});
+
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+const dropdownToggle = document.querySelector('.dropdown-toggle');
+const dropdown = document.querySelector('.dropdown');
+
+function closeMenu() {
+    if (!menuToggle || !navLinks) return;
+    navLinks.classList.remove('is-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    dropdown?.classList.remove('is-open');
+    dropdownToggle?.setAttribute('aria-expanded', 'false');
+}
+
+menuToggle?.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('is-open');
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+});
+
+dropdownToggle?.addEventListener('click', () => {
+    if (!window.matchMedia('(max-width: 768px)').matches) return;
+    const isOpen = dropdown.classList.toggle('is-open');
+    dropdownToggle.setAttribute('aria-expanded', String(isOpen));
+});
+
+navLinks?.addEventListener('click', event => {
+    if (event.target.closest('a')) closeMenu();
+});
+
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeMenu();
 });
