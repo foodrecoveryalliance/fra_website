@@ -160,7 +160,7 @@ const sharedCSS = `
 const floatingAward = `
 <div class="floating-award" aria-label="Agraya Changemaker Award finalist">
     <button class="floating-award-trigger" type="button" aria-expanded="false" aria-controls="floating-award-blurb" aria-label="Show Agraya award details">
-        <img src="optimized/agraya-changemaker-finalist.webp" alt="Agraya Changemaker Award finalist, 2026">
+        <img src="optimized/page-assets/agraya-changemaker-finalist.webp" alt="Agraya Changemaker Award finalist, 2026">
     </button>
     <div class="floating-award-blurb" id="floating-award-blurb" role="dialog" aria-label="Agraya award details">
         <button class="floating-award-close" type="button" aria-label="Close award details">×</button>
