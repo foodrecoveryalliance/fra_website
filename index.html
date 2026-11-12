@@ -115,18 +115,23 @@
         .stat-card:hover { transform: translateY(-8px); background: var(--primary-green); }
         .stat-icon { display: none; }
         .stat-number { font-size: 52px; font-weight: 800; color: var(--golden); font-family: 'Montserrat', sans-serif; margin: 0 auto 6px; display: block; line-height: 1.08; padding: 0 0.08em 0.16em; max-width: 100%; }
-        .stat-primary .stat-number { font-size: clamp(118px, 11vw, 156px); }
+        .stat-primary .stat-number {
+            font-size: clamp(118px, 11vw, 156px);
+            position: relative;
+            top: -2px;
+            margin-bottom: 4px;
+            padding-bottom: 0;
+        }
         .stat-secondary .stat-number, .stat-tertiary .stat-number, .stat-supporting .stat-number { font-size: clamp(58px, 5.2vw, 78px); }
         .stat-label { font-size: 17px; color: white; font-weight: 600; line-height: 1.25; margin: -0.08em 0 0; }
-        .stats-grid.impact-burst .stat-number { animation: impactBurst 950ms cubic-bezier(0.18, 0.9, 0.22, 1.25) both; }
+        .stats-grid.impact-burst .stat-number { animation: impactBurst 500ms ease-out both; }
         .stats-grid.impact-burst .stat-card:nth-child(2) .stat-number { animation-delay: 70ms; }
         .stats-grid.impact-burst .stat-card:nth-child(3) .stat-number { animation-delay: 130ms; }
         .stats-grid.impact-burst .stat-card:nth-child(4) .stat-number { animation-delay: 190ms; }
         .stats-grid.impact-burst .stat-card:nth-child(5) .stat-number { animation-delay: 250ms; }
         @keyframes impactBurst {
-            0% { transform: scale(0.45); opacity: 0.35; }
-            52% { transform: scale(1.7); opacity: 1; }
-            72% { transform: scale(0.92); }
+            0% { transform: translateY(8px); opacity: 0; }
+            70% { transform: translateY(0); opacity: 1; }
             100% { transform: scale(1); opacity: 1; }
         }
 
@@ -478,7 +483,7 @@ farms across Victoria, before rescuing our first 20lbs from City’s Edge Farm.<
 
 <footer id="footer-placeholder"></footer>
 <script src="stats.js"></script>
-<script src="components.js"></script>
+<script src="components.js?v=20261111"></script>
 <script>
     const heroImage = new Image();
     heroImage.onload = () => document.body.classList.add('hero-grain-ready');

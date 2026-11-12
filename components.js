@@ -1,7 +1,7 @@
 const nav = `
 <div class="nav-container">
     <a href="index.html" class="logo-group">
-        <img src="imgs2/logo.JPG" alt="Food Recovery Alliance Logo" class="brand-logo">
+        <img src="optimized/imgs2/logo.webp" alt="Food Recovery Alliance Logo" class="brand-logo">
         <span class="brand-name">Food Recovery Alliance</span>
     </a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
@@ -11,7 +11,7 @@ const nav = `
     <ul class="nav-links" id="primary-navigation">
         <li><a href="index.html">Home</a></li>
         <li class="dropdown">
-            <button class="dropdown-toggle" type="button" aria-expanded="false">Who We Are <span aria-hidden="true">⌄</span></button>
+            <button class="dropdown-toggle" type="button" aria-expanded="false">Who We Are <span class="nav-chevron" aria-hidden="true"></span></button>
             <div class="dropdown-menu">
                 <a href="about.html">About Us</a>
                 <a href="team.html">Our Team</a>
@@ -29,10 +29,6 @@ const footer = `
     <div class="footer-section">
         <h3>Food Recovery Alliance</h3>
         <p>A youth-led organization fighting food waste and food insecurity through community action.</p>
-        <div class="social-links">
-            <a href="http://instagram.com/foodrecoveryalliance/" aria-label="Instagram">📷</a>
-            <a href="https://www.linkedin.com/company/food-recoveriy-alliance/about/" aria-label="LinkedIn">in</a>
-        </div>
     </div>
     <div class="footer-section">
         <h3>Quick Links</h3>
@@ -86,7 +82,9 @@ const sharedCSS = `
     .nav-links a:hover { color: #4CAF6A; }
     .nav-links .active { color: #F4C542; }
     .dropdown { position: relative; }
-    .dropdown-toggle { color: white; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 800; font-family: 'Montserrat', sans-serif; border: 0; background: transparent; padding: 8px 0; }
+    .dropdown-toggle { color: white; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 800; font-family: 'Montserrat', sans-serif; border: 0; background: transparent; padding: 8px 0; }
+    .nav-chevron { width: 10px; height: 10px; border-right: 3px solid currentColor; border-bottom: 3px solid currentColor; transform: rotate(45deg) translateY(-3px); transition: transform .2s ease; flex: 0 0 auto; }
+    .dropdown.is-open .nav-chevron { transform: rotate(225deg) translate(-2px, -2px); }
     .dropdown-menu { position: absolute; top: 100%; left: 0; background: white; min-width: 220px; border-radius: 8px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s; margin-top: 8px; }
     .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
     .dropdown-menu a { color: #1E4D3B; padding: 12px 20px; border-bottom: 1px solid #eee; font-size: 15px; display: block; font-weight: 700; font-family: 'Montserrat', sans-serif; }
@@ -104,23 +102,15 @@ const sharedCSS = `
     footer { background: #2B2B2B; color: #FAF9F6; padding: 60px 32px 24px; }
     .footer-content,
     .footer-acknowledgment {
-        max-width: 1250px;
-        margin-left: max(0px, calc((100% - 1200px) / 2));
-        margin-right: 0;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
     }
-    .footer-content {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 320px);
-        gap: 40px;
-        margin-bottom: 28px;
-    }
+    .footer-content { display: grid; grid-template-columns: 1.2fr 1fr .95fr 1.25fr; gap: 48px; align-items: start; margin-bottom: 28px; }
     .footer-section h3 { color: #4CAF6A; margin-bottom: 20px; font-size: 20px; font-family: 'Montserrat', sans-serif; font-weight: 800; }
     .footer-section p { line-height: 1.8; color: rgba(255,255,255,0.8); font-size: 15px; }
     .footer-section a { color: rgba(255,255,255,0.8); text-decoration: none; display: block; margin-bottom: 10px; transition: color 0.3s; font-size: 15px; }
     .footer-section a:hover { color: #4CAF6A; }
-    .social-links { display: flex; gap: 16px; margin-top: 20px; }
-    .social-links a { width: 44px; height: 44px; background: rgba(76,175,106,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s; font-size: 18px; }
-    .social-links a:hover { background: #4CAF6A; transform: translateY(-3px); }
     .newsletter-form { display: flex; gap: 8px; margin-top: 16px; }
     .newsletter-form input { flex: 1; min-width: 0; padding: 14px; border-radius: 8px; border: 1px solid #4CAF6A; background: white; font-size: 15px; }
     .newsletter-form button { padding: 14px 28px; background: #4CAF6A; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; transition: background 0.3s; font-family: 'Montserrat', sans-serif; }
@@ -128,6 +118,16 @@ const sharedCSS = `
     .footer-acknowledgment { margin-bottom: 30px; }
     .footer-acknowledgment h3 { margin-bottom: 8px; }
     .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); font-size: 14px; }
+
+    .floating-award { position: fixed; right: 22px; bottom: 22px; z-index: 1100; }
+    .floating-award-trigger { display: block; width: 88px; height: 88px; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; filter: drop-shadow(0 7px 15px rgba(0,0,0,.28)); transition: transform .2s ease; }
+    .floating-award-trigger:hover, .floating-award-trigger:focus-visible { transform: translateY(-4px) scale(1.04); outline: none; }
+    .floating-award-trigger img { display: block; width: 100%; height: 100%; object-fit: contain; }
+    .floating-award-blurb { position: absolute; right: 0; bottom: calc(100% + 14px); width: min(310px, calc(100vw - 36px)); padding: 18px 42px 18px 18px; border-radius: 14px; background: #1E4D3B; color: white; box-shadow: 0 14px 32px rgba(0,0,0,.26); opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(8px); transition: opacity .2s ease, transform .2s ease, visibility .2s ease; }
+    .floating-award.is-open .floating-award-blurb { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); }
+    .floating-award-blurb p { margin: 0 0 10px; font-size: 14px; line-height: 1.45; }
+    .floating-award-blurb a { display: block; width: fit-content; margin: 0 auto; color: #F4C542; font: 800 14px/1.2 'Montserrat', sans-serif; text-align: center; text-decoration: none; }
+    .floating-award-close { position: absolute; top: 8px; right: 10px; border: 0; background: transparent; color: white; cursor: pointer; font-size: 28px; line-height: 1; }
 
     @media (max-width: 1120px) {
         .footer-content { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -151,9 +151,23 @@ const sharedCSS = `
         .newsletter-form button { width: 100%; }
         footer { padding: 44px 24px 24px; }
         .footer-content, .footer-acknowledgment { margin-left: 0; margin-right: 0; }
-        .footer-content { grid-template-columns: minmax(0, 1fr); }
+        .footer-content { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+        .floating-award { right: 14px; bottom: 14px; }
+        .floating-award-trigger { width: 72px; height: 72px; }
     }
 </style>`;
+
+const floatingAward = `
+<div class="floating-award" aria-label="Agraya Changemaker Award finalist">
+    <button class="floating-award-trigger" type="button" aria-expanded="false" aria-controls="floating-award-blurb" aria-label="Show Agraya award details">
+        <img src="optimized/agraya-changemaker-finalist.webp" alt="Agraya Changemaker Award finalist, 2026">
+    </button>
+    <div class="floating-award-blurb" id="floating-award-blurb" role="dialog" aria-label="Agraya award details">
+        <button class="floating-award-close" type="button" aria-label="Close award details">×</button>
+        <p>Awarded by Agraya, the umbrella organization for GLOBALG.A.P., one of the world’s largest farm certification systems.</p>
+        <a href="https://agraya.com/changemaker-awards-2026-community-impact-finalists/" target="_blank" rel="noopener noreferrer">Read about the award</a>
+    </div>
+</div>`;
 
 // Inject CSS
 document.head.insertAdjacentHTML('beforeend', sharedCSS);
@@ -164,6 +178,10 @@ if (navEl) navEl.innerHTML = nav;
 
 const footerEl = document.getElementById('footer-placeholder');
 if (footerEl) footerEl.innerHTML = footer;
+
+if (!document.querySelector('.floating-award')) {
+    document.body.insertAdjacentHTML('beforeend', floatingAward);
+}
 
 // Highlight active nav link
 const currentPage = window.location.pathname.split('/').pop() || 'index.html';
@@ -177,6 +195,9 @@ const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 const dropdownToggle = document.querySelector('.dropdown-toggle');
 const dropdown = document.querySelector('.dropdown');
+const floatingAwardEl = document.querySelector('.floating-award');
+const floatingAwardTrigger = document.querySelector('.floating-award-trigger');
+const floatingAwardClose = document.querySelector('.floating-award-close');
 
 function closeMenu() {
     if (!menuToggle || !navLinks) return;
@@ -197,10 +218,24 @@ dropdownToggle?.addEventListener('click', () => {
     dropdownToggle.setAttribute('aria-expanded', String(isOpen));
 });
 
+floatingAwardTrigger?.addEventListener('click', () => {
+    const isOpen = floatingAwardEl.classList.toggle('is-open');
+    floatingAwardTrigger.setAttribute('aria-expanded', String(isOpen));
+});
+
+floatingAwardClose?.addEventListener('click', () => {
+    floatingAwardEl.classList.remove('is-open');
+    floatingAwardTrigger?.setAttribute('aria-expanded', 'false');
+});
+
 navLinks?.addEventListener('click', event => {
     if (event.target.closest('a')) closeMenu();
 });
 
 document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') closeMenu();
+    if (event.key === 'Escape') {
+        closeMenu();
+        floatingAwardEl?.classList.remove('is-open');
+        floatingAwardTrigger?.setAttribute('aria-expanded', 'false');
+    }
 });
