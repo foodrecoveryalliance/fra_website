@@ -120,7 +120,7 @@ const sharedCSS = `
     .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); font-size: 14px; }
 
     .floating-award { position: fixed; right: 22px; bottom: 22px; z-index: 1100; }
-    .floating-award-trigger { display: block; width: 88px; height: 88px; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; filter: drop-shadow(0 7px 15px rgba(0,0,0,.28)); transition: transform .2s ease; }
+    .floating-award-trigger { display: block; width: 88px; height: 88px; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; transition: transform .2s ease; }
     .floating-award-trigger:hover, .floating-award-trigger:focus-visible { transform: translateY(-4px) scale(1.04); outline: none; }
     .floating-award-trigger img { display: block; width: 100%; height: 100%; object-fit: contain; }
     .floating-award-blurb { position: absolute; right: 0; bottom: calc(100% + 14px); width: min(310px, calc(100vw - 36px)); padding: 18px 42px 18px 18px; border-radius: 14px; background: #1E4D3B; color: white; box-shadow: 0 14px 32px rgba(0,0,0,.26); opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(8px); transition: opacity .2s ease, transform .2s ease, visibility .2s ease; }
